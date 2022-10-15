@@ -1,0 +1,33 @@
+name: mobile
+
+packages:
+  - /**
+
+ide:
+  intellij: true
+  vscode: true
+
+scripts:
+  develop:
+    run: |
+      melos run pub:get:app --no-select
+      melos run gen:l10n --no-select
+      melos run gen:build_runner --no-select
+
+  pub:get:
+    run: fvm flutter pub get
+    exec:
+      concurrency: 1
+
+  gen:l10n:
+    exec: fvm flutter gen-l10n
+    select-package:
+      depends-on: "flutter_localizations"
+
+  gen:build_runner:
+    exec: fvm flutter packages pub run build_runner build --delete-conflicting-outputs
+    select-package:
+      depends-on: "build_runner"
+
+  run:
+    exec: fvm flutter run
