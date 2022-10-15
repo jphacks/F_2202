@@ -6,4 +6,7 @@ class AppLocalizationJa extends AppLocalization {
 
   @override
   String get search_place_button => '場所を探す';
+
+  @override
+  String get search_place_text_field_hint => '場所を検索する';
 }

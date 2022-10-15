@@ -96,6 +96,12 @@ abstract class AppLocalization {
   /// In ja, this message translates to:
   /// **'場所を探す'**
   String get search_place_button;
+
+  /// No description provided for @search_place_text_field_hint.
+  ///
+  /// In ja, this message translates to:
+  /// **'場所を検索する'**
+  String get search_place_text_field_hint;
 }
 
 class _AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {

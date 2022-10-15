@@ -1,4 +1,5 @@
 {
     "@@locale": "ja",
-    "search_place_button": "場所を探す"
+    "search_place_button": "場所を探す",
+    "search_place_text_field_hint": "場所を検索する"
 }
