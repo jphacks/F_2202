@@ -1,7 +1,7 @@
 name: mobile
 
 packages:
-  - /**
+  - mobile/**
 
 ide:
   intellij: true
@@ -31,3 +31,6 @@ scripts:
 
   run:
     exec: fvm flutter run
+  
+  clean:
+    exec: fvm flutter clean
