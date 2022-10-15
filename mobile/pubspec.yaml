@@ -44,6 +44,13 @@ dependencies:
   # id系
   uuid: ^3.0.6
 
+  # googleMap系
+  google_maps_flutter: 
+  concentric_transition: 
+  google_maps_webservice: ^0.0.20-nullsafety.5
+  geolocator: 
+  equatable: 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

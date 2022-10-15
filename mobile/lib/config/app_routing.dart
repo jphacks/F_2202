@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/config/app_routing_name.dart';
-
-import '../presentation/top/top_page.dart';
+import 'package:mobile/presentation/top/top_page.dart';
 
 /// 遷移のアニメーション等が必要ならここを調整
 PageRouteBuilder _presentPage({
