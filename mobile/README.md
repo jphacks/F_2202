@@ -1,5 +1,24 @@
 # Flutter環境構築
 
+使用バージョン: flutter 3.3.2
+
+管理ツール: (fvm)[https://fvm.app/]
+
+
+### fvmのセットアップ
+
+```
+fvm install 3.3.2 /// ここまででOK
+
+/// 上でビルドできない人は下もやる
+
+cd プロジェクト内
+
+fvm flutter use 3.3.2
+```
+
+### 環境構築
+
 ```
 make setup
 
