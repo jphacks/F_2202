@@ -2,7 +2,7 @@
 
 使用バージョン: flutter 3.3.2
 
-管理ツール: (fvm)[https://fvm.app/]
+管理ツール: [fvm](https://fvm.app/)
 
 
 ### fvmのセットアップ
