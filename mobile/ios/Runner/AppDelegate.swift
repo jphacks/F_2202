@@ -9,7 +9,7 @@ import GoogleMaps
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     GeneratedPluginRegistrant.register(with: self)
-    GMSServices.provideAPIKey(configKey)
+    GMSServices.provideAPIKey("APIを入れる")
     GMSServices.setMetalRendererEnabled(true)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
