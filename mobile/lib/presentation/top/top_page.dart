@@ -2,9 +2,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mobile/l10n/app_localization.dart';
 import 'package:mobile/presentation/top/top_controller_provider.dart';
 import 'package:mobile/presentation/top/top_state.dart';
-
+import 'package:mobile/presentation/widgets/search_button.dart';
 
 class TopPage extends StatefulHookConsumerWidget {
   const TopPage({
@@ -31,6 +32,7 @@ class TopPageState extends ConsumerState<TopPage> {
   @override
   Widget build(BuildContext context) {
     final asyncValue = ref.watch(topControllerProvider);
+    final l10n = AppLocalization.of(context)!;
 
     final _pageController = PageController(
       viewportFraction: 0.85,
@@ -49,6 +51,13 @@ class TopPageState extends ConsumerState<TopPage> {
                     mapController: _mapController,
                     pageController: _pageController,
                     topState: data,
+                  ),
+                  Positioned(
+                    bottom: 70,
+                    child: GlowingButton(
+                      title: l10n.search_place_button,
+                      onTap: () {},
+                    ),
                   ),
                 ],
               );
