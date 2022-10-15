@@ -1,16 +1,28 @@
-# mobile
+# Flutter環境構築
 
-A new Flutter project.
+```
+make setup
 
-## Getting Started
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 
-This project is a starting point for a Flutter application.
+melos run develop
 
-A few resources to get you started if this is your first Flutter project:
+cd mobile/ios
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+pod install
+```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 実行コマンド
+
+```
+melos run  ///5番を選択(melos run run)
+```
+
+### melos番号
+
+1. 環境とかを整える
+2. pub get
+3. l10nファイル生成
+4. freezed実行コマンド
+5. ビルド
+6. clean
