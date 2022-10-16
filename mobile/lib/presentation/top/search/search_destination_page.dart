@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile/l10n/app_localization.dart';
-import 'package:mobile/presentation/top/search/search_destination_state.dart';
+import 'package:mobile/model/destination/destination.dart';
+import 'package:mobile/presentation/top/search/search_destination_controller_provider.dart';
 
 class SearchDestinationPage extends HookConsumerWidget {
   const SearchDestinationPage({
@@ -10,6 +11,9 @@ class SearchDestinationPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(searchDestinationControllerProvider);
+    final controller = ref.read(searchDestinationControllerProvider.notifier);
+
     return Scaffold(
       backgroundColor: const Color(0xEEEEEEEE),
       body: Padding(
@@ -17,7 +21,9 @@ class SearchDestinationPage extends HookConsumerWidget {
         child: Column(
           children: [
             _SearchTextField(
-              onSearchChanged: (value) {},
+              onSearchChanged: (keyword) async {
+                await controller.searchDestination(keyword: keyword);
+              },
             ),
             const SizedBox(
               height: 20,
@@ -25,9 +31,12 @@ class SearchDestinationPage extends HookConsumerWidget {
             Expanded(
               child: ListView.separated(
                 itemBuilder: (context, index) => _ResultTile(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  destination: state.destination[index],
                 ),
-                itemCount: 5,
+                itemCount: state.destination.length,
                 separatorBuilder: (BuildContext context, int index) {
                   return const SizedBox(
                     height: 10,
@@ -66,8 +75,8 @@ class _SearchTextField extends StatelessWidget {
             color: Colors.grey,
           ),
         ),
-        style: const TextStyle(color: Colors.white),
-        cursorColor: Colors.white.withOpacity(0.3),
+        style: const TextStyle(color: Colors.black),
+        cursorColor: Colors.grey,
         onChanged: onSearchChanged,
       ),
     );
@@ -78,19 +87,21 @@ class _ResultTile extends StatelessWidget {
   const _ResultTile({
     Key? key,
     required this.onTap,
+    required this.destination,
   }) : super(key: key);
 
   final Function() onTap;
+  final Destination destination;
 
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
       color: Colors.grey,
       child: ListTile(
-        title: const Text(
-          '建物名',
+        title: Text(
+          destination.description,
         ),
-        subtitle: const Text('住所'),
+        subtitle: Text(destination.description),
         onTap: () {},
       ),
     );
