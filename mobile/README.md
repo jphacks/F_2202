@@ -14,7 +14,7 @@ fvm install 3.3.2 /// ここまででOK
 
 cd プロジェクト内
 
-fvm flutter use 3.3.2
+fvm use 3.3.2
 ```
 
 ### 環境構築
