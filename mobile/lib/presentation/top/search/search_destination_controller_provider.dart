@@ -3,7 +3,7 @@ import 'package:mobile/presentation/top/search/search_destination_controller.dar
 import 'package:mobile/presentation/top/search/search_destination_state.dart';
 
 final searchDestinationControllerProvider =
-    StateNotifierProvider.autoDispose<SearchDestinationController, AsyncValue<SearchDestinationState>>(
+    StateNotifierProvider.autoDispose<SearchDestinationController, SearchDestinationState>(
   (ref) => SearchDestinationController(
     reader: ref.read,
   ),

@@ -16,14 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SearchDestinationState {
-  /// 場所
-  String get place => throw _privateConstructorUsedError;
-
-  /// 住所
-  String get address => throw _privateConstructorUsedError;
-
-  /// 緯度経度
-  LatLng get latLng => throw _privateConstructorUsedError;
+  List<Destination> get destination => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SearchDestinationStateCopyWith<SearchDestinationState> get copyWith =>
@@ -36,7 +29,7 @@ abstract class $SearchDestinationStateCopyWith<$Res> {
           $Res Function(SearchDestinationState) then) =
       _$SearchDestinationStateCopyWithImpl<$Res, SearchDestinationState>;
   @useResult
-  $Res call({String place, String address, LatLng latLng});
+  $Res call({List<Destination> destination});
 }
 
 /// @nodoc
@@ -53,23 +46,13 @@ class _$SearchDestinationStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? place = null,
-    Object? address = null,
-    Object? latLng = null,
+    Object? destination = null,
   }) {
     return _then(_value.copyWith(
-      place: null == place
-          ? _value.place
-          : place // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      latLng: null == latLng
-          ? _value.latLng
-          : latLng // ignore: cast_nullable_to_non_nullable
-              as LatLng,
+      destination: null == destination
+          ? _value.destination
+          : destination // ignore: cast_nullable_to_non_nullable
+              as List<Destination>,
     ) as $Val);
   }
 }
@@ -82,7 +65,7 @@ abstract class _$$_SearchDestinationStateCopyWith<$Res>
       __$$_SearchDestinationStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String place, String address, LatLng latLng});
+  $Res call({List<Destination> destination});
 }
 
 /// @nodoc
@@ -97,23 +80,13 @@ class __$$_SearchDestinationStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? place = null,
-    Object? address = null,
-    Object? latLng = null,
+    Object? destination = null,
   }) {
     return _then(_$_SearchDestinationState(
-      place: null == place
-          ? _value.place
-          : place // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      latLng: null == latLng
-          ? _value.latLng
-          : latLng // ignore: cast_nullable_to_non_nullable
-              as LatLng,
+      destination: null == destination
+          ? _value._destination
+          : destination // ignore: cast_nullable_to_non_nullable
+              as List<Destination>,
     ));
   }
 }
@@ -122,26 +95,20 @@ class __$$_SearchDestinationStateCopyWithImpl<$Res>
 
 class _$_SearchDestinationState implements _SearchDestinationState {
   const _$_SearchDestinationState(
-      {this.place = '', this.address = '', this.latLng = const LatLng(0, 0)});
+      {final List<Destination> destination = const <Destination>[]})
+      : _destination = destination;
 
-  /// 場所
+  final List<Destination> _destination;
   @override
   @JsonKey()
-  final String place;
-
-  /// 住所
-  @override
-  @JsonKey()
-  final String address;
-
-  /// 緯度経度
-  @override
-  @JsonKey()
-  final LatLng latLng;
+  List<Destination> get destination {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_destination);
+  }
 
   @override
   String toString() {
-    return 'SearchDestinationState(place: $place, address: $address, latLng: $latLng)';
+    return 'SearchDestinationState(destination: $destination)';
   }
 
   @override
@@ -149,13 +116,13 @@ class _$_SearchDestinationState implements _SearchDestinationState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SearchDestinationState &&
-            (identical(other.place, place) || other.place == place) &&
-            (identical(other.address, address) || other.address == address) &&
-            (identical(other.latLng, latLng) || other.latLng == latLng));
+            const DeepCollectionEquality()
+                .equals(other._destination, _destination));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, place, address, latLng);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_destination));
 
   @JsonKey(ignore: true)
   @override
@@ -166,23 +133,11 @@ class _$_SearchDestinationState implements _SearchDestinationState {
 }
 
 abstract class _SearchDestinationState implements SearchDestinationState {
-  const factory _SearchDestinationState(
-      {final String place,
-      final String address,
-      final LatLng latLng}) = _$_SearchDestinationState;
+  const factory _SearchDestinationState({final List<Destination> destination}) =
+      _$_SearchDestinationState;
 
   @override
-
-  /// 場所
-  String get place;
-  @override
-
-  /// 住所
-  String get address;
-  @override
-
-  /// 緯度経度
-  LatLng get latLng;
+  List<Destination> get destination;
   @override
   @JsonKey(ignore: true)
   _$$_SearchDestinationStateCopyWith<_$_SearchDestinationState> get copyWith =>

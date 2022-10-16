@@ -1,4 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mobile/infra/google_map_place_api.dart';
 import 'package:mobile/presentation/top/search/search_destination_state.dart';
 
 class SearchDestinationController
@@ -12,6 +13,10 @@ class SearchDestinationController
   Future<void> searchDestination({
     required String keyword,
   }) async {
-    
+    final result = await GoogleMapPlaceSearchApi.fetchDestination(
+      keyword: keyword,
+    );
+
+    state = state.copyWith(destination: result.asValue!.value);
   }
 }
