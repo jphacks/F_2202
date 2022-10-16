@@ -4,11 +4,11 @@ part 'destination.freezed.dart';
 
 @freezed
 class Destination with _$Destination {
+  const Destination._();
   const factory Destination({
-    @Default('') String name,
     @Default('') String placeId,
-    @Default(0.0) double latitude,
-    @Default(0.0) double longitude,
-    @Default('') String address,
+    @Default('') String description,
+    @Default('') String structuredFormatting,
+    @Default('') String structuredFormattingSub,
   }) = _Destination;
 }

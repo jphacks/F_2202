@@ -16,11 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Destination {
-  String get name => throw _privateConstructorUsedError;
   String get placeId => throw _privateConstructorUsedError;
-  double get latitude => throw _privateConstructorUsedError;
-  double get longitude => throw _privateConstructorUsedError;
-  String get address => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  String get structuredFormatting => throw _privateConstructorUsedError;
+  String get structuredFormattingSub => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DestinationCopyWith<Destination> get copyWith =>
@@ -34,11 +33,10 @@ abstract class $DestinationCopyWith<$Res> {
       _$DestinationCopyWithImpl<$Res, Destination>;
   @useResult
   $Res call(
-      {String name,
-      String placeId,
-      double latitude,
-      double longitude,
-      String address});
+      {String placeId,
+      String description,
+      String structuredFormatting,
+      String structuredFormattingSub});
 }
 
 /// @nodoc
@@ -54,32 +52,27 @@ class _$DestinationCopyWithImpl<$Res, $Val extends Destination>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
     Object? placeId = null,
-    Object? latitude = null,
-    Object? longitude = null,
-    Object? address = null,
+    Object? description = null,
+    Object? structuredFormatting = null,
+    Object? structuredFormattingSub = null,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
       placeId: null == placeId
           ? _value.placeId
           : placeId // ignore: cast_nullable_to_non_nullable
               as String,
-      latitude: null == latitude
-          ? _value.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: null == longitude
-          ? _value.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      structuredFormatting: null == structuredFormatting
+          ? _value.structuredFormatting
+          : structuredFormatting // ignore: cast_nullable_to_non_nullable
+              as String,
+      structuredFormattingSub: null == structuredFormattingSub
+          ? _value.structuredFormattingSub
+          : structuredFormattingSub // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -94,11 +87,10 @@ abstract class _$$_DestinationCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name,
-      String placeId,
-      double latitude,
-      double longitude,
-      String address});
+      {String placeId,
+      String description,
+      String structuredFormatting,
+      String structuredFormattingSub});
 }
 
 /// @nodoc
@@ -112,32 +104,27 @@ class __$$_DestinationCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
     Object? placeId = null,
-    Object? latitude = null,
-    Object? longitude = null,
-    Object? address = null,
+    Object? description = null,
+    Object? structuredFormatting = null,
+    Object? structuredFormattingSub = null,
   }) {
     return _then(_$_Destination(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
       placeId: null == placeId
           ? _value.placeId
           : placeId // ignore: cast_nullable_to_non_nullable
               as String,
-      latitude: null == latitude
-          ? _value.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: null == longitude
-          ? _value.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      structuredFormatting: null == structuredFormatting
+          ? _value.structuredFormatting
+          : structuredFormatting // ignore: cast_nullable_to_non_nullable
+              as String,
+      structuredFormattingSub: null == structuredFormattingSub
+          ? _value.structuredFormattingSub
+          : structuredFormattingSub // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -145,33 +132,30 @@ class __$$_DestinationCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Destination implements _Destination {
+class _$_Destination extends _Destination {
   const _$_Destination(
-      {this.name = '',
-      this.placeId = '',
-      this.latitude = 0.0,
-      this.longitude = 0.0,
-      this.address = ''});
+      {this.placeId = '',
+      this.description = '',
+      this.structuredFormatting = '',
+      this.structuredFormattingSub = ''})
+      : super._();
 
-  @override
-  @JsonKey()
-  final String name;
   @override
   @JsonKey()
   final String placeId;
   @override
   @JsonKey()
-  final double latitude;
+  final String description;
   @override
   @JsonKey()
-  final double longitude;
+  final String structuredFormatting;
   @override
   @JsonKey()
-  final String address;
+  final String structuredFormattingSub;
 
   @override
   String toString() {
-    return 'Destination(name: $name, placeId: $placeId, latitude: $latitude, longitude: $longitude, address: $address)';
+    return 'Destination(placeId: $placeId, description: $description, structuredFormatting: $structuredFormatting, structuredFormattingSub: $structuredFormattingSub)';
   }
 
   @override
@@ -179,18 +163,19 @@ class _$_Destination implements _Destination {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Destination &&
-            (identical(other.name, name) || other.name == name) &&
             (identical(other.placeId, placeId) || other.placeId == placeId) &&
-            (identical(other.latitude, latitude) ||
-                other.latitude == latitude) &&
-            (identical(other.longitude, longitude) ||
-                other.longitude == longitude) &&
-            (identical(other.address, address) || other.address == address));
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.structuredFormatting, structuredFormatting) ||
+                other.structuredFormatting == structuredFormatting) &&
+            (identical(
+                    other.structuredFormattingSub, structuredFormattingSub) ||
+                other.structuredFormattingSub == structuredFormattingSub));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, placeId, latitude, longitude, address);
+  int get hashCode => Object.hash(runtimeType, placeId, description,
+      structuredFormatting, structuredFormattingSub);
 
   @JsonKey(ignore: true)
   @override
@@ -199,24 +184,22 @@ class _$_Destination implements _Destination {
       __$$_DestinationCopyWithImpl<_$_Destination>(this, _$identity);
 }
 
-abstract class _Destination implements Destination {
+abstract class _Destination extends Destination {
   const factory _Destination(
-      {final String name,
-      final String placeId,
-      final double latitude,
-      final double longitude,
-      final String address}) = _$_Destination;
+      {final String placeId,
+      final String description,
+      final String structuredFormatting,
+      final String structuredFormattingSub}) = _$_Destination;
+  const _Destination._() : super._();
 
-  @override
-  String get name;
   @override
   String get placeId;
   @override
-  double get latitude;
+  String get description;
   @override
-  double get longitude;
+  String get structuredFormatting;
   @override
-  String get address;
+  String get structuredFormattingSub;
   @override
   @JsonKey(ignore: true)
   _$$_DestinationCopyWith<_$_Destination> get copyWith =>

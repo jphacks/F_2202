@@ -3,7 +3,7 @@ import 'package:http/http.dart';
 import 'package:async/async.dart';
 import 'package:mobile/config/config.dart';
 import 'package:mobile/model/destination/destination.dart';
-import 'package:mobile/model/destination/response/destination_api.dart';
+import 'package:mobile/model/destination/destination_response.dart';
 
 mixin GoogleMapPlaceSearchApi {
   /// リクエストを送る
@@ -23,22 +23,17 @@ mixin GoogleMapPlaceSearchApi {
 
   static List<Destination> _getDestinationList(Map<String, dynamic> decoded) {
     List<Destination> destinationList = [];
-    for (var result in decoded['results']) {
+    for (var result in decoded['predictions']) {
       destinationList.add(DestinationApiResponse.fromJson(result).toEntity());
     }
     return destinationList;
   }
 
-  static Future<Result<List<dynamic>>> fetch({
-    required double latitude,
-    required double longtitude,
-    required int radius,
+  static Future<Result<List<Destination>>> fetchDestination({
     required String keyword,
   }) async {
     final placeApiKey =
-        'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
-        'key=$googleMapApiKey&location=$latitude,$longtitude&radius=$radius&language=ja&keyword=$keyword';
-
+        'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$keyword&language=ja&components=country:jp&key=$googleMapApiKey&libraries=places';
     try {
       final response = await _request(url: placeApiKey);
       final decoded = response.asValue!.value;
