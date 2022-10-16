@@ -24,35 +24,24 @@ mixin _$DestinationApi {
   String? get description => throw _privateConstructorUsedError;
   StructuredFormatting? get structuredFormatting =>
       throw _privateConstructorUsedError;
-  StructuredFormatting? get structuredFormattingSub =>
-      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String? placeId,
-            String? description,
-            StructuredFormatting? structuredFormatting,
-            StructuredFormatting? structuredFormattingSub)
+    required TResult Function(String? placeId, String? description,
+            StructuredFormatting? structuredFormatting)
         response,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            String? placeId,
-            String? description,
-            StructuredFormatting? structuredFormatting,
-            StructuredFormatting? structuredFormattingSub)?
+    TResult? Function(String? placeId, String? description,
+            StructuredFormatting? structuredFormatting)?
         response,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String? placeId,
-            String? description,
-            StructuredFormatting? structuredFormatting,
-            StructuredFormatting? structuredFormattingSub)?
+    TResult Function(String? placeId, String? description,
+            StructuredFormatting? structuredFormatting)?
         response,
     required TResult orElse(),
   }) =>
@@ -88,11 +77,9 @@ abstract class $DestinationApiCopyWith<$Res> {
   $Res call(
       {String? placeId,
       String? description,
-      StructuredFormatting? structuredFormatting,
-      StructuredFormatting? structuredFormattingSub});
+      StructuredFormatting? structuredFormatting});
 
   $StructuredFormattingCopyWith<$Res>? get structuredFormatting;
-  $StructuredFormattingCopyWith<$Res>? get structuredFormattingSub;
 }
 
 /// @nodoc
@@ -111,7 +98,6 @@ class _$DestinationApiCopyWithImpl<$Res, $Val extends DestinationApi>
     Object? placeId = freezed,
     Object? description = freezed,
     Object? structuredFormatting = freezed,
-    Object? structuredFormattingSub = freezed,
   }) {
     return _then(_value.copyWith(
       placeId: freezed == placeId
@@ -125,10 +111,6 @@ class _$DestinationApiCopyWithImpl<$Res, $Val extends DestinationApi>
       structuredFormatting: freezed == structuredFormatting
           ? _value.structuredFormatting
           : structuredFormatting // ignore: cast_nullable_to_non_nullable
-              as StructuredFormatting?,
-      structuredFormattingSub: freezed == structuredFormattingSub
-          ? _value.structuredFormattingSub
-          : structuredFormattingSub // ignore: cast_nullable_to_non_nullable
               as StructuredFormatting?,
     ) as $Val);
   }
@@ -145,19 +127,6 @@ class _$DestinationApiCopyWithImpl<$Res, $Val extends DestinationApi>
       return _then(_value.copyWith(structuredFormatting: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $StructuredFormattingCopyWith<$Res>? get structuredFormattingSub {
-    if (_value.structuredFormattingSub == null) {
-      return null;
-    }
-
-    return $StructuredFormattingCopyWith<$Res>(_value.structuredFormattingSub!,
-        (value) {
-      return _then(_value.copyWith(structuredFormattingSub: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -171,13 +140,10 @@ abstract class _$$DestinationApiResponseCopyWith<$Res>
   $Res call(
       {String? placeId,
       String? description,
-      StructuredFormatting? structuredFormatting,
-      StructuredFormatting? structuredFormattingSub});
+      StructuredFormatting? structuredFormatting});
 
   @override
   $StructuredFormattingCopyWith<$Res>? get structuredFormatting;
-  @override
-  $StructuredFormattingCopyWith<$Res>? get structuredFormattingSub;
 }
 
 /// @nodoc
@@ -194,7 +160,6 @@ class __$$DestinationApiResponseCopyWithImpl<$Res>
     Object? placeId = freezed,
     Object? description = freezed,
     Object? structuredFormatting = freezed,
-    Object? structuredFormattingSub = freezed,
   }) {
     return _then(_$DestinationApiResponse(
       placeId: freezed == placeId
@@ -209,10 +174,6 @@ class __$$DestinationApiResponseCopyWithImpl<$Res>
           ? _value.structuredFormatting
           : structuredFormatting // ignore: cast_nullable_to_non_nullable
               as StructuredFormatting?,
-      structuredFormattingSub: freezed == structuredFormattingSub
-          ? _value.structuredFormattingSub
-          : structuredFormattingSub // ignore: cast_nullable_to_non_nullable
-              as StructuredFormatting?,
     ));
   }
 }
@@ -223,8 +184,7 @@ class _$DestinationApiResponse extends DestinationApiResponse {
   const _$DestinationApiResponse(
       {required this.placeId,
       required this.description,
-      required this.structuredFormatting,
-      required this.structuredFormattingSub})
+      required this.structuredFormatting})
       : super._();
 
   factory _$DestinationApiResponse.fromJson(Map<String, dynamic> json) =>
@@ -236,12 +196,10 @@ class _$DestinationApiResponse extends DestinationApiResponse {
   final String? description;
   @override
   final StructuredFormatting? structuredFormatting;
-  @override
-  final StructuredFormatting? structuredFormattingSub;
 
   @override
   String toString() {
-    return 'DestinationApi.response(placeId: $placeId, description: $description, structuredFormatting: $structuredFormatting, structuredFormattingSub: $structuredFormattingSub)';
+    return 'DestinationApi.response(placeId: $placeId, description: $description, structuredFormatting: $structuredFormatting)';
   }
 
   @override
@@ -253,16 +211,13 @@ class _$DestinationApiResponse extends DestinationApiResponse {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.structuredFormatting, structuredFormatting) ||
-                other.structuredFormatting == structuredFormatting) &&
-            (identical(
-                    other.structuredFormattingSub, structuredFormattingSub) ||
-                other.structuredFormattingSub == structuredFormattingSub));
+                other.structuredFormatting == structuredFormatting));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, placeId, description,
-      structuredFormatting, structuredFormattingSub);
+  int get hashCode =>
+      Object.hash(runtimeType, placeId, description, structuredFormatting);
 
   @JsonKey(ignore: true)
   @override
@@ -274,45 +229,33 @@ class _$DestinationApiResponse extends DestinationApiResponse {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String? placeId,
-            String? description,
-            StructuredFormatting? structuredFormatting,
-            StructuredFormatting? structuredFormattingSub)
+    required TResult Function(String? placeId, String? description,
+            StructuredFormatting? structuredFormatting)
         response,
   }) {
-    return response(
-        placeId, description, structuredFormatting, structuredFormattingSub);
+    return response(placeId, description, structuredFormatting);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            String? placeId,
-            String? description,
-            StructuredFormatting? structuredFormatting,
-            StructuredFormatting? structuredFormattingSub)?
+    TResult? Function(String? placeId, String? description,
+            StructuredFormatting? structuredFormatting)?
         response,
   }) {
-    return response?.call(
-        placeId, description, structuredFormatting, structuredFormattingSub);
+    return response?.call(placeId, description, structuredFormatting);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String? placeId,
-            String? description,
-            StructuredFormatting? structuredFormatting,
-            StructuredFormatting? structuredFormattingSub)?
+    TResult Function(String? placeId, String? description,
+            StructuredFormatting? structuredFormatting)?
         response,
     required TResult orElse(),
   }) {
     if (response != null) {
-      return response(
-          placeId, description, structuredFormatting, structuredFormattingSub);
+      return response(placeId, description, structuredFormatting);
     }
     return orElse();
   }
@@ -357,8 +300,7 @@ abstract class DestinationApiResponse extends DestinationApi {
   const factory DestinationApiResponse(
           {required final String? placeId,
           required final String? description,
-          required final StructuredFormatting? structuredFormatting,
-          required final StructuredFormatting? structuredFormattingSub}) =
+          required final StructuredFormatting? structuredFormatting}) =
       _$DestinationApiResponse;
   const DestinationApiResponse._() : super._();
 
@@ -371,8 +313,6 @@ abstract class DestinationApiResponse extends DestinationApi {
   String? get description;
   @override
   StructuredFormatting? get structuredFormatting;
-  @override
-  StructuredFormatting? get structuredFormattingSub;
   @override
   @JsonKey(ignore: true)
   _$$DestinationApiResponseCopyWith<_$DestinationApiResponse> get copyWith =>

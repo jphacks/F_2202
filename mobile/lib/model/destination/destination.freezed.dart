@@ -18,8 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Destination {
   String get placeId => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  String get structuredFormatting => throw _privateConstructorUsedError;
-  String get structuredFormattingSub => throw _privateConstructorUsedError;
+  String get placeName => throw _privateConstructorUsedError;
+  String get placeAddress => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DestinationCopyWith<Destination> get copyWith =>
@@ -35,8 +35,8 @@ abstract class $DestinationCopyWith<$Res> {
   $Res call(
       {String placeId,
       String description,
-      String structuredFormatting,
-      String structuredFormattingSub});
+      String placeName,
+      String placeAddress});
 }
 
 /// @nodoc
@@ -54,8 +54,8 @@ class _$DestinationCopyWithImpl<$Res, $Val extends Destination>
   $Res call({
     Object? placeId = null,
     Object? description = null,
-    Object? structuredFormatting = null,
-    Object? structuredFormattingSub = null,
+    Object? placeName = null,
+    Object? placeAddress = null,
   }) {
     return _then(_value.copyWith(
       placeId: null == placeId
@@ -66,13 +66,13 @@ class _$DestinationCopyWithImpl<$Res, $Val extends Destination>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      structuredFormatting: null == structuredFormatting
-          ? _value.structuredFormatting
-          : structuredFormatting // ignore: cast_nullable_to_non_nullable
+      placeName: null == placeName
+          ? _value.placeName
+          : placeName // ignore: cast_nullable_to_non_nullable
               as String,
-      structuredFormattingSub: null == structuredFormattingSub
-          ? _value.structuredFormattingSub
-          : structuredFormattingSub // ignore: cast_nullable_to_non_nullable
+      placeAddress: null == placeAddress
+          ? _value.placeAddress
+          : placeAddress // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -89,8 +89,8 @@ abstract class _$$_DestinationCopyWith<$Res>
   $Res call(
       {String placeId,
       String description,
-      String structuredFormatting,
-      String structuredFormattingSub});
+      String placeName,
+      String placeAddress});
 }
 
 /// @nodoc
@@ -106,8 +106,8 @@ class __$$_DestinationCopyWithImpl<$Res>
   $Res call({
     Object? placeId = null,
     Object? description = null,
-    Object? structuredFormatting = null,
-    Object? structuredFormattingSub = null,
+    Object? placeName = null,
+    Object? placeAddress = null,
   }) {
     return _then(_$_Destination(
       placeId: null == placeId
@@ -118,13 +118,13 @@ class __$$_DestinationCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      structuredFormatting: null == structuredFormatting
-          ? _value.structuredFormatting
-          : structuredFormatting // ignore: cast_nullable_to_non_nullable
+      placeName: null == placeName
+          ? _value.placeName
+          : placeName // ignore: cast_nullable_to_non_nullable
               as String,
-      structuredFormattingSub: null == structuredFormattingSub
-          ? _value.structuredFormattingSub
-          : structuredFormattingSub // ignore: cast_nullable_to_non_nullable
+      placeAddress: null == placeAddress
+          ? _value.placeAddress
+          : placeAddress // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -132,13 +132,12 @@ class __$$_DestinationCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Destination extends _Destination {
+class _$_Destination implements _Destination {
   const _$_Destination(
       {this.placeId = '',
       this.description = '',
-      this.structuredFormatting = '',
-      this.structuredFormattingSub = ''})
-      : super._();
+      this.placeName = '',
+      this.placeAddress = ''});
 
   @override
   @JsonKey()
@@ -148,14 +147,14 @@ class _$_Destination extends _Destination {
   final String description;
   @override
   @JsonKey()
-  final String structuredFormatting;
+  final String placeName;
   @override
   @JsonKey()
-  final String structuredFormattingSub;
+  final String placeAddress;
 
   @override
   String toString() {
-    return 'Destination(placeId: $placeId, description: $description, structuredFormatting: $structuredFormatting, structuredFormattingSub: $structuredFormattingSub)';
+    return 'Destination(placeId: $placeId, description: $description, placeName: $placeName, placeAddress: $placeAddress)';
   }
 
   @override
@@ -166,16 +165,15 @@ class _$_Destination extends _Destination {
             (identical(other.placeId, placeId) || other.placeId == placeId) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.structuredFormatting, structuredFormatting) ||
-                other.structuredFormatting == structuredFormatting) &&
-            (identical(
-                    other.structuredFormattingSub, structuredFormattingSub) ||
-                other.structuredFormattingSub == structuredFormattingSub));
+            (identical(other.placeName, placeName) ||
+                other.placeName == placeName) &&
+            (identical(other.placeAddress, placeAddress) ||
+                other.placeAddress == placeAddress));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, placeId, description,
-      structuredFormatting, structuredFormattingSub);
+  int get hashCode =>
+      Object.hash(runtimeType, placeId, description, placeName, placeAddress);
 
   @JsonKey(ignore: true)
   @override
@@ -184,22 +182,21 @@ class _$_Destination extends _Destination {
       __$$_DestinationCopyWithImpl<_$_Destination>(this, _$identity);
 }
 
-abstract class _Destination extends Destination {
+abstract class _Destination implements Destination {
   const factory _Destination(
       {final String placeId,
       final String description,
-      final String structuredFormatting,
-      final String structuredFormattingSub}) = _$_Destination;
-  const _Destination._() : super._();
+      final String placeName,
+      final String placeAddress}) = _$_Destination;
 
   @override
   String get placeId;
   @override
   String get description;
   @override
-  String get structuredFormatting;
+  String get placeName;
   @override
-  String get structuredFormattingSub;
+  String get placeAddress;
   @override
   @JsonKey(ignore: true)
   _$$_DestinationCopyWith<_$_Destination> get copyWith =>

@@ -15,10 +15,6 @@ _$DestinationApiResponse _$$DestinationApiResponseFromJson(
           ? null
           : StructuredFormatting.fromJson(
               json['structured_formatting'] as Map<String, dynamic>),
-      structuredFormattingSub: json['structured_formatting_sub'] == null
-          ? null
-          : StructuredFormatting.fromJson(
-              json['structured_formatting_sub'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$DestinationApiResponseToJson(
@@ -27,7 +23,6 @@ Map<String, dynamic> _$$DestinationApiResponseToJson(
       'place_id': instance.placeId,
       'description': instance.description,
       'structured_formatting': instance.structuredFormatting?.toJson(),
-      'structured_formatting_sub': instance.structuredFormattingSub?.toJson(),
     };
 
 _$_StructuredFormatting _$$_StructuredFormattingFromJson(
