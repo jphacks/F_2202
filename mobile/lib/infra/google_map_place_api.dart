@@ -34,7 +34,6 @@ mixin GoogleMapPlaceSearchApi {
 
     try {
       final response = await _request(url: placeApiKey);
-
       // TODO(naruo): ここでお店など取得する
 
       return Result.value(list);
