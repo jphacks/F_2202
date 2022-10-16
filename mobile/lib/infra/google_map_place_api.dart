@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:async/async.dart';
 import 'package:mobile/config/config.dart';
+import 'package:google_maps_webservice/places.dart';
 import 'package:mobile/model/destination/destination.dart';
 import 'package:mobile/model/destination/destination_response.dart';
 
@@ -45,5 +46,14 @@ mixin GoogleMapPlaceSearchApi {
     } on Exception catch (e) {
       return Result.error(e);
     }
+  }
+
+  static Future<Location> getPlaceDetailFromId(String placeId) async {
+    GoogleMapsPlaces places = GoogleMapsPlaces(apiKey: googleMapApiKey);
+    PlacesDetailsResponse placesDetailsResponse =
+        await places.getDetailsByPlaceId(placeId);
+    Location location = placesDetailsResponse.result.geometry!.location;
+
+    return location;
   }
 }

@@ -99,7 +99,28 @@ class TopPageState extends ConsumerState<TopPage> {
     showCupertinoModalBottomSheet(
       context: context,
       expand: true,
-      builder: (_) => const SearchDestinationPage(),
+      builder: (_) => SearchDestinationPage(
+        onAnimatedTap: (latLag) {
+          _animatedSelectedLocation(location: latLag);
+        },
+      ),
     );
+  }
+
+  Future<void> _animatedSelectedLocation({required LatLng location}) async {
+    if (_mapController.isCompleted) {
+      final GoogleMapController mapController = await _mapController.future;
+      mapController.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+            target: LatLng(
+              location.latitude,
+              location.longitude,
+            ),
+            zoom: await mapController.getZoomLevel(),
+          ),
+        ),
+      );
+    }
   }
 }
