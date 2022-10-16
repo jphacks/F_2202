@@ -11,7 +11,7 @@ class SearchDestinationPage extends HookConsumerWidget {
     required this.onAnimatedTap,
   }) : super(key: key);
 
-  final ValueChanged<LatLng> onAnimatedTap;
+  final ValueChanged<Destination> onAnimatedTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

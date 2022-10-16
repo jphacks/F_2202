@@ -10,5 +10,6 @@ class Destination with _$Destination {
     @Default('') String description,
     @Default('') String placeName,
     @Default('') String placeAddress,
+    @Default(LatLng(0, 0)) LatLng latLng,
   }) = _Destination;
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile/l10n/app_localization.dart';
+import 'package:mobile/model/destination/destination.dart';
 import 'package:mobile/presentation/top/search/search_destination_page.dart';
 import 'package:mobile/presentation/top/top_controller_provider.dart';
 import 'package:mobile/presentation/top/top_state.dart';
@@ -20,6 +21,7 @@ class TopPage extends StatefulHookConsumerWidget {
 
 class TopPageState extends ConsumerState<TopPage> {
   final Completer<GoogleMapController> _mapController = Completer();
+  final List<Destination> destinationList = [];
 
   @override
   void initState() {
@@ -89,21 +91,44 @@ class TopPageState extends ConsumerState<TopPage> {
         ),
         zoom: 13.0,
       ),
+      markers: _createMarker(pageController: pageController),
       onMapCreated: (GoogleMapController mapController) {
         _mapController.complete(mapController);
       },
     );
   }
 
+  Set<Marker> _createMarker({
+    required PageController pageController,
+  }) {
+    return destinationList
+        .map(
+          (selectedDestination) => Marker(
+            markerId: MarkerId(selectedDestination.placeId),
+            position: selectedDestination.latLng,
+            onTap: () {
+              final index = destinationList.indexWhere(
+                (destination) => destination == selectedDestination,
+              );
+            },
+          ),
+        )
+        .toSet();
+  }
+
   void _buildButtomSheet() {
     showCupertinoModalBottomSheet(
       context: context,
       expand: true,
-      builder: (_) => SearchDestinationPage(
-        onAnimatedTap: (latLag) {
-          _animatedSelectedLocation(location: latLag);
-        },
-      ),
+      builder: (_) => SearchDestinationPage(onAnimatedTap: (destination) {
+        if (destinationList.length < 3 &&
+            !destinationList.contains(destination)) {
+          _animatedSelectedLocation(location: destination.latLng);
+          setState(() {
+            destinationList.add(destination);
+          });
+        }
+      }),
     );
   }
 

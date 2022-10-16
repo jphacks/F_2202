@@ -20,6 +20,7 @@ mixin _$Destination {
   String get description => throw _privateConstructorUsedError;
   String get placeName => throw _privateConstructorUsedError;
   String get placeAddress => throw _privateConstructorUsedError;
+  LatLng get latLng => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DestinationCopyWith<Destination> get copyWith =>
@@ -36,7 +37,8 @@ abstract class $DestinationCopyWith<$Res> {
       {String placeId,
       String description,
       String placeName,
-      String placeAddress});
+      String placeAddress,
+      LatLng latLng});
 }
 
 /// @nodoc
@@ -56,6 +58,7 @@ class _$DestinationCopyWithImpl<$Res, $Val extends Destination>
     Object? description = null,
     Object? placeName = null,
     Object? placeAddress = null,
+    Object? latLng = null,
   }) {
     return _then(_value.copyWith(
       placeId: null == placeId
@@ -74,6 +77,10 @@ class _$DestinationCopyWithImpl<$Res, $Val extends Destination>
           ? _value.placeAddress
           : placeAddress // ignore: cast_nullable_to_non_nullable
               as String,
+      latLng: null == latLng
+          ? _value.latLng
+          : latLng // ignore: cast_nullable_to_non_nullable
+              as LatLng,
     ) as $Val);
   }
 }
@@ -90,7 +97,8 @@ abstract class _$$_DestinationCopyWith<$Res>
       {String placeId,
       String description,
       String placeName,
-      String placeAddress});
+      String placeAddress,
+      LatLng latLng});
 }
 
 /// @nodoc
@@ -108,6 +116,7 @@ class __$$_DestinationCopyWithImpl<$Res>
     Object? description = null,
     Object? placeName = null,
     Object? placeAddress = null,
+    Object? latLng = null,
   }) {
     return _then(_$_Destination(
       placeId: null == placeId
@@ -126,6 +135,10 @@ class __$$_DestinationCopyWithImpl<$Res>
           ? _value.placeAddress
           : placeAddress // ignore: cast_nullable_to_non_nullable
               as String,
+      latLng: null == latLng
+          ? _value.latLng
+          : latLng // ignore: cast_nullable_to_non_nullable
+              as LatLng,
     ));
   }
 }
@@ -137,7 +150,8 @@ class _$_Destination implements _Destination {
       {this.placeId = '',
       this.description = '',
       this.placeName = '',
-      this.placeAddress = ''});
+      this.placeAddress = '',
+      this.latLng = const LatLng(0, 0)});
 
   @override
   @JsonKey()
@@ -151,10 +165,13 @@ class _$_Destination implements _Destination {
   @override
   @JsonKey()
   final String placeAddress;
+  @override
+  @JsonKey()
+  final LatLng latLng;
 
   @override
   String toString() {
-    return 'Destination(placeId: $placeId, description: $description, placeName: $placeName, placeAddress: $placeAddress)';
+    return 'Destination(placeId: $placeId, description: $description, placeName: $placeName, placeAddress: $placeAddress, latLng: $latLng)';
   }
 
   @override
@@ -168,12 +185,13 @@ class _$_Destination implements _Destination {
             (identical(other.placeName, placeName) ||
                 other.placeName == placeName) &&
             (identical(other.placeAddress, placeAddress) ||
-                other.placeAddress == placeAddress));
+                other.placeAddress == placeAddress) &&
+            (identical(other.latLng, latLng) || other.latLng == latLng));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, placeId, description, placeName, placeAddress);
+  int get hashCode => Object.hash(
+      runtimeType, placeId, description, placeName, placeAddress, latLng);
 
   @JsonKey(ignore: true)
   @override
@@ -187,7 +205,8 @@ abstract class _Destination implements Destination {
       {final String placeId,
       final String description,
       final String placeName,
-      final String placeAddress}) = _$_Destination;
+      final String placeAddress,
+      final LatLng latLng}) = _$_Destination;
 
   @override
   String get placeId;
@@ -197,6 +216,8 @@ abstract class _Destination implements Destination {
   String get placeName;
   @override
   String get placeAddress;
+  @override
+  LatLng get latLng;
   @override
   @JsonKey(ignore: true)
   _$$_DestinationCopyWith<_$_Destination> get copyWith =>

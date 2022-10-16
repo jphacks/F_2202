@@ -22,10 +22,11 @@ class SearchDestinationController
     state = state.copyWith(destinationList: result.asValue!.value);
   }
 
-  Future<LatLng> selectedDestination({required Destination destination}) async {
+  Future<Destination> selectedDestination(
+      {required Destination destination}) async {
     final result =
         await GoogleMapPlaceSearchApi.getPlaceDetailFromId(destination.placeId);
 
-    return LatLng(result.lat, result.lng);
+    return destination.copyWith(latLng: LatLng(result.lat, result.lng));
   }
 }
