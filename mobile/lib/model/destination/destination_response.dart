@@ -11,7 +11,6 @@ abstract class DestinationApi with _$DestinationApi {
     required String? placeId,
     required String? description,
     required StructuredFormatting? structuredFormatting,
-    required StructuredFormatting? structuredFormattingSub,
   }) = DestinationApiResponse;
 
   factory DestinationApi.fromJson(Map<String, dynamic> json) =>
@@ -20,8 +19,8 @@ abstract class DestinationApi with _$DestinationApi {
   Destination toEntity() => Destination(
       placeId: placeId ?? '',
       description: description ?? '',
-      structuredFormatting: structuredFormatting?.mainText ?? '',
-      structuredFormattingSub: structuredFormattingSub?.secondaryText ?? '');
+      placeName: structuredFormatting?.mainText ?? '',
+      placeAddress: structuredFormatting?.secondaryText ?? '');
 }
 
 // 検索

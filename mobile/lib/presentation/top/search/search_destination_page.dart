@@ -99,9 +99,9 @@ class _ResultTile extends StatelessWidget {
       color: Colors.grey,
       child: ListTile(
         title: Text(
-          destination.description,
+          destination.placeName,
         ),
-        subtitle: Text(destination.description),
+        subtitle: Text(destination.placeAddress),
         onTap: () {},
       ),
     );
