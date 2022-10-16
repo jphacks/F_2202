@@ -1,5 +1,7 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile/infra/google_map_place_api.dart';
+import 'package:mobile/model/destination/destination.dart';
 import 'package:mobile/presentation/top/search/search_destination_state.dart';
 
 class SearchDestinationController
@@ -17,8 +19,14 @@ class SearchDestinationController
       keyword: keyword,
     );
 
-    print(result.asValue!.value);
+    state = state.copyWith(destinationList: result.asValue!.value);
+  }
 
-    state = state.copyWith(destination: result.asValue!.value);
+  Future<Destination> selectedDestination(
+      {required Destination destination}) async {
+    final result =
+        await GoogleMapPlaceSearchApi.getPlaceDetailFromId(destination.placeId);
+
+    return destination.copyWith(latLng: LatLng(result.lat, result.lng));
   }
 }

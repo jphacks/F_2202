@@ -16,8 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SearchDestinationState {
-  /// 場所
-  List<Destination> get destination => throw _privateConstructorUsedError;
+  List<Destination> get destinationList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SearchDestinationStateCopyWith<SearchDestinationState> get copyWith =>
@@ -30,7 +29,7 @@ abstract class $SearchDestinationStateCopyWith<$Res> {
           $Res Function(SearchDestinationState) then) =
       _$SearchDestinationStateCopyWithImpl<$Res, SearchDestinationState>;
   @useResult
-  $Res call({List<Destination> destination});
+  $Res call({List<Destination> destinationList});
 }
 
 /// @nodoc
@@ -47,12 +46,12 @@ class _$SearchDestinationStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? destination = null,
+    Object? destinationList = null,
   }) {
     return _then(_value.copyWith(
-      destination: null == destination
-          ? _value.destination
-          : destination // ignore: cast_nullable_to_non_nullable
+      destinationList: null == destinationList
+          ? _value.destinationList
+          : destinationList // ignore: cast_nullable_to_non_nullable
               as List<Destination>,
     ) as $Val);
   }
@@ -66,7 +65,7 @@ abstract class _$$_SearchDestinationStateCopyWith<$Res>
       __$$_SearchDestinationStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Destination> destination});
+  $Res call({List<Destination> destinationList});
 }
 
 /// @nodoc
@@ -81,12 +80,12 @@ class __$$_SearchDestinationStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? destination = null,
+    Object? destinationList = null,
   }) {
     return _then(_$_SearchDestinationState(
-      destination: null == destination
-          ? _value._destination
-          : destination // ignore: cast_nullable_to_non_nullable
+      destinationList: null == destinationList
+          ? _value._destinationList
+          : destinationList // ignore: cast_nullable_to_non_nullable
               as List<Destination>,
     ));
   }
@@ -96,23 +95,20 @@ class __$$_SearchDestinationStateCopyWithImpl<$Res>
 
 class _$_SearchDestinationState implements _SearchDestinationState {
   const _$_SearchDestinationState(
-      {final List<Destination> destination = const <Destination>[]})
-      : _destination = destination;
+      {final List<Destination> destinationList = const <Destination>[]})
+      : _destinationList = destinationList;
 
-  /// 場所
-  final List<Destination> _destination;
-
-  /// 場所
+  final List<Destination> _destinationList;
   @override
   @JsonKey()
-  List<Destination> get destination {
+  List<Destination> get destinationList {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_destination);
+    return EqualUnmodifiableListView(_destinationList);
   }
 
   @override
   String toString() {
-    return 'SearchDestinationState(destination: $destination)';
+    return 'SearchDestinationState(destinationList: $destinationList)';
   }
 
   @override
@@ -121,12 +117,12 @@ class _$_SearchDestinationState implements _SearchDestinationState {
         (other.runtimeType == runtimeType &&
             other is _$_SearchDestinationState &&
             const DeepCollectionEquality()
-                .equals(other._destination, _destination));
+                .equals(other._destinationList, _destinationList));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_destination));
+      runtimeType, const DeepCollectionEquality().hash(_destinationList));
 
   @JsonKey(ignore: true)
   @override
@@ -137,13 +133,11 @@ class _$_SearchDestinationState implements _SearchDestinationState {
 }
 
 abstract class _SearchDestinationState implements SearchDestinationState {
-  const factory _SearchDestinationState({final List<Destination> destination}) =
-      _$_SearchDestinationState;
+  const factory _SearchDestinationState(
+      {final List<Destination> destinationList}) = _$_SearchDestinationState;
 
   @override
-
-  /// 場所
-  List<Destination> get destination;
+  List<Destination> get destinationList;
   @override
   @JsonKey(ignore: true)
   _$$_SearchDestinationStateCopyWith<_$_SearchDestinationState> get copyWith =>
