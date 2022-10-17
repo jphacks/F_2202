@@ -57,12 +57,17 @@ dependencies:
   geolocator: 
   equatable: 
 
+  # API
+  retrofit: 
+  dio: 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   build_runner:
   freezed:
+  retrofit_generator: '>=4.0.0 <5.0.0'
   analyzer: 
   json_serializable: 
   flutter_lints: ^1.0.0
