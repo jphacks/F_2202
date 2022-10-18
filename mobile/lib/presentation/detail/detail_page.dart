@@ -77,6 +77,32 @@ class MainVisual extends StatelessWidget {
           height: 270,
         ),
         const ImageGradationOverlay(),
+        Positioned(
+          top: MediaQuery.of(context).padding.top + 88,
+          left: 16,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              Text(
+                "ダイナシティ梅田",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 36,
+                  // fontWeight: FontWeight.w800,
+                  fontWeight: FontWeight.bold, // TODO なぜかboldにならない
+                ),
+              ),
+              Text(
+                "大阪府大阪市北区鶴野町３−２１",
+                style: TextStyle(
+                  color: Color(0xfffe6663),
+                  fontSize: 20,
+                  fontWeight: FontWeight.w800, // TODO なぜかboldにならない
+                ),
+              ),
+            ],
+          ),
+        )
       ],
     );
   }
