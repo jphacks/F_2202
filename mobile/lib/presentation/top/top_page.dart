@@ -57,13 +57,8 @@ class TopPageState extends ConsumerState<TopPage> {
                     topState: data,
                   ),
                   Positioned(
-                    bottom: 70,
-                    child: GlowingButton(
-                      title: l10n.search_place_button,
-                      onTap: () {
-                        _buildButtomSheet();
-                      },
-                    ),
+                    bottom: 80,
+                    child: homeButtomList(),
                   ),
                 ],
               );
@@ -114,6 +109,56 @@ class TopPageState extends ConsumerState<TopPage> {
           ),
         )
         .toSet();
+  }
+
+  Widget homeButtomList() {
+    return Row(
+      children: [
+        homeButton(
+          icon: Icons.chat,
+          onButtonTap: () {},
+        ),
+        const SizedBox(
+          width: 30,
+        ),
+        homeButton(
+          icon: Icons.search,
+          onButtonTap: () {
+            _buildButtomSheet();
+          },
+        ),
+        const SizedBox(
+          width: 30,
+        ),
+        homeButton(
+          icon: Icons.favorite,
+          onButtonTap: () {},
+        ),
+      ],
+    );
+  }
+
+  Widget homeButton({
+    required IconData icon,
+    required Function()? onButtonTap,
+  }) {
+    return GestureDetector(
+      onTap: onButtonTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.green,
+          border: Border.all(color: Colors.green),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        width: 65,
+        height: 65,
+        child: Icon(
+          icon,
+          color: Colors.white,
+          size: 35,
+        ),
+      ),
+    );
   }
 
   void _buildButtomSheet() {
