@@ -57,13 +57,21 @@ class TopPageState extends ConsumerState<TopPage> {
                     topState: data,
                   ),
                   Positioned(
-                    bottom: 70,
-                    child: GlowingButton(
-                      title: l10n.search_place_button,
-                      onTap: () {
-                        _buildButtomSheet();
-                      },
+                    top: 80,
+                    right: 30,
+                    // TODO(rui): iconがなかったから実装お願いします。
+                    child: homeButton(
+                      icon: Icons.gps_fixed,
+                      onButtonTap: () {},
+                      iconSize: 30,
+                      buttonSize: 55,
+                      buttonColor: Colors.white,
+                      buttonIconColor: Colors.black,
                     ),
+                  ),
+                  Positioned(
+                    bottom: 80,
+                    child: homeButtomList(),
                   ),
                 ],
               );
@@ -114,6 +122,60 @@ class TopPageState extends ConsumerState<TopPage> {
           ),
         )
         .toSet();
+  }
+
+  Widget homeButtomList() {
+    return Row(
+      children: [
+        homeButton(
+          icon: Icons.chat,
+          onButtonTap: () {},
+        ),
+        const SizedBox(
+          width: 30,
+        ),
+        homeButton(
+          icon: Icons.search,
+          onButtonTap: () {
+            _buildButtomSheet();
+          },
+        ),
+        const SizedBox(
+          width: 30,
+        ),
+        homeButton(
+          icon: Icons.favorite,
+          onButtonTap: () {},
+        ),
+      ],
+    );
+  }
+
+  Widget homeButton({
+    required IconData icon,
+    required Function()? onButtonTap,
+    Color buttonColor = Colors.green,
+    Color buttonIconColor = Colors.white,
+    double buttonSize = 65,
+    double iconSize = 35,
+  }) {
+    return GestureDetector(
+      onTap: onButtonTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: buttonColor,
+          border: Border.all(color: buttonColor),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        width: buttonSize,
+        height: buttonSize,
+        child: Icon(
+          icon,
+          color: buttonIconColor,
+          size: iconSize,
+        ),
+      ),
+    );
   }
 
   void _buildButtomSheet() {
