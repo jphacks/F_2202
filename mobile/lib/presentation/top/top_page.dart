@@ -179,18 +179,24 @@ class TopPageState extends ConsumerState<TopPage> {
   }
 
   void _buildButtomSheet() {
+    final size =  MediaQuery.of(context).size;
     showCupertinoModalBottomSheet(
+      topRadius: const Radius.circular(20),
       context: context,
-      expand: true,
-      builder: (_) => SearchDestinationPage(onAnimatedTap: (destination) {
-        if (destinationList.length < 3 &&
-            !destinationList.contains(destination)) {
-          _animatedSelectedLocation(location: destination.latLng);
-          setState(() {
-            destinationList.add(destination);
-          });
-        }
-      }),
+      builder: (_) =>  SizedBox(
+        height: size.height * 0.9,
+        child: SearchDestinationPage(
+          onAnimatedTap: (destination) {
+            if (destinationList.length < 3 &&
+                !destinationList.contains(destination)) {
+              _animatedSelectedLocation(location: destination.latLng);
+              setState(() {
+                destinationList.add(destination);
+              });
+            }
+          },
+        ),
+      ),
     );
   }
 
