@@ -4,15 +4,21 @@ import 'package:flutter/material.dart';
 class MainVisual extends StatelessWidget {
   const MainVisual({
     Key? key,
+    required this.propertyName,
+    required this.fullAddress,
+    required this.thumbnailUrl,
   }) : super(key: key);
+
+  final String propertyName;
+  final String fullAddress;
+  final String thumbnailUrl;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Image(
-          image: const NetworkImage(
-              'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80'),
+          image: NetworkImage(thumbnailUrl),
           fit: BoxFit.cover,
           width: MediaQuery.of(context).size.width,
           height: 270,
@@ -23,10 +29,10 @@ class MainVisual extends StatelessWidget {
           left: 16,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
-                "ダイナシティ梅田",
-                style: TextStyle(
+                propertyName,
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 36,
                   // fontWeight: FontWeight.w800,
@@ -34,8 +40,8 @@ class MainVisual extends StatelessWidget {
                 ),
               ),
               Text(
-                "大阪府大阪市北区鶴野町３−２１",
-                style: TextStyle(
+                fullAddress,
+                style: const TextStyle(
                   color: Color(0xfffe6663),
                   fontSize: 20,
                   fontWeight: FontWeight.w800, // TODO なぜかboldにならない
