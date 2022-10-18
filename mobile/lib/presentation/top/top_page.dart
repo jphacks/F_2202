@@ -57,6 +57,19 @@ class TopPageState extends ConsumerState<TopPage> {
                     topState: data,
                   ),
                   Positioned(
+                    top: 80,
+                    right: 30,
+                    // TODO(rui): iconがなかったから実装お願いします。
+                    child: homeButton(
+                      icon: Icons.gps_fixed,
+                      onButtonTap: () {},
+                      iconSize: 30,
+                      buttonSize: 55,
+                      buttonColor: Colors.white,
+                      buttonIconColor: Colors.black,
+                    ),
+                  ),
+                  Positioned(
                     bottom: 80,
                     child: homeButtomList(),
                   ),
@@ -141,21 +154,25 @@ class TopPageState extends ConsumerState<TopPage> {
   Widget homeButton({
     required IconData icon,
     required Function()? onButtonTap,
+    Color buttonColor = Colors.green,
+    Color buttonIconColor = Colors.white,
+    double buttonSize = 65,
+    double iconSize = 35,
   }) {
     return GestureDetector(
       onTap: onButtonTap,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.green,
-          border: Border.all(color: Colors.green),
+          color: buttonColor,
+          border: Border.all(color: buttonColor),
           borderRadius: BorderRadius.circular(10),
         ),
-        width: 65,
-        height: 65,
+        width: buttonSize,
+        height: buttonSize,
         child: Icon(
           icon,
-          color: Colors.white,
-          size: 35,
+          color: buttonIconColor,
+          size: iconSize,
         ),
       ),
     );
