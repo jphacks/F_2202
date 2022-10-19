@@ -21,7 +21,7 @@ class TopPage extends StatefulHookConsumerWidget {
 
 class TopPageState extends ConsumerState<TopPage> {
   final Completer<GoogleMapController> _mapController = Completer();
-  final List<Destination> destinationList = [];
+  LatLng centerDestination = const LatLng(0, 0);
 
   @override
   void initState() {
@@ -109,14 +109,14 @@ class TopPageState extends ConsumerState<TopPage> {
   Set<Marker> _createMarker({
     required PageController pageController,
   }) {
-    return destinationList
+    return [centerDestination]
         .map(
-          (selectedDestination) => Marker(
-            markerId: MarkerId(selectedDestination.placeId),
-            position: selectedDestination.latLng,
+          (centerDestination) => Marker(
+            markerId: MarkerId(centerDestination.toString()),
+            position: centerDestination,
             onTap: () {
-              final index = destinationList.indexWhere(
-                (destination) => destination == selectedDestination,
+              final index = [centerDestination].indexWhere(
+                (destination) => destination == centerDestination,
               );
             },
           ),
@@ -179,21 +179,34 @@ class TopPageState extends ConsumerState<TopPage> {
   }
 
   void _buildButtomSheet() {
-    final size =  MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     showCupertinoModalBottomSheet(
       topRadius: const Radius.circular(20),
       context: context,
-      builder: (_) =>  SizedBox(
+      builder: (_) => SizedBox(
         height: size.height * 0.9,
         child: SearchDestinationPage(
           onAnimatedTap: (destination) {
-            if (destinationList.length < 3 &&
-                !destinationList.contains(destination)) {
-              _animatedSelectedLocation(location: destination.latLng);
-              setState(() {
-                destinationList.add(destination);
-              });
+            double latitude = 0;
+            double longtitude = 0;
+            int count = 0;
+
+            for (var i = 0; i < destination.length; i++) {
+              if (destination[i] != const Destination()) {
+                count += 1;
+                latitude += destination[i].latLng.latitude;
+                longtitude += destination[i].latLng.longitude;
+              }
             }
+
+            final latlng = LatLng(
+              latitude / count,
+              longtitude / count,
+            );
+            _animatedSelectedLocation(location: latlng);
+            setState(() {
+              centerDestination = latlng;
+            });
           },
         ),
       ),

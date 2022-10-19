@@ -24,7 +24,8 @@ class _PropertyDataSource implements PropertyDataSource {
   Future<Property> getProperty() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'application/json': 'jphacks2022'};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result =
         await _dio.fetch<Map<String, dynamic>>(_setStreamType<Property>(Options(

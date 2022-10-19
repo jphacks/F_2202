@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mobile/config/app_routing_name.dart';
 import 'package:mobile/constant/color_hex.dart';
 import 'package:mobile/l10n/app_localization.dart';
 import 'package:mobile/model/destination/destination.dart';
-import 'package:mobile/presentation/top/search/search_destination_controller.dart';
 import 'package:mobile/presentation/top/search/search_destination_controller_provider.dart';
-import 'package:mobile/presentation/top/search/search_destination_state.dart';
+import 'package:mobile/presentation/top/search/search_page.dart';
 
 class SearchDestinationPage extends HookConsumerWidget {
   const SearchDestinationPage({
@@ -14,12 +14,12 @@ class SearchDestinationPage extends HookConsumerWidget {
     required this.onAnimatedTap,
   }) : super(key: key);
 
-  final ValueChanged<Destination> onAnimatedTap;
+  final ValueChanged<List<Destination>> onAnimatedTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(searchDestinationControllerProvider);
-    final controller = ref.read(searchDestinationControllerProvider.notifier);
+    final controller = ref.watch(searchDestinationControllerProvider.notifier);
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -28,7 +28,7 @@ class SearchDestinationPage extends HookConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Column(
               children: [
                 const SizedBox(
@@ -43,17 +43,22 @@ class SearchDestinationPage extends HookConsumerWidget {
                   height: 10,
                 ),
                 _textFieldArea(
-                  controller: controller,
                   labelText: '物件1',
+                  textEditingController: controller.textEditingController1,
+                  index: 1,
                 ),
-                _textFieldArea(
-                  controller: controller,
-                  labelText: '物件2',
-                ),
-                _textFieldArea(
-                  controller: controller,
-                  labelText: '物件3',
-                ),
+                if (controller.textEditingController1.text.isNotEmpty)
+                  _textFieldArea(
+                    labelText: '物件2',
+                    textEditingController: controller.textEditingController2,
+                    index: 2,
+                  ),
+                if (controller.textEditingController2.text.isNotEmpty)
+                  _textFieldArea(
+                    labelText: '物件3',
+                    textEditingController: controller.textEditingController3,
+                    index: 3,
+                  ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -73,7 +78,14 @@ class SearchDestinationPage extends HookConsumerWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      onAnimatedTap([
+                        state.destination1,
+                        state.destination2,
+                        state.destination3,
+                      ]);
+                      Navigator.pop(context);
+                    },
                   ),
                 ),
                 const SizedBox(
@@ -121,8 +133,9 @@ class SearchDestinationPage extends HookConsumerWidget {
   }
 
   Widget _textFieldArea({
-    required SearchDestinationController controller,
     required String labelText,
+    required TextEditingController textEditingController,
+    required int index,
     InputBorder? inputBorder,
   }) {
     return Row(
@@ -135,11 +148,10 @@ class SearchDestinationPage extends HookConsumerWidget {
           width: 15,
         ),
         _SearchTextField(
-          onSearchChanged: (keyword) async {
-            await controller.searchDestination(keyword: keyword);
-          },
           labelText: labelText,
           border: inputBorder,
+          textEditingController: textEditingController,
+          index: index,
         ),
       ],
     );
@@ -151,59 +163,46 @@ class SearchDestinationPage extends HookConsumerWidget {
       child: Image.asset('assets/green.png'),
     );
   }
-
-  Widget _searchResultTiles({
-    required SearchDestinationController controller,
-    required SearchDestinationState state,
-  }) {
-    return Expanded(
-      child: ListView.separated(
-        itemBuilder: (context, index) => _ResultTile(
-          onTap: () async {
-            final latlng = await controller.selectedDestination(
-              destination: state.destinationList[index],
-            );
-            onAnimatedTap(latlng);
-            Navigator.pop(context);
-          },
-          destination: state.destinationList[index],
-        ),
-        itemCount: state.destinationList.length,
-        separatorBuilder: (BuildContext context, int index) {
-          return const SizedBox(
-            height: 10,
-          );
-        },
-      ),
-    );
-  }
 }
 
 class _SearchTextField extends StatelessWidget {
   const _SearchTextField({
     Key? key,
-    required this.onSearchChanged,
     required this.labelText,
+    required this.textEditingController,
+    required this.index,
     this.border,
   }) : super(key: key);
 
-  final ValueChanged<String> onSearchChanged;
   final String labelText;
   final InputBorder? border;
+  final int index;
+  final TextEditingController textEditingController;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalization.of(context)!;
     final size = MediaQuery.of(context).size;
-
     return SizedBox(
       width: size.width * 0.8,
       child: TextFormField(
+        onTap: () {
+          Navigator.of(context).pushNamed(
+            AppRoutingName.searchPage,
+            arguments: SearchArgument(
+              selectedIndex: index,
+            ),
+          );
+        },
+        controller: textEditingController,
+        readOnly: true,
         decoration: InputDecoration(
           floatingLabelBehavior: FloatingLabelBehavior.always,
           label: Text(
             labelText,
-            style: const TextStyle(color: Colors.grey),
+            style: const TextStyle(
+              color: Colors.grey,
+            ),
           ),
           hintText: l10n.search_place_text_field_hint,
           hintStyle: const TextStyle(color: Colors.grey),
@@ -211,32 +210,6 @@ class _SearchTextField extends StatelessWidget {
         ),
         style: const TextStyle(color: Colors.black),
         cursorColor: Colors.grey,
-        onChanged: onSearchChanged,
-      ),
-    );
-  }
-}
-
-class _ResultTile extends StatelessWidget {
-  const _ResultTile({
-    Key? key,
-    required this.onTap,
-    required this.destination,
-  }) : super(key: key);
-
-  final Function() onTap;
-  final Destination destination;
-
-  @override
-  Widget build(BuildContext context) {
-    return ColoredBox(
-      color: Colors.grey,
-      child: ListTile(
-        title: Text(
-          destination.placeName,
-        ),
-        subtitle: Text(destination.placeAddress),
-        onTap: onTap,
       ),
     );
   }
