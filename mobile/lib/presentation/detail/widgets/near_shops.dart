@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/presentation/detail/widgets/section_layout.dart';
+import 'package:mobile/presentation/widgets/drop_shadow.dart';
 
 class NearShops extends StatelessWidget {
   const NearShops({
@@ -23,8 +24,7 @@ class NearShops extends StatelessWidget {
                 shopName: shops[index]["shopName"]!,
                 meter: shops[index]["meter"]!,
                 reviewStar: shops[index]["reviewStar"]!,
-                shopThumbnail:
-                    "https://images.unsplash.com/photo-1664575196644-808978af9b1f?w=800&q=80",
+                shopThumbnail: shops[index]["shopThumbnail"]!,
                 coordinates: const {
                   'latitude': 34.6956849,
                   'longitude': 135.1907121,
@@ -57,16 +57,7 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            offset: Offset(0, 4),
-            blurRadius: 8,
-            color: Color.fromRGBO(0, 0, 0, 0.1),
-          ),
-        ],
-      ),
+    return DropShadow(
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
