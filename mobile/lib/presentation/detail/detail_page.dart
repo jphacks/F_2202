@@ -4,6 +4,7 @@ import 'package:mobile/presentation/detail/widgets/building_images.dart';
 import 'package:mobile/presentation/detail/widgets/header_action_buttons.dart';
 import 'package:mobile/presentation/detail/widgets/horizontal_rule.dart';
 import 'package:mobile/presentation/detail/widgets/main_visual.dart';
+import 'package:mobile/presentation/detail/widgets/near_shops.dart';
 import 'package:mobile/presentation/detail/widgets/property_details.dart';
 import 'package:mobile/presentation/widgets/header_back_button.dart';
 
@@ -57,6 +58,39 @@ class DetailPage extends StatelessWidget {
                           latitude: 34.6956849,
                           longitude: 135.1907121,
                           propertyName: 'ダイナシティ梅田',
+                        ),
+                        HorizontalRule(),
+                        NearShops(
+                          // TODO freezedを使用する
+                          shops: [
+                            {
+                              "shopName": "ラーメン大戦争",
+                              "meter": "120m",
+                              "reviewStar": "5.0",
+                              "shopThumbnail":
+                                  "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80",
+                              "coordinates":
+                                  '{"latitude": 34.6956849,"longitude": 135.1907121,}',
+                            },
+                            {
+                              "shopName": "ラーメン中戦争",
+                              "meter": "170m",
+                              "reviewStar": "4.0",
+                              "shopThumbnail":
+                                  'https://images.unsplash.com/photo-1664575196644-808978af9b1f?w=800&q=80',
+                              "coordinates":
+                                  '{"latitude": 34.6956849,"longitude": 135.1907121,}',
+                            },
+                            {
+                              "shopName": "ラーメン小戦争",
+                              "meter": "170m",
+                              "reviewStar": "4.0",
+                              "shopThumbnail":
+                                  'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80',
+                              "coordinates":
+                                  '{"latitude": 34.6956849,"longitude": 135.1907121,}',
+                            },
+                          ],
                         ),
                       ],
                     ),
