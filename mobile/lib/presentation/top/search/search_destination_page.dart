@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile/constant/color_hex.dart';
 import 'package:mobile/l10n/app_localization.dart';
 import 'package:mobile/model/destination/destination.dart';
+import 'package:mobile/presentation/top/search/search_destination_controller.dart';
 import 'package:mobile/presentation/top/search/search_destination_controller_provider.dart';
 
 class SearchDestinationPage extends HookConsumerWidget {
@@ -21,53 +22,150 @@ class SearchDestinationPage extends HookConsumerWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: HexColor('F8F9FD'),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            Divider(
-              indent: size.width * 0.35,
-              endIndent: size.width * 0.35,
-              thickness: 8,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            _SearchTextField(
-              onSearchChanged: (keyword) async {
-                await controller.searchDestination(keyword: keyword);
-              },
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Expanded(
-              child: ListView.separated(
-                itemBuilder: (context, index) => _ResultTile(
-                  onTap: () async {
-                    final latlng = await controller.selectedDestination(
-                      destination: state.destinationList[index],
-                    );
-                    onAnimatedTap(latlng);
-                    Navigator.pop(context);
-                  },
-                  destination: state.destinationList[index],
+      backgroundColor: HexColor('FFFFFF'),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 10,
                 ),
-                itemCount: state.destinationList.length,
-                separatorBuilder: (BuildContext context, int index) {
-                  return const SizedBox(
-                    height: 10,
-                  );
-                },
-              ),
+                Divider(
+                  indent: size.width * 0.35,
+                  endIndent: size.width * 0.35,
+                  thickness: 8,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                _textFieldArea(
+                  controller: controller,
+                  labelText: '物件1',
+                  inputBorder: InputBorder.none,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                // _textFieldArea(controller: controller, labelText: '物件2'),
+                // const SizedBox(
+                //   height: 20,
+                // ),
+                // _textFieldArea(controller: controller, labelText: '物件3'),
+                SizedBox(
+                  width: size.width,
+                  height: size.height * 0.055,
+                  child: ElevatedButton(
+                    child: const Text(
+                      '物件を探す',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.blue,
+                      onPrimary: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    onPressed: () {},
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          Container(
+            height: 20,
+            color: Colors.grey.withOpacity(0.3),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text(
+                  '履歴',
+                  style: TextStyle(color: Colors.grey),
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  children: [
+                    Image.asset('assets/location.png'),
+                    const SizedBox(width: 20),
+                    const Text(
+                      '大阪駅',
+                      style: const TextStyle(color: Colors.grey),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+
+          // Expanded(
+          //   child: ListView.separated(
+          //     itemBuilder: (context, index) => _ResultTile(
+          //       onTap: () async {
+          //         final latlng = await controller.selectedDestination(
+          //           destination: state.destinationList[index],
+          //         );
+          //         onAnimatedTap(latlng);
+          //         Navigator.pop(context);
+          //       },
+          //       destination: state.destinationList[index],
+          //     ),
+          //     itemCount: state.destinationList.length,
+          //     separatorBuilder: (BuildContext context, int index) {
+          //       return const SizedBox(
+          //         height: 10,
+          //       );
+          //     },
+          //   ),
+          // ),
+        ],
       ),
+    );
+  }
+
+  Widget _textFieldArea({
+    required SearchDestinationController controller,
+    required String labelText,
+    InputBorder? inputBorder,
+  }) {
+    return Row(
+      children: [
+        const SizedBox(
+          width: 10,
+        ),
+        _searchIcon(),
+        const SizedBox(
+          width: 15,
+        ),
+        _SearchTextField(
+          onSearchChanged: (keyword) async {
+            await controller.searchDestination(keyword: keyword);
+          },
+          labelText: labelText,
+          border: inputBorder,
+        )
+      ],
+    );
+  }
+
+  Widget _searchIcon() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: Image.asset('assets/green.png'),
     );
   }
 }
@@ -76,25 +174,31 @@ class _SearchTextField extends StatelessWidget {
   const _SearchTextField({
     Key? key,
     required this.onSearchChanged,
+    required this.labelText,
+    this.border,
   }) : super(key: key);
 
   final ValueChanged<String> onSearchChanged;
+  final String labelText;
+  final InputBorder? border;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalization.of(context)!;
+    final size = MediaQuery.of(context).size;
 
-    return ColoredBox(
-      color: Colors.white,
+    return SizedBox(
+      width: size.width * 0.8,
       child: TextFormField(
         decoration: InputDecoration(
-          hintText: l10n.search_place_text_field_hint,
-          hintStyle: const TextStyle(color: Colors.black),
-          border: InputBorder.none,
-          prefixIcon: const Icon(
-            Icons.search,
-            color: Colors.grey,
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          label: Text(
+            labelText,
+            style: const TextStyle(color: Colors.grey),
           ),
+          hintText: l10n.search_place_text_field_hint,
+          hintStyle: const TextStyle(color: Colors.grey),
+          border: border,
         ),
         style: const TextStyle(color: Colors.black),
         cursorColor: Colors.grey,
