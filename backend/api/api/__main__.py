@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-from fastapi import FastAPI
 import uvicorn
+from fastapi import FastAPI
 
 from api.interfaces.http.router import router
 
