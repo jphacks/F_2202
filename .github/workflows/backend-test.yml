@@ -19,7 +19,7 @@ jobs:
         run: docker run --rm api bash -c 'pytest tests -v'
 
       - name: Lint
-        run: docker run --rm api bash -c 'flake8 api/ tests/'
+        run: docker run --rm api bash -c 'flake8 --ignore=E501 api/ tests/'
 
       - name: Format
-        run: docker run --rm api bash -c 'black .'
+        run: docker run --rm api bash -c 'black . && isort .'
