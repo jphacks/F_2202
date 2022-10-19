@@ -66,20 +66,20 @@ class ListItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ShopThumbnail(shopThumbnail: shopThumbnail),
+            shopThumbnailView(shopThumbnail: shopThumbnail),
             const SizedBox(height: 8),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ShopNameView(shopName: shopName),
+                  shopNameView(shopName: shopName),
                   const SizedBox(height: 4),
                   Row(
                     children: [
-                      MeterView(meter: meter),
+                      meterView(meter: meter),
                       const SizedBox(width: 4),
-                      ReviewStarView(reviewStar: reviewStar),
+                      reviewStarView(reviewStar: reviewStar),
                     ],
                   ),
                 ],
@@ -87,24 +87,14 @@ class ListItem extends StatelessWidget {
             ),
             // TODO 受け取った座標を元にGoogleMapで開けるようにする
             // url_launcherを使用する
-            const OpenGoogleMap(),
+            openGoogleMap(),
           ],
         ),
       ),
     );
   }
-}
 
-class ShopThumbnail extends StatelessWidget {
-  const ShopThumbnail({
-    Key? key,
-    required this.shopThumbnail,
-  }) : super(key: key);
-
-  final String shopThumbnail;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget shopThumbnailView({required String shopThumbnail}) {
     return Image(
       image: NetworkImage(shopThumbnail),
       fit: BoxFit.cover,
@@ -112,18 +102,8 @@ class ShopThumbnail extends StatelessWidget {
       height: 80,
     );
   }
-}
 
-class ShopNameView extends StatelessWidget {
-  const ShopNameView({
-    Key? key,
-    required this.shopName,
-  }) : super(key: key);
-
-  final String shopName;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget shopNameView({required String shopName}) {
     return Text(
       shopName,
       style: const TextStyle(
@@ -133,18 +113,8 @@ class ShopNameView extends StatelessWidget {
       ),
     );
   }
-}
 
-class ReviewStarView extends StatelessWidget {
-  const ReviewStarView({
-    Key? key,
-    required this.reviewStar,
-  }) : super(key: key);
-
-  final String reviewStar;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget reviewStarView({required String reviewStar}) {
     return Row(
       children: [
         const Icon(
@@ -163,18 +133,8 @@ class ReviewStarView extends StatelessWidget {
       ],
     );
   }
-}
 
-class MeterView extends StatelessWidget {
-  const MeterView({
-    Key? key,
-    required this.meter,
-  }) : super(key: key);
-
-  final String meter;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget meterView({required String meter}) {
     return Row(
       children: [
         const Icon(
@@ -193,15 +153,8 @@ class MeterView extends StatelessWidget {
       ],
     );
   }
-}
 
-class OpenGoogleMap extends StatelessWidget {
-  const OpenGoogleMap({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+  Widget openGoogleMap() {
     return TextButton(
       onPressed: () {},
       child: Container(

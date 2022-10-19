@@ -20,7 +20,7 @@ class RecomendProperty extends StatelessWidget {
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return ListItem(
+              return listItem(
                 propertyThumbnail: properties[index]["propertyThumbnail"]!,
               );
             },
@@ -30,18 +30,10 @@ class RecomendProperty extends StatelessWidget {
       ],
     );
   }
-}
 
-class ListItem extends StatelessWidget {
-  const ListItem({
-    Key? key,
-    required this.propertyThumbnail,
-  }) : super(key: key);
-
-  final String propertyThumbnail;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget listItem({
+    required String propertyThumbnail,
+  }) {
     return DropShadow(
       child: Card(
         shape: RoundedRectangleBorder(
@@ -63,14 +55,14 @@ class ListItem extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child:
-                      PropertyThumbnail(propertyThumbnail: propertyThumbnail),
+                  child: propertyThumbnailView(
+                      propertyThumbnail: propertyThumbnail),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       "2.9万円",
                       style: TextStyle(
                         color: Color(0xfffe6663),
@@ -78,10 +70,10 @@ class ListItem extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    DetailText(detailText: "管理費5,000円"),
-                    DetailText(detailText: "1LDK/17.95m2"),
-                    DetailText(detailText: "1階/2階建 築34年"),
-                    DetailText(detailText: "JR東西線/大阪駅 5分"),
+                    detailTextView(detailText: "管理費5,000円"),
+                    detailTextView(detailText: "1LDK/17.95m2"),
+                    detailTextView(detailText: "1階/2階建 築34年"),
+                    detailTextView(detailText: "JR東西線/大阪駅 5分"),
                   ],
                 ),
               ],
@@ -91,18 +83,10 @@ class ListItem extends StatelessWidget {
       ),
     );
   }
-}
 
-class DetailText extends StatelessWidget {
-  const DetailText({
-    Key? key,
-    required this.detailText,
-  }) : super(key: key);
-
-  final String detailText;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget detailTextView({
+    required String detailText,
+  }) {
     return Text(
       detailText,
       style: const TextStyle(
@@ -111,18 +95,10 @@ class DetailText extends StatelessWidget {
       ),
     );
   }
-}
 
-class PropertyThumbnail extends StatelessWidget {
-  const PropertyThumbnail({
-    Key? key,
-    required this.propertyThumbnail,
-  }) : super(key: key);
-
-  final String propertyThumbnail;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget propertyThumbnailView({
+    required String propertyThumbnail,
+  }) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16.0),
       child: Image(

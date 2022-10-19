@@ -20,7 +20,7 @@ class BuildingImages extends StatelessWidget {
             controller: PageController(viewportFraction: 0.9),
             padEnds: false,
             itemBuilder: (context, index) {
-              return ImageCard(imageUrl: imageUrls[index]);
+              return imageCard(imageUrl: imageUrls[index]);
             },
             itemCount: imageUrls.length,
           ),
@@ -28,18 +28,10 @@ class BuildingImages extends StatelessWidget {
       ],
     );
   }
-}
 
-class ImageCard extends StatelessWidget {
-  const ImageCard({
-    Key? key,
-    required this.imageUrl,
-  }) : super(key: key);
-
-  final String imageUrl;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget imageCard({
+    required String imageUrl,
+  }) {
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),

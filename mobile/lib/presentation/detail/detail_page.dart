@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mobile/presentation/detail/widgets/access_map.dart';
 import 'package:mobile/presentation/detail/widgets/building_images.dart';
 import 'package:mobile/presentation/detail/widgets/footer_buttons.dart';
-import 'package:mobile/presentation/detail/widgets/header_action_buttons.dart';
 import 'package:mobile/presentation/detail/widgets/horizontal_rule.dart';
 import 'package:mobile/presentation/detail/widgets/main_visual.dart';
 import 'package:mobile/presentation/detail/widgets/near_shops.dart';
@@ -122,10 +121,37 @@ class DetailPage extends StatelessWidget {
               ),
             ),
             const HeaderBackButton(),
-            const HeaderActionButtons(),
+            headerActionButtons(context),
             const FooterButtons(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget headerActionButtons(context) {
+    return Positioned(
+      top: MediaQuery.of(context).padding.top + 8,
+      right: 16,
+      child: Row(
+        children: [
+          IconButton(
+            icon: const Icon(
+              Icons.share,
+              color: Colors.white,
+              size: 32,
+            ),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(
+              Icons.favorite_border,
+              color: Colors.white,
+              size: 32,
+            ),
+            onPressed: () {},
+          ),
+        ],
       ),
     );
   }

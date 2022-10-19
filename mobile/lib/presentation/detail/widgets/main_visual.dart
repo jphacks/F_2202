@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// メインビジュアル
 class MainVisual extends StatelessWidget {
   const MainVisual({
     Key? key,
@@ -23,7 +22,7 @@ class MainVisual extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           height: 270,
         ),
-        const ImageGradationOverlay(),
+        imageGradationOverlay(context),
         Positioned(
           top: MediaQuery.of(context).padding.top + 88,
           left: 16,
@@ -50,20 +49,13 @@ class MainVisual extends StatelessWidget {
             ],
           ),
         ),
-        const RadiusOverlay(),
+        radiusOverlay(context),
       ],
     );
   }
-}
 
 // 角丸の重ねるやつ
-class RadiusOverlay extends StatelessWidget {
-  const RadiusOverlay({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+  Widget radiusOverlay(context) {
     return Positioned(
       top: MediaQuery.of(context).padding.top + 185,
       child: Container(
@@ -76,16 +68,9 @@ class RadiusOverlay extends StatelessWidget {
       ),
     );
   }
-}
 
-// メインビジュアルのグラデーション
-class ImageGradationOverlay extends StatelessWidget {
-  const ImageGradationOverlay({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+  // メインビジュアルのグラデーション
+  Widget imageGradationOverlay(context) {
     return Positioned(
       top: 0,
       left: 0,
