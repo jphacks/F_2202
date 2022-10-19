@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/presentation/detail/widgets/access_map.dart';
 import 'package:mobile/presentation/detail/widgets/building_images.dart';
 import 'package:mobile/presentation/detail/widgets/header_action_buttons.dart';
 import 'package:mobile/presentation/detail/widgets/horizontal_rule.dart';
@@ -17,42 +18,51 @@ class DetailPage extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Column(
-              children: [
-                const MainVisual(
-                  thumbnailUrl:
-                      'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80',
-                  propertyName: 'ダイナシティ梅田',
-                  fullAddress: '大阪府大阪市北区鶴野町３−２１',
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Column(
-                    // 物件情報を載せるWidgets群
-                    children: const [
-                      PropertyDetails(
-                        rent: '7.55',
-                        fee: '5000',
-                        yearBuilds: '2022年（築15年）',
-                        floorPlan: '1LDK',
-                        propertyType: 'マンション',
-                        area: '20.0m²',
-                        propetyStoructure: 'RC',
-                        stationWalkTime: '徒歩13分',
-                      ),
-                      HorizontalRule(),
-                      BuildingImages(
-                        imageUrls: [
-                          'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80',
-                          'https://images.unsplash.com/photo-1664575196644-808978af9b1f?w=800&q=80',
-                          'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80',
-                          'https://images.unsplash.com/photo-1664575196644-808978af9b1f?w=800&q=80',
-                        ],
-                      )
-                    ],
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  const MainVisual(
+                    thumbnailUrl:
+                        'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80',
+                    propertyName: 'ダイナシティ梅田',
+                    fullAddress: '大阪府大阪市北区鶴野町３−２１',
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Column(
+                      // 物件情報を載せるWidgets群
+                      children: const [
+                        PropertyDetails(
+                          rent: '7.55',
+                          fee: '5000',
+                          yearBuilds: '2022年（築15年）',
+                          floorPlan: '1LDK',
+                          propertyType: 'マンション',
+                          area: '20.0m²',
+                          propetyStoructure: 'RC',
+                          stationWalkTime: '徒歩13分',
+                        ),
+                        HorizontalRule(),
+                        BuildingImages(
+                          imageUrls: [
+                            'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80',
+                            'https://images.unsplash.com/photo-1664575196644-808978af9b1f?w=800&q=80',
+                            'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80',
+                            'https://images.unsplash.com/photo-1664575196644-808978af9b1f?w=800&q=80',
+                          ],
+                        ),
+                        HorizontalRule(),
+                        AccessMap(
+                          fullAddress: '大阪府大阪市北区鶴野町３−２１',
+                          latitude: 34.6956849,
+                          longitude: 135.1907121,
+                          propertyName: 'ダイナシティ梅田',
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
             const HeaderBackButton(),
             const HeaderActionButtons(),
