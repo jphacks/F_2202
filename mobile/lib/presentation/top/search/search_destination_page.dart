@@ -6,6 +6,7 @@ import 'package:mobile/l10n/app_localization.dart';
 import 'package:mobile/model/destination/destination.dart';
 import 'package:mobile/presentation/top/search/search_destination_controller.dart';
 import 'package:mobile/presentation/top/search/search_destination_controller_provider.dart';
+import 'package:mobile/presentation/top/search/search_destination_state.dart';
 
 class SearchDestinationPage extends HookConsumerWidget {
   const SearchDestinationPage({
@@ -44,16 +45,18 @@ class SearchDestinationPage extends HookConsumerWidget {
                 _textFieldArea(
                   controller: controller,
                   labelText: '物件1',
-                  inputBorder: InputBorder.none,
+                ),
+                _textFieldArea(
+                  controller: controller,
+                  labelText: '物件2',
+                ),
+                _textFieldArea(
+                  controller: controller,
+                  labelText: '物件3',
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
-                // _textFieldArea(controller: controller, labelText: '物件2'),
-                // const SizedBox(
-                //   height: 20,
-                // ),
-                // _textFieldArea(controller: controller, labelText: '物件3'),
                 SizedBox(
                   width: size.width,
                   height: size.height * 0.055,
@@ -95,43 +98,23 @@ class SearchDestinationPage extends HookConsumerWidget {
                 ),
                 const Text(
                   '履歴',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: Colors.black),
                 ),
                 const SizedBox(height: 20),
                 Row(
                   children: [
                     Image.asset('assets/location.png'),
                     const SizedBox(width: 20),
-                    const Text(
+                    Text(
                       '大阪駅',
-                      style: const TextStyle(color: Colors.grey),
+                      style: TextStyle(color: Colors.black.withOpacity(0.8)),
                     ),
                   ],
-                )
+                ),
+                const Divider(),
               ],
             ),
           ),
-
-          // Expanded(
-          //   child: ListView.separated(
-          //     itemBuilder: (context, index) => _ResultTile(
-          //       onTap: () async {
-          //         final latlng = await controller.selectedDestination(
-          //           destination: state.destinationList[index],
-          //         );
-          //         onAnimatedTap(latlng);
-          //         Navigator.pop(context);
-          //       },
-          //       destination: state.destinationList[index],
-          //     ),
-          //     itemCount: state.destinationList.length,
-          //     separatorBuilder: (BuildContext context, int index) {
-          //       return const SizedBox(
-          //         height: 10,
-          //       );
-          //     },
-          //   ),
-          // ),
         ],
       ),
     );
@@ -157,7 +140,7 @@ class SearchDestinationPage extends HookConsumerWidget {
           },
           labelText: labelText,
           border: inputBorder,
-        )
+        ),
       ],
     );
   }
@@ -166,6 +149,32 @@ class SearchDestinationPage extends HookConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: Image.asset('assets/green.png'),
+    );
+  }
+
+  Widget _searchResultTiles({
+    required SearchDestinationController controller,
+    required SearchDestinationState state,
+  }) {
+    return Expanded(
+      child: ListView.separated(
+        itemBuilder: (context, index) => _ResultTile(
+          onTap: () async {
+            final latlng = await controller.selectedDestination(
+              destination: state.destinationList[index],
+            );
+            onAnimatedTap(latlng);
+            Navigator.pop(context);
+          },
+          destination: state.destinationList[index],
+        ),
+        itemCount: state.destinationList.length,
+        separatorBuilder: (BuildContext context, int index) {
+          return const SizedBox(
+            height: 10,
+          );
+        },
+      ),
     );
   }
 }
