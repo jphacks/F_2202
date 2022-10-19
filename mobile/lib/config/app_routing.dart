@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/config/app_routing_name.dart';
 import 'package:mobile/presentation/top/search/search_page.dart';
+import 'package:mobile/presentation/detail/detail_page.dart';
 import 'package:mobile/presentation/top/top_page.dart';
 
 /// 遷移のアニメーション等が必要ならここを調整
@@ -25,5 +26,9 @@ PageRouteBuilder? appRouting(RouteSettings settings) {
           argument: argument,
         ),
       );
+    case AppRoutingName.pageDetail:
+      return _presentPage(page: const DetailPage());
+    default:
+      return null;
   }
 }
