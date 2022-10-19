@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/config/app_routing_name.dart';
+import 'package:mobile/presentation/top/search/search_page.dart';
 import 'package:mobile/presentation/detail/detail_page.dart';
 import 'package:mobile/presentation/top/top_page.dart';
 
@@ -18,6 +19,13 @@ PageRouteBuilder? appRouting(RouteSettings settings) {
   switch (settings.name) {
     case AppRoutingName.pageTop:
       return _presentPage(page: const TopPage());
+    case AppRoutingName.searchPage:
+      final argument = settings.arguments as SearchArgument;
+      return _presentPage(
+        page: SearchPage(
+          argument: argument,
+        ),
+      );
     case AppRoutingName.pageDetail:
       return _presentPage(page: const DetailPage());
     default:

@@ -6,6 +6,9 @@ part 'search_destination_state.freezed.dart';
 @freezed
 class SearchDestinationState with _$SearchDestinationState {
   const factory SearchDestinationState({
-    @Default(<Destination>[]) List<Destination> destinationList,
+    @Default(<Destination>[]) List<Destination> searchDestinationList,
+    @Default(Destination()) Destination destination1,
+    @Default(Destination()) Destination destination2,
+    @Default(Destination()) Destination destination3,
   }) = _SearchDestinationState;
 }
