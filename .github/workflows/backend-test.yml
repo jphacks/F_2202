@@ -1,0 +1,25 @@
+name: Test Backend API
+
+on:
+  push:
+    paths:
+      - 'backend/api/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: docker
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build Docker Image
+        run: cd backend/api && docker build -t api .
+
+      - name: Test
+        run: docker run --rm api bash -c 'pytest tests -v'
+
+      - name: Lint
+        run: docker run --rm api bash -c 'flake8 api/ tests/'
+
+      - name: Format
+        run: docker run --rm api bash -c 'black .'
