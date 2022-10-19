@@ -12,7 +12,7 @@ class NearShops extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SectionLayout(
-      sectionTitle: '周辺の建物',
+      sectionTitle: '周辺のお店',
       children: [
         SizedBox(
           height: 190,
