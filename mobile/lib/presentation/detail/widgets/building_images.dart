@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/presentation/detail/widgets/section_title.dart';
+import 'package:mobile/presentation/detail/widgets/section_layout.dart';
 
 class BuildingImages extends StatelessWidget {
   const BuildingImages({
@@ -11,25 +11,21 @@ class BuildingImages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SectionTitle(title: '物件の写真'),
-          SizedBox(
-            height: 200,
-            child: PageView.builder(
-              controller: PageController(viewportFraction: 0.9),
-              padEnds: false,
-              itemBuilder: (context, index) {
-                return ImageCard(imageUrl: imageUrls[index]);
-              },
-              itemCount: imageUrls.length,
-            ),
-          )
-        ],
-      ),
+    return SectionLayout(
+      sectionTitle: '物件の写真',
+      children: [
+        SizedBox(
+          height: 200,
+          child: PageView.builder(
+            controller: PageController(viewportFraction: 0.9),
+            padEnds: false,
+            itemBuilder: (context, index) {
+              return ImageCard(imageUrl: imageUrls[index]);
+            },
+            itemCount: imageUrls.length,
+          ),
+        )
+      ],
     );
   }
 }
