@@ -2,34 +2,29 @@
 
 ## Preparation
 
-- `poetry 1.2.2` or `docker`
+- `python 3.10.7`
+- `poetry 1.2.2`
+
+or
+
+- `docker`
 
 ## Execute
 
 ```shell
-poetry run python api
+make run
 ```
 
-or
-
 ```shell
-docker build -t api . && docker run -p 8080:8080 --rm api
+make run-container
 ```
 
 ## Test
 
 ```shell
-poetry run pytest tests -v
+make test
 ```
 
-or
-
 ```shell
-docker build -t api . && docker run --rm api bash -c 'pytest tests -v'
-```
-
-## Format, Lint
-
-```shell
-poetry run black . && poetry run flake8 api/ tests/
+make test-in-container
 ```

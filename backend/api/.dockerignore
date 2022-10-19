@@ -1,4 +1,9 @@
 .dockerignore
+.gitignore
 Dockerfile
+Makefile
 README.md
+
 .venv/
+.pytest_cache/
+__pycache__/
