@@ -1,4 +1,4 @@
-FROM python:3.10.7-slim as dev
+FROM python:3.10.7-slim
 
 WORKDIR /api
 
@@ -17,13 +17,4 @@ RUN poetry config virtualenvs.create false
 RUN poetry update
 
 COPY . /api
-CMD ["python", "-m", "api"]
-
-FROM python:3.10.7-slim as prd
-
-WORKDIR /api
-
-COPY --from=dev /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
-COPY --from=dev /api/api /api/api
-
 CMD ["python", "-m", "api"]
