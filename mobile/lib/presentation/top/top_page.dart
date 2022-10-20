@@ -6,6 +6,8 @@ import 'package:mobile/config/app_routing_name.dart';
 import 'package:mobile/infra/property.dart';
 import 'package:mobile/l10n/app_localization.dart';
 import 'package:mobile/model/destination/destination.dart';
+import 'package:mobile/model/property/property.dart';
+import 'package:mobile/presentation/property_list/property_list_page.dart';
 import 'package:mobile/presentation/top/search/search_destination_page.dart';
 import 'package:mobile/presentation/top/top_controller_provider.dart';
 import 'package:mobile/presentation/top/top_state.dart';
@@ -132,9 +134,13 @@ class TopPageState extends ConsumerState<TopPage> {
         DropShadow(
           child: homeButton(
             icon: Icons.textsms_outlined,
-            onButtonTap: () {
+            onButtonTap: () async {
+              final result = await PropertyApi.fetchProperty(keyword: '渋谷');
               Navigator.of(context).pushNamed(
                 AppRoutingName.pageList,
+                arguments: PropertyListArgument(
+                  propertyList: result.asValue!.value, place: '渋谷',
+                ),
               );
             },
           ),
@@ -156,9 +162,7 @@ class TopPageState extends ConsumerState<TopPage> {
         DropShadow(
           child: homeButton(
             icon: Icons.favorite,
-            onButtonTap: () async{
-                    await PropertyApi.fetchDestination();
-            },
+            onButtonTap: () async {},
           ),
         ),
       ],

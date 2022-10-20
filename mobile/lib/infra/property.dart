@@ -6,7 +6,7 @@ import 'package:mobile/model/property/property.dart';
 const baseUrl = 'https://jphacks-dev.rcp.ai/';
 mixin PropertyApi {
   /// リクエストを送る
-  static Future<Result<List<dynamic>>> _request({required String url}) async {
+  static Future<Result<List<Property>>> _request({required String url}) async {
     final request = Uri.parse(url);
 
     final response = await http.get(
@@ -25,30 +25,20 @@ mixin PropertyApi {
         propertyList.add(PropertyModelResponse.fromJson(result).toEntity());
       }
 
-      print(propertyList);
-
-      return Result.value(results);
+      return Result.value(propertyList);
     }
 
     return Result.error('result not found');
   }
 
-  static List<Property> _getPropertyList(List<dynamic> decoded) {
-    List<Property> propertyList = [];
-    for (var result in decoded) {
-      propertyList.add(PropertyModelResponse.fromJson(result).toEntity());
-    }
-    return propertyList;
-  }
-
-  static Future<Result<List<Property>>> fetchDestination() async {
+  static Future<Result<List<Property>>> fetchProperty(
+      {required String keyword}) async {
     try {
-      final response =
-          await _request(url: baseUrl + 'v1/buildings?p=1&city=江東区');
-      final decoded = response.asValue!.value;
-      final destinationList = _getPropertyList(decoded);
-      print(destinationList);
-      return Result.value(destinationList);
+      final response = await _request(
+        url: baseUrl + 'v1/buildings?p=1&city=$keyword',
+      );
+
+      return Result.value(response.asValue!.value);
     } on Exception catch (e) {
       return Result.error(e);
     }

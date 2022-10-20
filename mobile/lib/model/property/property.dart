@@ -6,8 +6,14 @@ part 'property.g.dart';
 @freezed
 class Property with _$Property {
   const factory Property({
+    /// id
+    @Default('') String id,
+    
+    /// 画像
+    @Default('') String imageUrl,
+
     /// 家の名前
-    @Default('') String propertyName,
+    @Default('') String name,
 
     /// 都道府県
     @Default('') String prefecture,
@@ -28,13 +34,16 @@ class Property with _$Property {
     @Default(0) int roomCount,
 
     /// DKやLDKなど
-    @Default('') String propetyStoructure,
+    @Default('') String floorPlan,
 
     /// 築年数
     @Default(0) int totalGroundStory,
 
     /// 〇〇畳
     @Default(0.0) double netYield,
+
+    /// 階数
+    @Default('') String florPart,
 
     /// タイプ(マンションなど)
     @Default('') String propertyType,
@@ -51,14 +60,17 @@ class Property with _$Property {
 abstract class PropertyModel with _$PropertyModel {
   const PropertyModel._();
   const factory PropertyModel.response({
-    @Default('') String propertyName,
+    @Default('') String id,
+    @Default('') String imageUrl,
+    @Default('') String name,
     @Default('') String prefecture,
     @Default('') String city,
     @Default('') String region,
     @Default('') String address,
     @Default(0) int rent,
     @Default(0) int roomCount,
-    @Default('') String propetyStoructure,
+    @Default('') String floorPlan,
+    @Default('') String florPart,
     @Default(0) int totalGroundStory,
     @Default(0.0) double netYield,
     @Default('') String propertyType,
@@ -69,14 +81,17 @@ abstract class PropertyModel with _$PropertyModel {
       _$PropertyModelFromJson(json);
 
   Property toEntity() => Property(
-        propertyName: propertyName,
+        id: id,
+        imageUrl: imageUrl,
+        name: name,
         prefecture: prefecture,
         city: city,
         region: region,
         address: address,
         rent: rent,
         roomCount: roomCount,
-        propetyStoructure: propetyStoructure,
+        floorPlan: floorPlan,
+        florPart: florPart,
         totalGroundStory: totalGroundStory,
         netYield: netYield,
         propertyType: propertyType,
