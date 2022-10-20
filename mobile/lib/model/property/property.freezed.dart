@@ -20,11 +20,38 @@ Property _$PropertyFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Property {
+  /// 家の名前
   String get propertyName => throw _privateConstructorUsedError;
+
+  /// 都道府県
   String get prefecture => throw _privateConstructorUsedError;
+
+  /// 市
   String get city => throw _privateConstructorUsedError;
+
+  /// 町など
   String get region => throw _privateConstructorUsedError;
+
+  /// 具体的な住所
   String get address => throw _privateConstructorUsedError;
+
+  /// 家賃
+  String get rent => throw _privateConstructorUsedError;
+
+  /// 部屋数
+  String get roomCount => throw _privateConstructorUsedError;
+
+  /// DKやLDKなど
+  String get propetyStoructure => throw _privateConstructorUsedError;
+
+  /// 築年数
+  String get totalGroundStory => throw _privateConstructorUsedError;
+
+  /// 〇〇畳
+  String get netYield => throw _privateConstructorUsedError;
+
+  /// タイプ(マンションなど)
+  String get propertyType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +69,13 @@ abstract class $PropertyCopyWith<$Res> {
       String prefecture,
       String city,
       String region,
-      String address});
+      String address,
+      String rent,
+      String roomCount,
+      String propetyStoructure,
+      String totalGroundStory,
+      String netYield,
+      String propertyType});
 }
 
 /// @nodoc
@@ -63,6 +96,12 @@ class _$PropertyCopyWithImpl<$Res, $Val extends Property>
     Object? city = null,
     Object? region = null,
     Object? address = null,
+    Object? rent = null,
+    Object? roomCount = null,
+    Object? propetyStoructure = null,
+    Object? totalGroundStory = null,
+    Object? netYield = null,
+    Object? propertyType = null,
   }) {
     return _then(_value.copyWith(
       propertyName: null == propertyName
@@ -85,6 +124,30 @@ class _$PropertyCopyWithImpl<$Res, $Val extends Property>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
+      rent: null == rent
+          ? _value.rent
+          : rent // ignore: cast_nullable_to_non_nullable
+              as String,
+      roomCount: null == roomCount
+          ? _value.roomCount
+          : roomCount // ignore: cast_nullable_to_non_nullable
+              as String,
+      propetyStoructure: null == propetyStoructure
+          ? _value.propetyStoructure
+          : propetyStoructure // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalGroundStory: null == totalGroundStory
+          ? _value.totalGroundStory
+          : totalGroundStory // ignore: cast_nullable_to_non_nullable
+              as String,
+      netYield: null == netYield
+          ? _value.netYield
+          : netYield // ignore: cast_nullable_to_non_nullable
+              as String,
+      propertyType: null == propertyType
+          ? _value.propertyType
+          : propertyType // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -101,7 +164,13 @@ abstract class _$$_PropertyCopyWith<$Res> implements $PropertyCopyWith<$Res> {
       String prefecture,
       String city,
       String region,
-      String address});
+      String address,
+      String rent,
+      String roomCount,
+      String propetyStoructure,
+      String totalGroundStory,
+      String netYield,
+      String propertyType});
 }
 
 /// @nodoc
@@ -120,6 +189,12 @@ class __$$_PropertyCopyWithImpl<$Res>
     Object? city = null,
     Object? region = null,
     Object? address = null,
+    Object? rent = null,
+    Object? roomCount = null,
+    Object? propetyStoructure = null,
+    Object? totalGroundStory = null,
+    Object? netYield = null,
+    Object? propertyType = null,
   }) {
     return _then(_$_Property(
       propertyName: null == propertyName
@@ -142,6 +217,30 @@ class __$$_PropertyCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
+      rent: null == rent
+          ? _value.rent
+          : rent // ignore: cast_nullable_to_non_nullable
+              as String,
+      roomCount: null == roomCount
+          ? _value.roomCount
+          : roomCount // ignore: cast_nullable_to_non_nullable
+              as String,
+      propetyStoructure: null == propetyStoructure
+          ? _value.propetyStoructure
+          : propetyStoructure // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalGroundStory: null == totalGroundStory
+          ? _value.totalGroundStory
+          : totalGroundStory // ignore: cast_nullable_to_non_nullable
+              as String,
+      netYield: null == netYield
+          ? _value.netYield
+          : netYield // ignore: cast_nullable_to_non_nullable
+              as String,
+      propertyType: null == propertyType
+          ? _value.propertyType
+          : propertyType // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -154,30 +253,75 @@ class _$_Property implements _Property {
       this.prefecture = '',
       this.city = '',
       this.region = '',
-      this.address = ''});
+      this.address = '',
+      this.rent = '',
+      this.roomCount = '',
+      this.propetyStoructure = '',
+      this.totalGroundStory = '',
+      this.netYield = '',
+      this.propertyType = ''});
 
   factory _$_Property.fromJson(Map<String, dynamic> json) =>
       _$$_PropertyFromJson(json);
 
+  /// 家の名前
   @override
   @JsonKey()
   final String propertyName;
+
+  /// 都道府県
   @override
   @JsonKey()
   final String prefecture;
+
+  /// 市
   @override
   @JsonKey()
   final String city;
+
+  /// 町など
   @override
   @JsonKey()
   final String region;
+
+  /// 具体的な住所
   @override
   @JsonKey()
   final String address;
 
+  /// 家賃
+  @override
+  @JsonKey()
+  final String rent;
+
+  /// 部屋数
+  @override
+  @JsonKey()
+  final String roomCount;
+
+  /// DKやLDKなど
+  @override
+  @JsonKey()
+  final String propetyStoructure;
+
+  /// 築年数
+  @override
+  @JsonKey()
+  final String totalGroundStory;
+
+  /// 〇〇畳
+  @override
+  @JsonKey()
+  final String netYield;
+
+  /// タイプ(マンションなど)
+  @override
+  @JsonKey()
+  final String propertyType;
+
   @override
   String toString() {
-    return 'Property(propertyName: $propertyName, prefecture: $prefecture, city: $city, region: $region, address: $address)';
+    return 'Property(propertyName: $propertyName, prefecture: $prefecture, city: $city, region: $region, address: $address, rent: $rent, roomCount: $roomCount, propetyStoructure: $propetyStoructure, totalGroundStory: $totalGroundStory, netYield: $netYield, propertyType: $propertyType)';
   }
 
   @override
@@ -191,13 +335,35 @@ class _$_Property implements _Property {
                 other.prefecture == prefecture) &&
             (identical(other.city, city) || other.city == city) &&
             (identical(other.region, region) || other.region == region) &&
-            (identical(other.address, address) || other.address == address));
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.rent, rent) || other.rent == rent) &&
+            (identical(other.roomCount, roomCount) ||
+                other.roomCount == roomCount) &&
+            (identical(other.propetyStoructure, propetyStoructure) ||
+                other.propetyStoructure == propetyStoructure) &&
+            (identical(other.totalGroundStory, totalGroundStory) ||
+                other.totalGroundStory == totalGroundStory) &&
+            (identical(other.netYield, netYield) ||
+                other.netYield == netYield) &&
+            (identical(other.propertyType, propertyType) ||
+                other.propertyType == propertyType));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, propertyName, prefecture, city, region, address);
+  int get hashCode => Object.hash(
+      runtimeType,
+      propertyName,
+      prefecture,
+      city,
+      region,
+      address,
+      rent,
+      roomCount,
+      propetyStoructure,
+      totalGroundStory,
+      netYield,
+      propertyType);
 
   @JsonKey(ignore: true)
   @override
@@ -219,20 +385,60 @@ abstract class _Property implements Property {
       final String prefecture,
       final String city,
       final String region,
-      final String address}) = _$_Property;
+      final String address,
+      final String rent,
+      final String roomCount,
+      final String propetyStoructure,
+      final String totalGroundStory,
+      final String netYield,
+      final String propertyType}) = _$_Property;
 
   factory _Property.fromJson(Map<String, dynamic> json) = _$_Property.fromJson;
 
   @override
+
+  /// 家の名前
   String get propertyName;
   @override
+
+  /// 都道府県
   String get prefecture;
   @override
+
+  /// 市
   String get city;
   @override
+
+  /// 町など
   String get region;
   @override
+
+  /// 具体的な住所
   String get address;
+  @override
+
+  /// 家賃
+  String get rent;
+  @override
+
+  /// 部屋数
+  String get roomCount;
+  @override
+
+  /// DKやLDKなど
+  String get propetyStoructure;
+  @override
+
+  /// 築年数
+  String get totalGroundStory;
+  @override
+
+  /// 〇〇畳
+  String get netYield;
+  @override
+
+  /// タイプ(マンションなど)
+  String get propertyType;
   @override
   @JsonKey(ignore: true)
   _$$_PropertyCopyWith<_$_Property> get copyWith =>
