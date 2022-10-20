@@ -4,9 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile/config/app_routing_name.dart';
 import 'package:mobile/infra/property.dart';
-import 'package:mobile/l10n/app_localization.dart';
 import 'package:mobile/model/destination/destination.dart';
-import 'package:mobile/model/property/property.dart';
 import 'package:mobile/presentation/property_list/property_list_page.dart';
 import 'package:mobile/presentation/top/search/search_destination_page.dart';
 import 'package:mobile/presentation/top/top_controller.dart';
@@ -41,7 +39,6 @@ class TopPageState extends ConsumerState<TopPage> {
   @override
   Widget build(BuildContext context) {
     final asyncValue = ref.watch(topControllerProvider);
-    final l10n = AppLocalization.of(context)!;
     final controller = ref.read(topControllerProvider.notifier);
 
     final _pageController = PageController(
@@ -120,11 +117,11 @@ class TopPageState extends ConsumerState<TopPage> {
           (centerDestination) => Marker(
             markerId: MarkerId(centerDestination.toString()),
             position: centerDestination,
-            onTap: () {
-              final index = [centerDestination].indexWhere(
-                (destination) => destination == centerDestination,
-              );
-            },
+            // onTap: () {
+            //   final index = [centerDestination].indexWhere(
+            //     (destination) => destination == centerDestination,
+            //   );
+            // },
           ),
         )
         .toSet();

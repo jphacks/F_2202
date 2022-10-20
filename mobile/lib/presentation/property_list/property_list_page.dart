@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mobile/l10n/app_localization.dart';
 import 'package:mobile/model/property/property.dart';
 
 class PropertyListArgument {
@@ -106,8 +105,6 @@ class _PropertyListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalization.of(context)!;
-    final size = MediaQuery.of(context).size;
     return Card(
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(

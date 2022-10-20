@@ -1,6 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile/infra/geolocator_api.dart';
-import 'package:mobile/infra/property.dart';
 import 'package:mobile/model/property/property.dart';
 import 'package:mobile/presentation/top/top_state.dart';
 
