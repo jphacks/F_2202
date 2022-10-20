@@ -20,7 +20,10 @@ Property _$PropertyFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Property {
+  /// id
   String get id => throw _privateConstructorUsedError;
+
+  /// 画像
   String get imageUrl => throw _privateConstructorUsedError;
 
   /// 家の名前
@@ -338,9 +341,12 @@ class _$_Property implements _Property {
   factory _$_Property.fromJson(Map<String, dynamic> json) =>
       _$$_PropertyFromJson(json);
 
+  /// id
   @override
   @JsonKey()
   final String id;
+
+  /// 画像
   @override
   @JsonKey()
   final String imageUrl;
@@ -501,8 +507,12 @@ abstract class _Property implements Property {
   factory _Property.fromJson(Map<String, dynamic> json) = _$_Property.fromJson;
 
   @override
+
+  /// id
   String get id;
   @override
+
+  /// 画像
   String get imageUrl;
   @override
 

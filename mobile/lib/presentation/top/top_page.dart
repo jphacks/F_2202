@@ -9,6 +9,7 @@ import 'package:mobile/model/destination/destination.dart';
 import 'package:mobile/model/property/property.dart';
 import 'package:mobile/presentation/property_list/property_list_page.dart';
 import 'package:mobile/presentation/top/search/search_destination_page.dart';
+import 'package:mobile/presentation/top/top_controller.dart';
 import 'package:mobile/presentation/top/top_controller_provider.dart';
 import 'package:mobile/presentation/top/top_state.dart';
 import 'package:mobile/presentation/widgets/drop_shadow.dart';
@@ -41,6 +42,7 @@ class TopPageState extends ConsumerState<TopPage> {
   Widget build(BuildContext context) {
     final asyncValue = ref.watch(topControllerProvider);
     final l10n = AppLocalization.of(context)!;
+    final controller = ref.read(topControllerProvider.notifier);
 
     final _pageController = PageController(
       viewportFraction: 0.85,
@@ -75,7 +77,7 @@ class TopPageState extends ConsumerState<TopPage> {
                   ),
                   Positioned(
                     bottom: 80,
-                    child: homeButtomList(),
+                    child: homeButtomList(controller),
                   ),
                 ],
               );
@@ -128,7 +130,7 @@ class TopPageState extends ConsumerState<TopPage> {
         .toSet();
   }
 
-  Widget homeButtomList() {
+  Widget homeButtomList(TopController topController) {
     return Row(
       children: [
         DropShadow(
@@ -136,10 +138,12 @@ class TopPageState extends ConsumerState<TopPage> {
             icon: Icons.textsms_outlined,
             onButtonTap: () async {
               final result = await PropertyApi.fetchProperty(keyword: '渋谷');
+              topController.fetchProperty(result.asValue!.value);
               Navigator.of(context).pushNamed(
                 AppRoutingName.pageList,
                 arguments: PropertyListArgument(
-                  propertyList: result.asValue!.value, place: '渋谷',
+                  propertyList: result.asValue!.value,
+                  place: '渋谷',
                 ),
               );
             },
