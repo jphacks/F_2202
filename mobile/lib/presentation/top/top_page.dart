@@ -7,7 +7,7 @@ import 'package:mobile/model/destination/destination.dart';
 import 'package:mobile/presentation/top/search/search_destination_page.dart';
 import 'package:mobile/presentation/top/top_controller_provider.dart';
 import 'package:mobile/presentation/top/top_state.dart';
-import 'package:mobile/presentation/widgets/search_button.dart';
+import 'package:mobile/presentation/widgets/drop_shadow.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class TopPage extends StatefulHookConsumerWidget {
@@ -59,15 +59,15 @@ class TopPageState extends ConsumerState<TopPage> {
                   Positioned(
                     top: 80,
                     right: 30,
-                    // TODO(rui): iconがなかったから実装お願いします。
-                    child: homeButton(
-                      icon: Icons.gps_fixed,
+                    child: DropShadow(
+                        child: homeButton(
+                      icon: Icons.near_me_outlined,
                       onButtonTap: () {},
                       iconSize: 30,
                       buttonSize: 55,
                       buttonColor: Colors.white,
-                      buttonIconColor: Colors.black,
-                    ),
+                      buttonIconColor: const Color(0xff333333),
+                    )),
                   ),
                   Positioned(
                     bottom: 80,
@@ -127,25 +127,31 @@ class TopPageState extends ConsumerState<TopPage> {
   Widget homeButtomList() {
     return Row(
       children: [
-        homeButton(
-          icon: Icons.chat,
-          onButtonTap: () {},
+        DropShadow(
+          child: homeButton(
+            icon: Icons.textsms_outlined,
+            onButtonTap: () {},
+          ),
         ),
         const SizedBox(
           width: 30,
         ),
-        homeButton(
-          icon: Icons.search,
-          onButtonTap: () {
-            _buildButtomSheet();
-          },
+        DropShadow(
+          child: homeButton(
+            icon: Icons.search,
+            onButtonTap: () {
+              _buildButtomSheet();
+            },
+          ),
         ),
         const SizedBox(
           width: 30,
         ),
-        homeButton(
-          icon: Icons.favorite,
-          onButtonTap: () {},
+        DropShadow(
+          child: homeButton(
+            icon: Icons.favorite,
+            onButtonTap: () {},
+          ),
         ),
       ],
     );
