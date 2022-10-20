@@ -22,19 +22,19 @@ class Property with _$Property {
     @Default('') String address,
 
     /// 家賃
-    @Default('') String rent,
+    @Default(0) int rent,
 
     /// 部屋数
-    @Default('') String roomCount,
+    @Default(0) int roomCount,
 
     /// DKやLDKなど
     @Default('') String propetyStoructure,
 
     /// 築年数
-    @Default('') String totalGroundStory,
+    @Default(0) int totalGroundStory,
 
     /// 〇〇畳
-    @Default('') String netYield,
+    @Default(0.0) double netYield,
 
     /// タイプ(マンションなど)
     @Default('') String propertyType,
@@ -56,11 +56,11 @@ abstract class PropertyModel with _$PropertyModel {
     @Default('') String city,
     @Default('') String region,
     @Default('') String address,
-    @Default('') String rent,
-    @Default('') String roomCount,
+    @Default(0) int rent,
+    @Default(0) int roomCount,
     @Default('') String propetyStoructure,
-    @Default('') String totalGroundStory,
-    @Default('') String netYield,
+    @Default(0) int totalGroundStory,
+    @Default(0.0) double netYield,
     @Default('') String propertyType,
     @Default(Transportion()) Transportion transportion,
   }) = PropertyModelResponse;

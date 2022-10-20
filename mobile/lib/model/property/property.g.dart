@@ -12,11 +12,11 @@ _$_Property _$$_PropertyFromJson(Map<String, dynamic> json) => _$_Property(
       city: json['city'] as String? ?? '',
       region: json['region'] as String? ?? '',
       address: json['address'] as String? ?? '',
-      rent: json['rent'] as String? ?? '',
-      roomCount: json['room_count'] as String? ?? '',
+      rent: json['rent'] as int? ?? 0,
+      roomCount: json['room_count'] as int? ?? 0,
       propetyStoructure: json['propety_storucture'] as String? ?? '',
-      totalGroundStory: json['total_ground_story'] as String? ?? '',
-      netYield: json['net_yield'] as String? ?? '',
+      totalGroundStory: json['total_ground_story'] as int? ?? 0,
+      netYield: (json['net_yield'] as num?)?.toDouble() ?? 0.0,
       propertyType: json['property_type'] as String? ?? '',
       transportion: json['transportion'] == null
           ? const Transportion()
@@ -47,11 +47,11 @@ _$PropertyModelResponse _$$PropertyModelResponseFromJson(
       city: json['city'] as String? ?? '',
       region: json['region'] as String? ?? '',
       address: json['address'] as String? ?? '',
-      rent: json['rent'] as String? ?? '',
-      roomCount: json['room_count'] as String? ?? '',
+      rent: json['rent'] as int? ?? 0,
+      roomCount: json['room_count'] as int? ?? 0,
       propetyStoructure: json['propety_storucture'] as String? ?? '',
-      totalGroundStory: json['total_ground_story'] as String? ?? '',
-      netYield: json['net_yield'] as String? ?? '',
+      totalGroundStory: json['total_ground_story'] as int? ?? 0,
+      netYield: (json['net_yield'] as num?)?.toDouble() ?? 0.0,
       propertyType: json['property_type'] as String? ?? '',
       transportion: json['transportion'] == null
           ? const Transportion()

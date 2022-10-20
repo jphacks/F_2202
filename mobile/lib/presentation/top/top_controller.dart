@@ -17,8 +17,7 @@ class TopController extends StateNotifier<AsyncValue<TopState>> {
       // 位置情報取得のリクエスト
       await GeolocatorApi.requestPermissionLocation();
       await _fetchCurrentLocation();
-      await PropertyApi.fetchDestination();
-      print('a');
+
     } catch (error) {
       AsyncError(error);
     }

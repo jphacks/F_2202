@@ -36,19 +36,19 @@ mixin _$Property {
   String get address => throw _privateConstructorUsedError;
 
   /// 家賃
-  String get rent => throw _privateConstructorUsedError;
+  int get rent => throw _privateConstructorUsedError;
 
   /// 部屋数
-  String get roomCount => throw _privateConstructorUsedError;
+  int get roomCount => throw _privateConstructorUsedError;
 
   /// DKやLDKなど
   String get propetyStoructure => throw _privateConstructorUsedError;
 
   /// 築年数
-  String get totalGroundStory => throw _privateConstructorUsedError;
+  int get totalGroundStory => throw _privateConstructorUsedError;
 
   /// 〇〇畳
-  String get netYield => throw _privateConstructorUsedError;
+  double get netYield => throw _privateConstructorUsedError;
 
   /// タイプ(マンションなど)
   String get propertyType => throw _privateConstructorUsedError;
@@ -73,11 +73,11 @@ abstract class $PropertyCopyWith<$Res> {
       String city,
       String region,
       String address,
-      String rent,
-      String roomCount,
+      int rent,
+      int roomCount,
       String propetyStoructure,
-      String totalGroundStory,
-      String netYield,
+      int totalGroundStory,
+      double netYield,
       String propertyType,
       Transportion transportion});
 
@@ -134,11 +134,11 @@ class _$PropertyCopyWithImpl<$Res, $Val extends Property>
       rent: null == rent
           ? _value.rent
           : rent // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       roomCount: null == roomCount
           ? _value.roomCount
           : roomCount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       propetyStoructure: null == propetyStoructure
           ? _value.propetyStoructure
           : propetyStoructure // ignore: cast_nullable_to_non_nullable
@@ -146,11 +146,11 @@ class _$PropertyCopyWithImpl<$Res, $Val extends Property>
       totalGroundStory: null == totalGroundStory
           ? _value.totalGroundStory
           : totalGroundStory // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       netYield: null == netYield
           ? _value.netYield
           : netYield // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       propertyType: null == propertyType
           ? _value.propertyType
           : propertyType // ignore: cast_nullable_to_non_nullable
@@ -184,11 +184,11 @@ abstract class _$$_PropertyCopyWith<$Res> implements $PropertyCopyWith<$Res> {
       String city,
       String region,
       String address,
-      String rent,
-      String roomCount,
+      int rent,
+      int roomCount,
       String propetyStoructure,
-      String totalGroundStory,
-      String netYield,
+      int totalGroundStory,
+      double netYield,
       String propertyType,
       Transportion transportion});
 
@@ -244,11 +244,11 @@ class __$$_PropertyCopyWithImpl<$Res>
       rent: null == rent
           ? _value.rent
           : rent // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       roomCount: null == roomCount
           ? _value.roomCount
           : roomCount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       propetyStoructure: null == propetyStoructure
           ? _value.propetyStoructure
           : propetyStoructure // ignore: cast_nullable_to_non_nullable
@@ -256,11 +256,11 @@ class __$$_PropertyCopyWithImpl<$Res>
       totalGroundStory: null == totalGroundStory
           ? _value.totalGroundStory
           : totalGroundStory // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       netYield: null == netYield
           ? _value.netYield
           : netYield // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       propertyType: null == propertyType
           ? _value.propertyType
           : propertyType // ignore: cast_nullable_to_non_nullable
@@ -282,11 +282,11 @@ class _$_Property implements _Property {
       this.city = '',
       this.region = '',
       this.address = '',
-      this.rent = '',
-      this.roomCount = '',
+      this.rent = 0,
+      this.roomCount = 0,
       this.propetyStoructure = '',
-      this.totalGroundStory = '',
-      this.netYield = '',
+      this.totalGroundStory = 0,
+      this.netYield = 0.0,
       this.propertyType = '',
       this.transportion = const Transportion()});
 
@@ -321,12 +321,12 @@ class _$_Property implements _Property {
   /// 家賃
   @override
   @JsonKey()
-  final String rent;
+  final int rent;
 
   /// 部屋数
   @override
   @JsonKey()
-  final String roomCount;
+  final int roomCount;
 
   /// DKやLDKなど
   @override
@@ -336,12 +336,12 @@ class _$_Property implements _Property {
   /// 築年数
   @override
   @JsonKey()
-  final String totalGroundStory;
+  final int totalGroundStory;
 
   /// 〇〇畳
   @override
   @JsonKey()
-  final String netYield;
+  final double netYield;
 
   /// タイプ(マンションなど)
   @override
@@ -423,11 +423,11 @@ abstract class _Property implements Property {
       final String city,
       final String region,
       final String address,
-      final String rent,
-      final String roomCount,
+      final int rent,
+      final int roomCount,
       final String propetyStoructure,
-      final String totalGroundStory,
-      final String netYield,
+      final int totalGroundStory,
+      final double netYield,
       final String propertyType,
       final Transportion transportion}) = _$_Property;
 
@@ -456,11 +456,11 @@ abstract class _Property implements Property {
   @override
 
   /// 家賃
-  String get rent;
+  int get rent;
   @override
 
   /// 部屋数
-  String get roomCount;
+  int get roomCount;
   @override
 
   /// DKやLDKなど
@@ -468,11 +468,11 @@ abstract class _Property implements Property {
   @override
 
   /// 築年数
-  String get totalGroundStory;
+  int get totalGroundStory;
   @override
 
   /// 〇〇畳
-  String get netYield;
+  double get netYield;
   @override
 
   /// タイプ(マンションなど)
@@ -498,11 +498,11 @@ mixin _$PropertyModel {
   String get city => throw _privateConstructorUsedError;
   String get region => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
-  String get rent => throw _privateConstructorUsedError;
-  String get roomCount => throw _privateConstructorUsedError;
+  int get rent => throw _privateConstructorUsedError;
+  int get roomCount => throw _privateConstructorUsedError;
   String get propetyStoructure => throw _privateConstructorUsedError;
-  String get totalGroundStory => throw _privateConstructorUsedError;
-  String get netYield => throw _privateConstructorUsedError;
+  int get totalGroundStory => throw _privateConstructorUsedError;
+  double get netYield => throw _privateConstructorUsedError;
   String get propertyType => throw _privateConstructorUsedError;
   Transportion get transportion => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -513,11 +513,11 @@ mixin _$PropertyModel {
             String city,
             String region,
             String address,
-            String rent,
-            String roomCount,
+            int rent,
+            int roomCount,
             String propetyStoructure,
-            String totalGroundStory,
-            String netYield,
+            int totalGroundStory,
+            double netYield,
             String propertyType,
             Transportion transportion)
         response,
@@ -531,11 +531,11 @@ mixin _$PropertyModel {
             String city,
             String region,
             String address,
-            String rent,
-            String roomCount,
+            int rent,
+            int roomCount,
             String propetyStoructure,
-            String totalGroundStory,
-            String netYield,
+            int totalGroundStory,
+            double netYield,
             String propertyType,
             Transportion transportion)?
         response,
@@ -549,11 +549,11 @@ mixin _$PropertyModel {
             String city,
             String region,
             String address,
-            String rent,
-            String roomCount,
+            int rent,
+            int roomCount,
             String propetyStoructure,
-            String totalGroundStory,
-            String netYield,
+            int totalGroundStory,
+            double netYield,
             String propertyType,
             Transportion transportion)?
         response,
@@ -594,11 +594,11 @@ abstract class $PropertyModelCopyWith<$Res> {
       String city,
       String region,
       String address,
-      String rent,
-      String roomCount,
+      int rent,
+      int roomCount,
       String propetyStoructure,
-      String totalGroundStory,
-      String netYield,
+      int totalGroundStory,
+      double netYield,
       String propertyType,
       Transportion transportion});
 
@@ -655,11 +655,11 @@ class _$PropertyModelCopyWithImpl<$Res, $Val extends PropertyModel>
       rent: null == rent
           ? _value.rent
           : rent // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       roomCount: null == roomCount
           ? _value.roomCount
           : roomCount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       propetyStoructure: null == propetyStoructure
           ? _value.propetyStoructure
           : propetyStoructure // ignore: cast_nullable_to_non_nullable
@@ -667,11 +667,11 @@ class _$PropertyModelCopyWithImpl<$Res, $Val extends PropertyModel>
       totalGroundStory: null == totalGroundStory
           ? _value.totalGroundStory
           : totalGroundStory // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       netYield: null == netYield
           ? _value.netYield
           : netYield // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       propertyType: null == propertyType
           ? _value.propertyType
           : propertyType // ignore: cast_nullable_to_non_nullable
@@ -706,11 +706,11 @@ abstract class _$$PropertyModelResponseCopyWith<$Res>
       String city,
       String region,
       String address,
-      String rent,
-      String roomCount,
+      int rent,
+      int roomCount,
       String propetyStoructure,
-      String totalGroundStory,
-      String netYield,
+      int totalGroundStory,
+      double netYield,
       String propertyType,
       Transportion transportion});
 
@@ -766,11 +766,11 @@ class __$$PropertyModelResponseCopyWithImpl<$Res>
       rent: null == rent
           ? _value.rent
           : rent // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       roomCount: null == roomCount
           ? _value.roomCount
           : roomCount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       propetyStoructure: null == propetyStoructure
           ? _value.propetyStoructure
           : propetyStoructure // ignore: cast_nullable_to_non_nullable
@@ -778,11 +778,11 @@ class __$$PropertyModelResponseCopyWithImpl<$Res>
       totalGroundStory: null == totalGroundStory
           ? _value.totalGroundStory
           : totalGroundStory // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       netYield: null == netYield
           ? _value.netYield
           : netYield // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       propertyType: null == propertyType
           ? _value.propertyType
           : propertyType // ignore: cast_nullable_to_non_nullable
@@ -804,11 +804,11 @@ class _$PropertyModelResponse extends PropertyModelResponse {
       this.city = '',
       this.region = '',
       this.address = '',
-      this.rent = '',
-      this.roomCount = '',
+      this.rent = 0,
+      this.roomCount = 0,
       this.propetyStoructure = '',
-      this.totalGroundStory = '',
-      this.netYield = '',
+      this.totalGroundStory = 0,
+      this.netYield = 0.0,
       this.propertyType = '',
       this.transportion = const Transportion()})
       : super._();
@@ -833,19 +833,19 @@ class _$PropertyModelResponse extends PropertyModelResponse {
   final String address;
   @override
   @JsonKey()
-  final String rent;
+  final int rent;
   @override
   @JsonKey()
-  final String roomCount;
+  final int roomCount;
   @override
   @JsonKey()
   final String propetyStoructure;
   @override
   @JsonKey()
-  final String totalGroundStory;
+  final int totalGroundStory;
   @override
   @JsonKey()
-  final String netYield;
+  final double netYield;
   @override
   @JsonKey()
   final String propertyType;
@@ -918,11 +918,11 @@ class _$PropertyModelResponse extends PropertyModelResponse {
             String city,
             String region,
             String address,
-            String rent,
-            String roomCount,
+            int rent,
+            int roomCount,
             String propetyStoructure,
-            String totalGroundStory,
-            String netYield,
+            int totalGroundStory,
+            double netYield,
             String propertyType,
             Transportion transportion)
         response,
@@ -951,11 +951,11 @@ class _$PropertyModelResponse extends PropertyModelResponse {
             String city,
             String region,
             String address,
-            String rent,
-            String roomCount,
+            int rent,
+            int roomCount,
             String propetyStoructure,
-            String totalGroundStory,
-            String netYield,
+            int totalGroundStory,
+            double netYield,
             String propertyType,
             Transportion transportion)?
         response,
@@ -984,11 +984,11 @@ class _$PropertyModelResponse extends PropertyModelResponse {
             String city,
             String region,
             String address,
-            String rent,
-            String roomCount,
+            int rent,
+            int roomCount,
             String propetyStoructure,
-            String totalGroundStory,
-            String netYield,
+            int totalGroundStory,
+            double netYield,
             String propertyType,
             Transportion transportion)?
         response,
@@ -1055,11 +1055,11 @@ abstract class PropertyModelResponse extends PropertyModel {
       final String city,
       final String region,
       final String address,
-      final String rent,
-      final String roomCount,
+      final int rent,
+      final int roomCount,
       final String propetyStoructure,
-      final String totalGroundStory,
-      final String netYield,
+      final int totalGroundStory,
+      final double netYield,
       final String propertyType,
       final Transportion transportion}) = _$PropertyModelResponse;
   const PropertyModelResponse._() : super._();
@@ -1078,15 +1078,15 @@ abstract class PropertyModelResponse extends PropertyModel {
   @override
   String get address;
   @override
-  String get rent;
+  int get rent;
   @override
-  String get roomCount;
+  int get roomCount;
   @override
   String get propetyStoructure;
   @override
-  String get totalGroundStory;
+  int get totalGroundStory;
   @override
-  String get netYield;
+  double get netYield;
   @override
   String get propertyType;
   @override
