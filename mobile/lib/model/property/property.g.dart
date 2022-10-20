@@ -7,16 +7,19 @@ part of 'property.dart';
 // **************************************************************************
 
 _$_Property _$$_PropertyFromJson(Map<String, dynamic> json) => _$_Property(
-      propertyName: json['property_name'] as String? ?? '',
+      id: json['id'] as String? ?? '',
+      imageUrl: json['image_url'] as String? ?? '',
+      name: json['name'] as String? ?? '',
       prefecture: json['prefecture'] as String? ?? '',
       city: json['city'] as String? ?? '',
       region: json['region'] as String? ?? '',
       address: json['address'] as String? ?? '',
-      rent: json['rent'] as String? ?? '',
-      roomCount: json['room_count'] as String? ?? '',
-      propetyStoructure: json['propety_storucture'] as String? ?? '',
-      totalGroundStory: json['total_ground_story'] as String? ?? '',
-      netYield: json['net_yield'] as String? ?? '',
+      rent: json['rent'] as int? ?? 0,
+      roomCount: json['room_count'] as int? ?? 0,
+      floorPlan: json['floor_plan'] as String? ?? '',
+      totalGroundStory: json['total_ground_story'] as int? ?? 0,
+      netYield: (json['net_yield'] as num?)?.toDouble() ?? 0.0,
+      florPart: json['flor_part'] as String? ?? '',
       propertyType: json['property_type'] as String? ?? '',
       transportion: json['transportion'] == null
           ? const Transportion()
@@ -25,16 +28,19 @@ _$_Property _$$_PropertyFromJson(Map<String, dynamic> json) => _$_Property(
 
 Map<String, dynamic> _$$_PropertyToJson(_$_Property instance) =>
     <String, dynamic>{
-      'property_name': instance.propertyName,
+      'id': instance.id,
+      'image_url': instance.imageUrl,
+      'name': instance.name,
       'prefecture': instance.prefecture,
       'city': instance.city,
       'region': instance.region,
       'address': instance.address,
       'rent': instance.rent,
       'room_count': instance.roomCount,
-      'propety_storucture': instance.propetyStoructure,
+      'floor_plan': instance.floorPlan,
       'total_ground_story': instance.totalGroundStory,
       'net_yield': instance.netYield,
+      'flor_part': instance.florPart,
       'property_type': instance.propertyType,
       'transportion': instance.transportion.toJson(),
     };
@@ -42,16 +48,19 @@ Map<String, dynamic> _$$_PropertyToJson(_$_Property instance) =>
 _$PropertyModelResponse _$$PropertyModelResponseFromJson(
         Map<String, dynamic> json) =>
     _$PropertyModelResponse(
-      propertyName: json['property_name'] as String? ?? '',
+      id: json['id'] as String? ?? '',
+      imageUrl: json['image_url'] as String? ?? '',
+      name: json['name'] as String? ?? '',
       prefecture: json['prefecture'] as String? ?? '',
       city: json['city'] as String? ?? '',
       region: json['region'] as String? ?? '',
       address: json['address'] as String? ?? '',
-      rent: json['rent'] as String? ?? '',
-      roomCount: json['room_count'] as String? ?? '',
-      propetyStoructure: json['propety_storucture'] as String? ?? '',
-      totalGroundStory: json['total_ground_story'] as String? ?? '',
-      netYield: json['net_yield'] as String? ?? '',
+      rent: json['rent'] as int? ?? 0,
+      roomCount: json['room_count'] as int? ?? 0,
+      floorPlan: json['floor_plan'] as String? ?? '',
+      florPart: json['flor_part'] as String? ?? '',
+      totalGroundStory: json['total_ground_story'] as int? ?? 0,
+      netYield: (json['net_yield'] as num?)?.toDouble() ?? 0.0,
       propertyType: json['property_type'] as String? ?? '',
       transportion: json['transportion'] == null
           ? const Transportion()
@@ -61,14 +70,17 @@ _$PropertyModelResponse _$$PropertyModelResponseFromJson(
 Map<String, dynamic> _$$PropertyModelResponseToJson(
         _$PropertyModelResponse instance) =>
     <String, dynamic>{
-      'property_name': instance.propertyName,
+      'id': instance.id,
+      'image_url': instance.imageUrl,
+      'name': instance.name,
       'prefecture': instance.prefecture,
       'city': instance.city,
       'region': instance.region,
       'address': instance.address,
       'rent': instance.rent,
       'room_count': instance.roomCount,
-      'propety_storucture': instance.propetyStoructure,
+      'floor_plan': instance.floorPlan,
+      'flor_part': instance.florPart,
       'total_ground_story': instance.totalGroundStory,
       'net_yield': instance.netYield,
       'property_type': instance.propertyType,

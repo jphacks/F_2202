@@ -30,8 +30,11 @@ PageRouteBuilder? appRouting(RouteSettings settings) {
     case AppRoutingName.pageDetail:
       return _presentPage(page: const DetailPage());
     case AppRoutingName.pageList:
+      final argument = settings.arguments as PropertyListArgument;
       return _presentPage(
-        page: const PropertyListPage(),
+        page: PropertyListPage(
+          argument: argument,
+        ),
       );
     default:
       return null;

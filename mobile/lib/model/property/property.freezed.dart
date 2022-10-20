@@ -20,8 +20,11 @@ Property _$PropertyFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Property {
+  String get id => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
+
   /// 家の名前
-  String get propertyName => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
 
   /// 都道府県
   String get prefecture => throw _privateConstructorUsedError;
@@ -36,19 +39,22 @@ mixin _$Property {
   String get address => throw _privateConstructorUsedError;
 
   /// 家賃
-  String get rent => throw _privateConstructorUsedError;
+  int get rent => throw _privateConstructorUsedError;
 
   /// 部屋数
-  String get roomCount => throw _privateConstructorUsedError;
+  int get roomCount => throw _privateConstructorUsedError;
 
   /// DKやLDKなど
-  String get propetyStoructure => throw _privateConstructorUsedError;
+  String get floorPlan => throw _privateConstructorUsedError;
 
   /// 築年数
-  String get totalGroundStory => throw _privateConstructorUsedError;
+  int get totalGroundStory => throw _privateConstructorUsedError;
 
   /// 〇〇畳
-  String get netYield => throw _privateConstructorUsedError;
+  double get netYield => throw _privateConstructorUsedError;
+
+  /// 階数
+  String get florPart => throw _privateConstructorUsedError;
 
   /// タイプ(マンションなど)
   String get propertyType => throw _privateConstructorUsedError;
@@ -68,16 +74,19 @@ abstract class $PropertyCopyWith<$Res> {
       _$PropertyCopyWithImpl<$Res, Property>;
   @useResult
   $Res call(
-      {String propertyName,
+      {String id,
+      String imageUrl,
+      String name,
       String prefecture,
       String city,
       String region,
       String address,
-      String rent,
-      String roomCount,
-      String propetyStoructure,
-      String totalGroundStory,
-      String netYield,
+      int rent,
+      int roomCount,
+      String floorPlan,
+      int totalGroundStory,
+      double netYield,
+      String florPart,
       String propertyType,
       Transportion transportion});
 
@@ -97,23 +106,34 @@ class _$PropertyCopyWithImpl<$Res, $Val extends Property>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? propertyName = null,
+    Object? id = null,
+    Object? imageUrl = null,
+    Object? name = null,
     Object? prefecture = null,
     Object? city = null,
     Object? region = null,
     Object? address = null,
     Object? rent = null,
     Object? roomCount = null,
-    Object? propetyStoructure = null,
+    Object? floorPlan = null,
     Object? totalGroundStory = null,
     Object? netYield = null,
+    Object? florPart = null,
     Object? propertyType = null,
     Object? transportion = null,
   }) {
     return _then(_value.copyWith(
-      propertyName: null == propertyName
-          ? _value.propertyName
-          : propertyName // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       prefecture: null == prefecture
           ? _value.prefecture
@@ -134,22 +154,26 @@ class _$PropertyCopyWithImpl<$Res, $Val extends Property>
       rent: null == rent
           ? _value.rent
           : rent // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       roomCount: null == roomCount
           ? _value.roomCount
           : roomCount // ignore: cast_nullable_to_non_nullable
-              as String,
-      propetyStoructure: null == propetyStoructure
-          ? _value.propetyStoructure
-          : propetyStoructure // ignore: cast_nullable_to_non_nullable
+              as int,
+      floorPlan: null == floorPlan
+          ? _value.floorPlan
+          : floorPlan // ignore: cast_nullable_to_non_nullable
               as String,
       totalGroundStory: null == totalGroundStory
           ? _value.totalGroundStory
           : totalGroundStory // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       netYield: null == netYield
           ? _value.netYield
           : netYield // ignore: cast_nullable_to_non_nullable
+              as double,
+      florPart: null == florPart
+          ? _value.florPart
+          : florPart // ignore: cast_nullable_to_non_nullable
               as String,
       propertyType: null == propertyType
           ? _value.propertyType
@@ -179,16 +203,19 @@ abstract class _$$_PropertyCopyWith<$Res> implements $PropertyCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String propertyName,
+      {String id,
+      String imageUrl,
+      String name,
       String prefecture,
       String city,
       String region,
       String address,
-      String rent,
-      String roomCount,
-      String propetyStoructure,
-      String totalGroundStory,
-      String netYield,
+      int rent,
+      int roomCount,
+      String floorPlan,
+      int totalGroundStory,
+      double netYield,
+      String florPart,
       String propertyType,
       Transportion transportion});
 
@@ -207,23 +234,34 @@ class __$$_PropertyCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? propertyName = null,
+    Object? id = null,
+    Object? imageUrl = null,
+    Object? name = null,
     Object? prefecture = null,
     Object? city = null,
     Object? region = null,
     Object? address = null,
     Object? rent = null,
     Object? roomCount = null,
-    Object? propetyStoructure = null,
+    Object? floorPlan = null,
     Object? totalGroundStory = null,
     Object? netYield = null,
+    Object? florPart = null,
     Object? propertyType = null,
     Object? transportion = null,
   }) {
     return _then(_$_Property(
-      propertyName: null == propertyName
-          ? _value.propertyName
-          : propertyName // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       prefecture: null == prefecture
           ? _value.prefecture
@@ -244,22 +282,26 @@ class __$$_PropertyCopyWithImpl<$Res>
       rent: null == rent
           ? _value.rent
           : rent // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       roomCount: null == roomCount
           ? _value.roomCount
           : roomCount // ignore: cast_nullable_to_non_nullable
-              as String,
-      propetyStoructure: null == propetyStoructure
-          ? _value.propetyStoructure
-          : propetyStoructure // ignore: cast_nullable_to_non_nullable
+              as int,
+      floorPlan: null == floorPlan
+          ? _value.floorPlan
+          : floorPlan // ignore: cast_nullable_to_non_nullable
               as String,
       totalGroundStory: null == totalGroundStory
           ? _value.totalGroundStory
           : totalGroundStory // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       netYield: null == netYield
           ? _value.netYield
           : netYield // ignore: cast_nullable_to_non_nullable
+              as double,
+      florPart: null == florPart
+          ? _value.florPart
+          : florPart // ignore: cast_nullable_to_non_nullable
               as String,
       propertyType: null == propertyType
           ? _value.propertyType
@@ -277,26 +319,36 @@ class __$$_PropertyCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Property implements _Property {
   const _$_Property(
-      {this.propertyName = '',
+      {this.id = '',
+      this.imageUrl = '',
+      this.name = '',
       this.prefecture = '',
       this.city = '',
       this.region = '',
       this.address = '',
-      this.rent = '',
-      this.roomCount = '',
-      this.propetyStoructure = '',
-      this.totalGroundStory = '',
-      this.netYield = '',
+      this.rent = 0,
+      this.roomCount = 0,
+      this.floorPlan = '',
+      this.totalGroundStory = 0,
+      this.netYield = 0.0,
+      this.florPart = '',
       this.propertyType = '',
       this.transportion = const Transportion()});
 
   factory _$_Property.fromJson(Map<String, dynamic> json) =>
       _$$_PropertyFromJson(json);
 
+  @override
+  @JsonKey()
+  final String id;
+  @override
+  @JsonKey()
+  final String imageUrl;
+
   /// 家の名前
   @override
   @JsonKey()
-  final String propertyName;
+  final String name;
 
   /// 都道府県
   @override
@@ -321,27 +373,32 @@ class _$_Property implements _Property {
   /// 家賃
   @override
   @JsonKey()
-  final String rent;
+  final int rent;
 
   /// 部屋数
   @override
   @JsonKey()
-  final String roomCount;
+  final int roomCount;
 
   /// DKやLDKなど
   @override
   @JsonKey()
-  final String propetyStoructure;
+  final String floorPlan;
 
   /// 築年数
   @override
   @JsonKey()
-  final String totalGroundStory;
+  final int totalGroundStory;
 
   /// 〇〇畳
   @override
   @JsonKey()
-  final String netYield;
+  final double netYield;
+
+  /// 階数
+  @override
+  @JsonKey()
+  final String florPart;
 
   /// タイプ(マンションなど)
   @override
@@ -355,7 +412,7 @@ class _$_Property implements _Property {
 
   @override
   String toString() {
-    return 'Property(propertyName: $propertyName, prefecture: $prefecture, city: $city, region: $region, address: $address, rent: $rent, roomCount: $roomCount, propetyStoructure: $propetyStoructure, totalGroundStory: $totalGroundStory, netYield: $netYield, propertyType: $propertyType, transportion: $transportion)';
+    return 'Property(id: $id, imageUrl: $imageUrl, name: $name, prefecture: $prefecture, city: $city, region: $region, address: $address, rent: $rent, roomCount: $roomCount, floorPlan: $floorPlan, totalGroundStory: $totalGroundStory, netYield: $netYield, florPart: $florPart, propertyType: $propertyType, transportion: $transportion)';
   }
 
   @override
@@ -363,8 +420,10 @@ class _$_Property implements _Property {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Property &&
-            (identical(other.propertyName, propertyName) ||
-                other.propertyName == propertyName) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.prefecture, prefecture) ||
                 other.prefecture == prefecture) &&
             (identical(other.city, city) || other.city == city) &&
@@ -373,12 +432,14 @@ class _$_Property implements _Property {
             (identical(other.rent, rent) || other.rent == rent) &&
             (identical(other.roomCount, roomCount) ||
                 other.roomCount == roomCount) &&
-            (identical(other.propetyStoructure, propetyStoructure) ||
-                other.propetyStoructure == propetyStoructure) &&
+            (identical(other.floorPlan, floorPlan) ||
+                other.floorPlan == floorPlan) &&
             (identical(other.totalGroundStory, totalGroundStory) ||
                 other.totalGroundStory == totalGroundStory) &&
             (identical(other.netYield, netYield) ||
                 other.netYield == netYield) &&
+            (identical(other.florPart, florPart) ||
+                other.florPart == florPart) &&
             (identical(other.propertyType, propertyType) ||
                 other.propertyType == propertyType) &&
             (identical(other.transportion, transportion) ||
@@ -389,16 +450,19 @@ class _$_Property implements _Property {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      propertyName,
+      id,
+      imageUrl,
+      name,
       prefecture,
       city,
       region,
       address,
       rent,
       roomCount,
-      propetyStoructure,
+      floorPlan,
       totalGroundStory,
       netYield,
+      florPart,
       propertyType,
       transportion);
 
@@ -418,25 +482,32 @@ class _$_Property implements _Property {
 
 abstract class _Property implements Property {
   const factory _Property(
-      {final String propertyName,
+      {final String id,
+      final String imageUrl,
+      final String name,
       final String prefecture,
       final String city,
       final String region,
       final String address,
-      final String rent,
-      final String roomCount,
-      final String propetyStoructure,
-      final String totalGroundStory,
-      final String netYield,
+      final int rent,
+      final int roomCount,
+      final String floorPlan,
+      final int totalGroundStory,
+      final double netYield,
+      final String florPart,
       final String propertyType,
       final Transportion transportion}) = _$_Property;
 
   factory _Property.fromJson(Map<String, dynamic> json) = _$_Property.fromJson;
 
   @override
+  String get id;
+  @override
+  String get imageUrl;
+  @override
 
   /// 家の名前
-  String get propertyName;
+  String get name;
   @override
 
   /// 都道府県
@@ -456,23 +527,27 @@ abstract class _Property implements Property {
   @override
 
   /// 家賃
-  String get rent;
+  int get rent;
   @override
 
   /// 部屋数
-  String get roomCount;
+  int get roomCount;
   @override
 
   /// DKやLDKなど
-  String get propetyStoructure;
+  String get floorPlan;
   @override
 
   /// 築年数
-  String get totalGroundStory;
+  int get totalGroundStory;
   @override
 
   /// 〇〇畳
-  String get netYield;
+  double get netYield;
+  @override
+
+  /// 階数
+  String get florPart;
   @override
 
   /// タイプ(マンションなど)
@@ -493,31 +568,37 @@ PropertyModel _$PropertyModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PropertyModel {
-  String get propertyName => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   String get prefecture => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
   String get region => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
-  String get rent => throw _privateConstructorUsedError;
-  String get roomCount => throw _privateConstructorUsedError;
-  String get propetyStoructure => throw _privateConstructorUsedError;
-  String get totalGroundStory => throw _privateConstructorUsedError;
-  String get netYield => throw _privateConstructorUsedError;
+  int get rent => throw _privateConstructorUsedError;
+  int get roomCount => throw _privateConstructorUsedError;
+  String get floorPlan => throw _privateConstructorUsedError;
+  String get florPart => throw _privateConstructorUsedError;
+  int get totalGroundStory => throw _privateConstructorUsedError;
+  double get netYield => throw _privateConstructorUsedError;
   String get propertyType => throw _privateConstructorUsedError;
   Transportion get transportion => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String propertyName,
+            String id,
+            String imageUrl,
+            String name,
             String prefecture,
             String city,
             String region,
             String address,
-            String rent,
-            String roomCount,
-            String propetyStoructure,
-            String totalGroundStory,
-            String netYield,
+            int rent,
+            int roomCount,
+            String floorPlan,
+            String florPart,
+            int totalGroundStory,
+            double netYield,
             String propertyType,
             Transportion transportion)
         response,
@@ -526,16 +607,19 @@ mixin _$PropertyModel {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            String propertyName,
+            String id,
+            String imageUrl,
+            String name,
             String prefecture,
             String city,
             String region,
             String address,
-            String rent,
-            String roomCount,
-            String propetyStoructure,
-            String totalGroundStory,
-            String netYield,
+            int rent,
+            int roomCount,
+            String floorPlan,
+            String florPart,
+            int totalGroundStory,
+            double netYield,
             String propertyType,
             Transportion transportion)?
         response,
@@ -544,16 +628,19 @@ mixin _$PropertyModel {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            String propertyName,
+            String id,
+            String imageUrl,
+            String name,
             String prefecture,
             String city,
             String region,
             String address,
-            String rent,
-            String roomCount,
-            String propetyStoructure,
-            String totalGroundStory,
-            String netYield,
+            int rent,
+            int roomCount,
+            String floorPlan,
+            String florPart,
+            int totalGroundStory,
+            double netYield,
             String propertyType,
             Transportion transportion)?
         response,
@@ -589,16 +676,19 @@ abstract class $PropertyModelCopyWith<$Res> {
       _$PropertyModelCopyWithImpl<$Res, PropertyModel>;
   @useResult
   $Res call(
-      {String propertyName,
+      {String id,
+      String imageUrl,
+      String name,
       String prefecture,
       String city,
       String region,
       String address,
-      String rent,
-      String roomCount,
-      String propetyStoructure,
-      String totalGroundStory,
-      String netYield,
+      int rent,
+      int roomCount,
+      String floorPlan,
+      String florPart,
+      int totalGroundStory,
+      double netYield,
       String propertyType,
       Transportion transportion});
 
@@ -618,23 +708,34 @@ class _$PropertyModelCopyWithImpl<$Res, $Val extends PropertyModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? propertyName = null,
+    Object? id = null,
+    Object? imageUrl = null,
+    Object? name = null,
     Object? prefecture = null,
     Object? city = null,
     Object? region = null,
     Object? address = null,
     Object? rent = null,
     Object? roomCount = null,
-    Object? propetyStoructure = null,
+    Object? floorPlan = null,
+    Object? florPart = null,
     Object? totalGroundStory = null,
     Object? netYield = null,
     Object? propertyType = null,
     Object? transportion = null,
   }) {
     return _then(_value.copyWith(
-      propertyName: null == propertyName
-          ? _value.propertyName
-          : propertyName // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       prefecture: null == prefecture
           ? _value.prefecture
@@ -655,23 +756,27 @@ class _$PropertyModelCopyWithImpl<$Res, $Val extends PropertyModel>
       rent: null == rent
           ? _value.rent
           : rent // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       roomCount: null == roomCount
           ? _value.roomCount
           : roomCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      floorPlan: null == floorPlan
+          ? _value.floorPlan
+          : floorPlan // ignore: cast_nullable_to_non_nullable
               as String,
-      propetyStoructure: null == propetyStoructure
-          ? _value.propetyStoructure
-          : propetyStoructure // ignore: cast_nullable_to_non_nullable
+      florPart: null == florPart
+          ? _value.florPart
+          : florPart // ignore: cast_nullable_to_non_nullable
               as String,
       totalGroundStory: null == totalGroundStory
           ? _value.totalGroundStory
           : totalGroundStory // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       netYield: null == netYield
           ? _value.netYield
           : netYield // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       propertyType: null == propertyType
           ? _value.propertyType
           : propertyType // ignore: cast_nullable_to_non_nullable
@@ -701,16 +806,19 @@ abstract class _$$PropertyModelResponseCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String propertyName,
+      {String id,
+      String imageUrl,
+      String name,
       String prefecture,
       String city,
       String region,
       String address,
-      String rent,
-      String roomCount,
-      String propetyStoructure,
-      String totalGroundStory,
-      String netYield,
+      int rent,
+      int roomCount,
+      String floorPlan,
+      String florPart,
+      int totalGroundStory,
+      double netYield,
       String propertyType,
       Transportion transportion});
 
@@ -729,23 +837,34 @@ class __$$PropertyModelResponseCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? propertyName = null,
+    Object? id = null,
+    Object? imageUrl = null,
+    Object? name = null,
     Object? prefecture = null,
     Object? city = null,
     Object? region = null,
     Object? address = null,
     Object? rent = null,
     Object? roomCount = null,
-    Object? propetyStoructure = null,
+    Object? floorPlan = null,
+    Object? florPart = null,
     Object? totalGroundStory = null,
     Object? netYield = null,
     Object? propertyType = null,
     Object? transportion = null,
   }) {
     return _then(_$PropertyModelResponse(
-      propertyName: null == propertyName
-          ? _value.propertyName
-          : propertyName // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       prefecture: null == prefecture
           ? _value.prefecture
@@ -766,23 +885,27 @@ class __$$PropertyModelResponseCopyWithImpl<$Res>
       rent: null == rent
           ? _value.rent
           : rent // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       roomCount: null == roomCount
           ? _value.roomCount
           : roomCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      floorPlan: null == floorPlan
+          ? _value.floorPlan
+          : floorPlan // ignore: cast_nullable_to_non_nullable
               as String,
-      propetyStoructure: null == propetyStoructure
-          ? _value.propetyStoructure
-          : propetyStoructure // ignore: cast_nullable_to_non_nullable
+      florPart: null == florPart
+          ? _value.florPart
+          : florPart // ignore: cast_nullable_to_non_nullable
               as String,
       totalGroundStory: null == totalGroundStory
           ? _value.totalGroundStory
           : totalGroundStory // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       netYield: null == netYield
           ? _value.netYield
           : netYield // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       propertyType: null == propertyType
           ? _value.propertyType
           : propertyType // ignore: cast_nullable_to_non_nullable
@@ -799,16 +922,19 @@ class __$$PropertyModelResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PropertyModelResponse extends PropertyModelResponse {
   const _$PropertyModelResponse(
-      {this.propertyName = '',
+      {this.id = '',
+      this.imageUrl = '',
+      this.name = '',
       this.prefecture = '',
       this.city = '',
       this.region = '',
       this.address = '',
-      this.rent = '',
-      this.roomCount = '',
-      this.propetyStoructure = '',
-      this.totalGroundStory = '',
-      this.netYield = '',
+      this.rent = 0,
+      this.roomCount = 0,
+      this.floorPlan = '',
+      this.florPart = '',
+      this.totalGroundStory = 0,
+      this.netYield = 0.0,
       this.propertyType = '',
       this.transportion = const Transportion()})
       : super._();
@@ -818,7 +944,13 @@ class _$PropertyModelResponse extends PropertyModelResponse {
 
   @override
   @JsonKey()
-  final String propertyName;
+  final String id;
+  @override
+  @JsonKey()
+  final String imageUrl;
+  @override
+  @JsonKey()
+  final String name;
   @override
   @JsonKey()
   final String prefecture;
@@ -833,19 +965,22 @@ class _$PropertyModelResponse extends PropertyModelResponse {
   final String address;
   @override
   @JsonKey()
-  final String rent;
+  final int rent;
   @override
   @JsonKey()
-  final String roomCount;
+  final int roomCount;
   @override
   @JsonKey()
-  final String propetyStoructure;
+  final String floorPlan;
   @override
   @JsonKey()
-  final String totalGroundStory;
+  final String florPart;
   @override
   @JsonKey()
-  final String netYield;
+  final int totalGroundStory;
+  @override
+  @JsonKey()
+  final double netYield;
   @override
   @JsonKey()
   final String propertyType;
@@ -855,7 +990,7 @@ class _$PropertyModelResponse extends PropertyModelResponse {
 
   @override
   String toString() {
-    return 'PropertyModel.response(propertyName: $propertyName, prefecture: $prefecture, city: $city, region: $region, address: $address, rent: $rent, roomCount: $roomCount, propetyStoructure: $propetyStoructure, totalGroundStory: $totalGroundStory, netYield: $netYield, propertyType: $propertyType, transportion: $transportion)';
+    return 'PropertyModel.response(id: $id, imageUrl: $imageUrl, name: $name, prefecture: $prefecture, city: $city, region: $region, address: $address, rent: $rent, roomCount: $roomCount, floorPlan: $floorPlan, florPart: $florPart, totalGroundStory: $totalGroundStory, netYield: $netYield, propertyType: $propertyType, transportion: $transportion)';
   }
 
   @override
@@ -863,8 +998,10 @@ class _$PropertyModelResponse extends PropertyModelResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PropertyModelResponse &&
-            (identical(other.propertyName, propertyName) ||
-                other.propertyName == propertyName) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.prefecture, prefecture) ||
                 other.prefecture == prefecture) &&
             (identical(other.city, city) || other.city == city) &&
@@ -873,8 +1010,10 @@ class _$PropertyModelResponse extends PropertyModelResponse {
             (identical(other.rent, rent) || other.rent == rent) &&
             (identical(other.roomCount, roomCount) ||
                 other.roomCount == roomCount) &&
-            (identical(other.propetyStoructure, propetyStoructure) ||
-                other.propetyStoructure == propetyStoructure) &&
+            (identical(other.floorPlan, floorPlan) ||
+                other.floorPlan == floorPlan) &&
+            (identical(other.florPart, florPart) ||
+                other.florPart == florPart) &&
             (identical(other.totalGroundStory, totalGroundStory) ||
                 other.totalGroundStory == totalGroundStory) &&
             (identical(other.netYield, netYield) ||
@@ -889,14 +1028,17 @@ class _$PropertyModelResponse extends PropertyModelResponse {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      propertyName,
+      id,
+      imageUrl,
+      name,
       prefecture,
       city,
       region,
       address,
       rent,
       roomCount,
-      propetyStoructure,
+      floorPlan,
+      florPart,
       totalGroundStory,
       netYield,
       propertyType,
@@ -913,29 +1055,35 @@ class _$PropertyModelResponse extends PropertyModelResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String propertyName,
+            String id,
+            String imageUrl,
+            String name,
             String prefecture,
             String city,
             String region,
             String address,
-            String rent,
-            String roomCount,
-            String propetyStoructure,
-            String totalGroundStory,
-            String netYield,
+            int rent,
+            int roomCount,
+            String floorPlan,
+            String florPart,
+            int totalGroundStory,
+            double netYield,
             String propertyType,
             Transportion transportion)
         response,
   }) {
     return response(
-        propertyName,
+        id,
+        imageUrl,
+        name,
         prefecture,
         city,
         region,
         address,
         rent,
         roomCount,
-        propetyStoructure,
+        floorPlan,
+        florPart,
         totalGroundStory,
         netYield,
         propertyType,
@@ -946,29 +1094,35 @@ class _$PropertyModelResponse extends PropertyModelResponse {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            String propertyName,
+            String id,
+            String imageUrl,
+            String name,
             String prefecture,
             String city,
             String region,
             String address,
-            String rent,
-            String roomCount,
-            String propetyStoructure,
-            String totalGroundStory,
-            String netYield,
+            int rent,
+            int roomCount,
+            String floorPlan,
+            String florPart,
+            int totalGroundStory,
+            double netYield,
             String propertyType,
             Transportion transportion)?
         response,
   }) {
     return response?.call(
-        propertyName,
+        id,
+        imageUrl,
+        name,
         prefecture,
         city,
         region,
         address,
         rent,
         roomCount,
-        propetyStoructure,
+        floorPlan,
+        florPart,
         totalGroundStory,
         netYield,
         propertyType,
@@ -979,16 +1133,19 @@ class _$PropertyModelResponse extends PropertyModelResponse {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            String propertyName,
+            String id,
+            String imageUrl,
+            String name,
             String prefecture,
             String city,
             String region,
             String address,
-            String rent,
-            String roomCount,
-            String propetyStoructure,
-            String totalGroundStory,
-            String netYield,
+            int rent,
+            int roomCount,
+            String floorPlan,
+            String florPart,
+            int totalGroundStory,
+            double netYield,
             String propertyType,
             Transportion transportion)?
         response,
@@ -996,14 +1153,17 @@ class _$PropertyModelResponse extends PropertyModelResponse {
   }) {
     if (response != null) {
       return response(
-          propertyName,
+          id,
+          imageUrl,
+          name,
           prefecture,
           city,
           region,
           address,
           rent,
           roomCount,
-          propetyStoructure,
+          floorPlan,
+          florPart,
           totalGroundStory,
           netYield,
           propertyType,
@@ -1050,16 +1210,19 @@ class _$PropertyModelResponse extends PropertyModelResponse {
 
 abstract class PropertyModelResponse extends PropertyModel {
   const factory PropertyModelResponse(
-      {final String propertyName,
+      {final String id,
+      final String imageUrl,
+      final String name,
       final String prefecture,
       final String city,
       final String region,
       final String address,
-      final String rent,
-      final String roomCount,
-      final String propetyStoructure,
-      final String totalGroundStory,
-      final String netYield,
+      final int rent,
+      final int roomCount,
+      final String floorPlan,
+      final String florPart,
+      final int totalGroundStory,
+      final double netYield,
       final String propertyType,
       final Transportion transportion}) = _$PropertyModelResponse;
   const PropertyModelResponse._() : super._();
@@ -1068,7 +1231,11 @@ abstract class PropertyModelResponse extends PropertyModel {
       _$PropertyModelResponse.fromJson;
 
   @override
-  String get propertyName;
+  String get id;
+  @override
+  String get imageUrl;
+  @override
+  String get name;
   @override
   String get prefecture;
   @override
@@ -1078,15 +1245,17 @@ abstract class PropertyModelResponse extends PropertyModel {
   @override
   String get address;
   @override
-  String get rent;
+  int get rent;
   @override
-  String get roomCount;
+  int get roomCount;
   @override
-  String get propetyStoructure;
+  String get floorPlan;
   @override
-  String get totalGroundStory;
+  String get florPart;
   @override
-  String get netYield;
+  int get totalGroundStory;
+  @override
+  double get netYield;
   @override
   String get propertyType;
   @override

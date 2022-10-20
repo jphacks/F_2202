@@ -13,7 +13,9 @@ mixin GoogleMapPlaceSearchApi {
     final client = Client();
     final request = Uri.parse(url);
 
-    final response = await client.get(request);
+    final response = await client.get(
+      request,
+    );
 
     if (response.statusCode == 200) {
       final decoded = json.decode(response.body);

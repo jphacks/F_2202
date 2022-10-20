@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile/l10n/app_localization.dart';
+import 'package:mobile/model/property/property.dart';
+
+class PropertyListArgument {
+  final List<Property> propertyList;
+  final String place;
+
+  PropertyListArgument({
+    required this.propertyList,
+    required this.place,
+  });
+}
 
 class PropertyListPage extends HookConsumerWidget {
   const PropertyListPage({
     Key? key,
+    required this.argument,
   }) : super(key: key);
+
+  final PropertyListArgument argument;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -14,8 +28,8 @@ class PropertyListPage extends HookConsumerWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Column(
-          children: const [
-            Text(
+          children: [
+            const Text(
               '検索中の地域/範囲',
               style: TextStyle(
                 color: Colors.black,
@@ -23,8 +37,8 @@ class PropertyListPage extends HookConsumerWidget {
               ),
             ),
             Text(
-              '大阪市北区 周辺500m',
-              style: TextStyle(
+              '${argument.place}周辺',
+              style: const TextStyle(
                 color: Colors.black,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -52,9 +66,9 @@ class PropertyListPage extends HookConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              '物件が300件見つかりました',
-              style: TextStyle(
+            Text(
+              '${argument.propertyList.length}件の検索結果',
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),
@@ -64,8 +78,10 @@ class PropertyListPage extends HookConsumerWidget {
             ),
             Expanded(
               child: ListView.separated(
-                itemBuilder: (context, index) => const _PropertyListTile(),
-                itemCount: 5,
+                itemBuilder: (context, index) => _PropertyListTile(
+                  property: argument.propertyList[index],
+                ),
+                itemCount: argument.propertyList.length,
                 separatorBuilder: (BuildContext context, int index) {
                   return const SizedBox(
                     height: 20,
@@ -83,7 +99,10 @@ class PropertyListPage extends HookConsumerWidget {
 class _PropertyListTile extends StatelessWidget {
   const _PropertyListTile({
     Key? key,
+    required this.property,
   }) : super(key: key);
+
+  final Property property;
 
   @override
   Widget build(BuildContext context) {
@@ -117,20 +136,12 @@ class _PropertyListTile extends StatelessWidget {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
+                    children: [
                       Text(
-                        'ダイナシティ梅田',
-                        style: TextStyle(
+                        property.name,
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
-                        ),
-                      ),
-                      Text(
-                        '2.9万',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Colors.red,
                         ),
                       ),
                     ],
@@ -141,8 +152,12 @@ class _PropertyListTile extends StatelessWidget {
                       Image.asset('assets/location.png'),
                       const SizedBox(width: 4),
                       Text(
-                        '大阪市北区鶴野町３−２１',
-                        style: TextStyle(color: Colors.black.withOpacity(0.8)),
+                        property.city + property.region + property.address,
+                        style: TextStyle(
+                          color: Colors.black.withOpacity(0.8),
+                          fontSize: 12,
+                        ),
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),
@@ -153,14 +168,14 @@ class _PropertyListTile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        '管理費5000円',
+                        property.propertyType,
                         style: TextStyle(color: Colors.black.withOpacity(0.9)),
                       ),
                       const SizedBox(
                         width: 10,
                       ),
                       Text(
-                        '1階/2階建 築34年',
+                        '築${property.totalGroundStory}年',
                         style: TextStyle(color: Colors.black.withOpacity(0.9)),
                       ),
                     ],
@@ -175,17 +190,12 @@ class _PropertyListTile extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            '1LDK/17.95m2',
-                            style:
-                                TextStyle(color: Colors.black.withOpacity(0.9)),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            'JR東西線/大阪駅 5分',
-                            style:
-                                TextStyle(color: Colors.black.withOpacity(0.9)),
+                            property.rent != 0 ? '${property.rent}円' : '掲載なし',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.red,
+                            ),
                           ),
                         ],
                       ),
