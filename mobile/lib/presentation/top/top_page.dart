@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mobile/config/app_routing_name.dart';
 import 'package:mobile/l10n/app_localization.dart';
 import 'package:mobile/model/destination/destination.dart';
 import 'package:mobile/presentation/top/search/search_destination_page.dart';
@@ -130,7 +131,11 @@ class TopPageState extends ConsumerState<TopPage> {
         DropShadow(
           child: homeButton(
             icon: Icons.textsms_outlined,
-            onButtonTap: () {},
+            onButtonTap: () {
+              Navigator.of(context).pushNamed(
+                AppRoutingName.pageList,
+              );
+            },
           ),
         ),
         const SizedBox(
