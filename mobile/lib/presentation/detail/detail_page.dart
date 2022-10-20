@@ -18,16 +18,21 @@ class DetailPage extends StatelessWidget {
       body: Container(
         color: Colors.white,
         child: Stack(
-          fit: StackFit.expand,
           children: [
             SingleChildScrollView(
               child: Column(
                 children: [
-                  const MainVisual(
-                    thumbnailUrl:
-                        'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80',
-                    propertyName: 'ダイナシティ梅田',
-                    fullAddress: '大阪府大阪市北区鶴野町３−２１',
+                  Stack(
+                    children: [
+                      const MainVisual(
+                        thumbnailUrl:
+                            'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80',
+                        propertyName: 'ダイナシティ梅田',
+                        fullAddress: '大阪府大阪市北区鶴野町３−２１',
+                      ),
+                      const HeaderBackButton(),
+                      headerActionButtons(context),
+                    ],
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -120,8 +125,6 @@ class DetailPage extends StatelessWidget {
                 ],
               ),
             ),
-            const HeaderBackButton(),
-            headerActionButtons(context),
             const FooterButtons(),
           ],
         ),
