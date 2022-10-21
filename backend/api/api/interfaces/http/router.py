@@ -10,7 +10,6 @@ from api.interfaces.http.dto import GoogleMapNearbySearchResponse, Health
 
 router = APIRouter()
 
-
 model = KeyedVectors.load_word2vec_format("./jawiki.word_vectors.100d.txt")
 
 
@@ -40,15 +39,14 @@ async def fetch_nearby_location_from_keyword(
     )
     place_endpoint = "https://maps.googleapis.com/maps/api/place/details/json"
     api_key = os.getenv("GOOGLE_MAP_API_KEY")
-    keys = keywords.split(",")
-    locations: list[GoogleMapNearbySearchResponse] = []
-    for key in keys:
-        locations += [
-            GoogleMapNearbySearchResponse(**loc)
-            for loc in requests.get(
-                f"{nearby_location_endpoint}?key={api_key}&location={lat}%2C{lon}&radius={radius}&language=ja&keyword={key}"
-            ).json()["results"]
-        ]
+    urls = [
+        f"{nearby_location_endpoint}?key={api_key}&location={lat}%2C{lon}&radius={radius}&language=ja&keyword={key}"
+        for key in keywords.split(",")
+    ]
+    locations: list[GoogleMapNearbySearchResponse] = [
+        GoogleMapNearbySearchResponse(**requests.get(url).json()["results"])
+        for url in urls
+    ]  # 並列化したい
     locations.sort(key=lambda location: location.rating, reverse=True)
     locations = locations if len(locations) < count else locations[:count]
     return [
@@ -56,4 +54,4 @@ async def fetch_nearby_location_from_keyword(
             "result"
         ]
         for loc in locations
-    ]
+    ]  # 並列化したい
