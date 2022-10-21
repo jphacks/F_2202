@@ -59,6 +59,12 @@ class Property with _$Property {
 
     /// propetyStoructure
     @Default('') String propetyStoructure,
+
+    /// 位置
+    @Default(0.0) double lat,
+
+    ///
+    @Default(0.0) double lng,
   }) = _Property;
 
   factory Property.fromJson(Map<String, dynamic> json) =>
@@ -87,6 +93,8 @@ abstract class PropertyModel with _$PropertyModel {
     @Default(0.0) double area,
     @Default('') String propetyStoructure,
     @Default(Transportion()) Transportion transportion,
+    @Default(0.0) double lat,
+    @Default(0.0) double lng,
   }) = PropertyModelResponse;
 
   factory PropertyModel.fromJson(Map<String, dynamic> json) =>
@@ -111,6 +119,8 @@ abstract class PropertyModel with _$PropertyModel {
         fee: fee,
         area: area,
         propetyStoructure: propetyStoructure,
+        lat: lat,
+        lng: lng,
       );
 }
 

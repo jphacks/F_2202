@@ -20,6 +20,7 @@ mixin _$TopState {
   double get currentLongitude => throw _privateConstructorUsedError;
   String get nextToken => throw _privateConstructorUsedError;
   List<Property> get propertyList => throw _privateConstructorUsedError;
+  String get place => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TopStateCopyWith<TopState> get copyWith =>
@@ -35,7 +36,8 @@ abstract class $TopStateCopyWith<$Res> {
       {double currentLatitude,
       double currentLongitude,
       String nextToken,
-      List<Property> propertyList});
+      List<Property> propertyList,
+      String place});
 }
 
 /// @nodoc
@@ -55,6 +57,7 @@ class _$TopStateCopyWithImpl<$Res, $Val extends TopState>
     Object? currentLongitude = null,
     Object? nextToken = null,
     Object? propertyList = null,
+    Object? place = null,
   }) {
     return _then(_value.copyWith(
       currentLatitude: null == currentLatitude
@@ -73,6 +76,10 @@ class _$TopStateCopyWithImpl<$Res, $Val extends TopState>
           ? _value.propertyList
           : propertyList // ignore: cast_nullable_to_non_nullable
               as List<Property>,
+      place: null == place
+          ? _value.place
+          : place // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -88,7 +95,8 @@ abstract class _$$_TopStateCopyWith<$Res> implements $TopStateCopyWith<$Res> {
       {double currentLatitude,
       double currentLongitude,
       String nextToken,
-      List<Property> propertyList});
+      List<Property> propertyList,
+      String place});
 }
 
 /// @nodoc
@@ -106,6 +114,7 @@ class __$$_TopStateCopyWithImpl<$Res>
     Object? currentLongitude = null,
     Object? nextToken = null,
     Object? propertyList = null,
+    Object? place = null,
   }) {
     return _then(_$_TopState(
       currentLatitude: null == currentLatitude
@@ -124,6 +133,10 @@ class __$$_TopStateCopyWithImpl<$Res>
           ? _value._propertyList
           : propertyList // ignore: cast_nullable_to_non_nullable
               as List<Property>,
+      place: null == place
+          ? _value.place
+          : place // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -135,7 +148,8 @@ class _$_TopState implements _TopState {
       {this.currentLatitude = 0.0,
       this.currentLongitude = 0.0,
       this.nextToken = '',
-      final List<Property> propertyList = const <Property>[]})
+      final List<Property> propertyList = const <Property>[],
+      this.place = ''})
       : _propertyList = propertyList;
 
   @override
@@ -156,8 +170,12 @@ class _$_TopState implements _TopState {
   }
 
   @override
+  @JsonKey()
+  final String place;
+
+  @override
   String toString() {
-    return 'TopState(currentLatitude: $currentLatitude, currentLongitude: $currentLongitude, nextToken: $nextToken, propertyList: $propertyList)';
+    return 'TopState(currentLatitude: $currentLatitude, currentLongitude: $currentLongitude, nextToken: $nextToken, propertyList: $propertyList, place: $place)';
   }
 
   @override
@@ -172,7 +190,8 @@ class _$_TopState implements _TopState {
             (identical(other.nextToken, nextToken) ||
                 other.nextToken == nextToken) &&
             const DeepCollectionEquality()
-                .equals(other._propertyList, _propertyList));
+                .equals(other._propertyList, _propertyList) &&
+            (identical(other.place, place) || other.place == place));
   }
 
   @override
@@ -181,7 +200,8 @@ class _$_TopState implements _TopState {
       currentLatitude,
       currentLongitude,
       nextToken,
-      const DeepCollectionEquality().hash(_propertyList));
+      const DeepCollectionEquality().hash(_propertyList),
+      place);
 
   @JsonKey(ignore: true)
   @override
@@ -195,7 +215,8 @@ abstract class _TopState implements TopState {
       {final double currentLatitude,
       final double currentLongitude,
       final String nextToken,
-      final List<Property> propertyList}) = _$_TopState;
+      final List<Property> propertyList,
+      final String place}) = _$_TopState;
 
   @override
   double get currentLatitude;
@@ -205,6 +226,8 @@ abstract class _TopState implements TopState {
   String get nextToken;
   @override
   List<Property> get propertyList;
+  @override
+  String get place;
   @override
   @JsonKey(ignore: true)
   _$$_TopStateCopyWith<_$_TopState> get copyWith =>

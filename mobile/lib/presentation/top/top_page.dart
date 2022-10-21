@@ -130,8 +130,8 @@ class TopPageState extends ConsumerState<TopPage> {
               CameraUpdate.newCameraPosition(
                 CameraPosition(
                   target: LatLng(
-                    selectedMuseum.latitude,
-                    selectedMuseum.longitude,
+                    selectedLocation.lat,
+                    selectedLocation.lng,
                   ),
                   zoom: zoomLevel,
                 ),
@@ -140,9 +140,6 @@ class TopPageState extends ConsumerState<TopPage> {
           }
         },
         controller: pageController,
-        children: _museumTiles(
-          museumMapState: museumMapState,
-        ),
       ),
     );
   }
@@ -165,20 +162,22 @@ class TopPageState extends ConsumerState<TopPage> {
         .toSet();
   }
 
-  Widget homeButtomList(TopController topController) {
+  Widget homeButtomList(
+    TopController topController,
+  ) {
+    final state = ref.watch(topControllerProvider);
     return Row(
       children: [
         DropShadow(
           child: homeButton(
             icon: Icons.textsms_outlined,
             onButtonTap: () async {
-              final result = await PropertyApi.fetchProperty(keyword: '渋谷');
-              topController.fetchProperty(result.asValue!.value);
+              await topController.fetchProperty(centerDestination);
               Navigator.of(context).pushNamed(
                 AppRoutingName.pageList,
                 arguments: PropertyListArgument(
-                  propertyList: result.asValue!.value,
-                  place: '渋谷',
+                  propertyList: state.asData!.value.propertyList,
+                  place: state.asData!.value.place,
                 ),
               );
             },
@@ -260,6 +259,7 @@ class TopPageState extends ConsumerState<TopPage> {
               latitude / count,
               longtitude / count,
             );
+
             _animatedSelectedLocation(location: latlng);
             setState(() {
               centerDestination = latlng;

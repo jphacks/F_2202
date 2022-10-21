@@ -35,7 +35,7 @@ class GeolocatorApi {
     );
   }
 
-  static Future<Address> getSelectedLocation({
+  static Future<String> getSelectedLocation({
     required LatLng latlng,
   }) async {
     final address = await Geocoder.local.findAddressesFromCoordinates(
@@ -45,6 +45,6 @@ class GeolocatorApi {
       ),
     );
 
-    return address.first;
+    return address.first.countryName;
   }
 }

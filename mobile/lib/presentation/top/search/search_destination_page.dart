@@ -71,8 +71,8 @@ class SearchDestinationPage extends HookConsumerWidget {
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.blue,
+                      // foregroundColor: Colors.white,
+                      // backgroundColor: Colors.blue,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
