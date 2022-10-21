@@ -4,6 +4,7 @@ import 'package:mobile/config/app_routing_name.dart';
 import 'package:mobile/constant/color_hex.dart';
 import 'package:mobile/l10n/app_localization.dart';
 import 'package:mobile/model/destination/destination.dart';
+import 'package:mobile/model/property/property.dart';
 import 'package:mobile/presentation/top/search/search_destination_controller_provider.dart';
 import 'package:mobile/presentation/top/search/search_page.dart';
 
@@ -71,8 +72,6 @@ class SearchDestinationPage extends HookConsumerWidget {
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     style: ElevatedButton.styleFrom(
-                      // foregroundColor: Colors.white,
-                      // backgroundColor: Colors.blue,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -83,6 +82,9 @@ class SearchDestinationPage extends HookConsumerWidget {
                         state.destination2,
                         state.destination3,
                       ]);
+
+   
+
                       Navigator.pop(context);
                     },
                   ),

@@ -34,16 +34,6 @@ class TopController extends StateNotifier<AsyncValue<TopState>> {
     );
   }
 
-  Future<void> fetchProperty(LatLng latLng) async {
-    final address = await GeolocatorApi.getSelectedLocation(latlng: latLng);
-    final result = await PropertyApi.fetchProperty(keyword: address);
-    state = AsyncData(
-      state.asData!.value.copyWith(
-        propertyList: result.asValue!.value,
-      ),
-    );
-  }
-
   Future<void> getSelectedLocationToAddress(List<Property> list) async {
     state = AsyncData(
       state.asData!.value.copyWith(

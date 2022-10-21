@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile/config/app_routing_name.dart';
-import 'package:mobile/infra/property.dart';
 import 'package:mobile/model/destination/destination.dart';
+import 'package:mobile/model/property/property.dart';
 import 'package:mobile/presentation/property_list/property_list_page.dart';
 import 'package:mobile/presentation/top/search/search_destination_page.dart';
 import 'package:mobile/presentation/top/top_controller.dart';
@@ -25,6 +25,9 @@ class TopPage extends StatefulHookConsumerWidget {
 class TopPageState extends ConsumerState<TopPage> {
   final Completer<GoogleMapController> _mapController = Completer();
   LatLng centerDestination = const LatLng(0, 0);
+  // ここにMock追加
+  List<Property> mockList = [Property(lat: 0, lng: 0),];
+  bool isBuild = false;
 
   @override
   void initState() {
@@ -74,14 +77,6 @@ class TopPageState extends ConsumerState<TopPage> {
                     ),
                   ),
                   Positioned(
-                    bottom: 120,
-                    right: 30,
-                    child: _cardSection(
-                      pageController: _pageController,
-                      topState: asyncValue.asData!.value,
-                    ),
-                  ),
-                  Positioned(
                     bottom: 80,
                     child: homeButtomList(controller),
                   ),
@@ -121,70 +116,76 @@ class TopPageState extends ConsumerState<TopPage> {
     );
   }
 
-  Widget _cardSection({
-    required TopState topState,
-    required PageController pageController,
-  }) {
-    return Container(
-      height: 150,
-      padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
-      child: PageView(
-        onPageChanged: (int index) async {
-          if (_mapController.isCompleted) {
-            final GoogleMapController mapController =
-                await _mapController.future;
-            //スワイプ後のページのお店を取得
-            final selectedLocation = topState.propertyList.elementAt(index);
+  // Widget _cardSection({
+  //   required PageController pageController,
+  // }) {
+  //   return Container(
+  //     height: 150,
+  //     padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
+  //     child: PageView(
+  //       onPageChanged: (int index) async {
+  //         if (_mapController.isCompleted) {
+  //           final GoogleMapController mapController =
+  //               await _mapController.future;
+  //           //スワイプ後のページのお店を取得
+  //           final selectedLocation = mockList.elementAt(index);
 
-            final zoomLevel = await mapController.getZoomLevel();
-            mapController.animateCamera(
-              CameraUpdate.newCameraPosition(
-                CameraPosition(
-                  target: LatLng(
-                    selectedLocation.lat,
-                    selectedLocation.lng,
-                  ),
-                  zoom: zoomLevel,
-                ),
-              ),
-            );
-          }
-        },
-        controller: pageController,
-      ),
-    );
-  }
+  //           final zoomLevel = await mapController.getZoomLevel();
+  //           mapController.animateCamera(
+  //             CameraUpdate.newCameraPosition(
+  //               CameraPosition(
+  //                 target: LatLng(
+  //                   selectedLocation.lat,
+  //                   selectedLocation.lng,
+  //                 ),
+  //                 zoom: zoomLevel,
+  //               ),
+  //             ),
+  //           );
+  //         }
+  //       },
+  //       controller: pageController,
+  //     ),
+  //   );
+  // }
 
   Set<Marker> _createMarker({
     required PageController pageController,
     required TopState state,
   }) {
-    return state.propertyList
-        .map(
-          (p) => Marker(
-            markerId: MarkerId(p.id),
-            position: LatLng(p.lat, p.lng),
-          ),
-        )
-        .toSet();
+    return isBuild
+        ? mockList
+            .map(
+              (p) => Marker(
+                markerId: MarkerId(p.id),
+                position: LatLng(p.lat, p.lng),
+              ),
+            )
+            .toSet()
+        : []
+            .map(
+              (p) => const Marker(
+                markerId: MarkerId(''),
+                position: LatLng(0, 0),
+              ),
+            )
+            .toSet();
   }
 
   Widget homeButtomList(
     TopController topController,
   ) {
-    final state = ref.watch(topControllerProvider);
     return Row(
       children: [
         DropShadow(
           child: homeButton(
             icon: Icons.textsms_outlined,
             onButtonTap: () async {
-              await topController.fetchProperty(centerDestination);
               Navigator.of(context).pushNamed(
                 AppRoutingName.pageList,
                 arguments: PropertyListArgument(
-                  propertyList: state.asData!.value.propertyList,
-                  place: state.asData!.value.place,
+                  propertyList: mockList,
+                  place: '渋谷',
                 ),
               );
             },
@@ -242,8 +243,6 @@ class TopPageState extends ConsumerState<TopPage> {
   }
 
   void _buildButtomSheet() {
-    final state = ref.read(topControllerProvider);
-    final controller = ref.read(topControllerProvider.notifier);
     final size = MediaQuery.of(context).size;
     showCupertinoModalBottomSheet(
       topRadius: const Radius.circular(20),
@@ -270,10 +269,8 @@ class TopPageState extends ConsumerState<TopPage> {
             );
 
             _animatedSelectedLocation(location: latlng);
-            await controller.fetchProperty(latlng);
-            await controller
-                .getSelectedLocationToAddress(state.asData!.value.propertyList);
             setState(() {
+              isBuild = true;
               centerDestination = latlng;
             });
           },

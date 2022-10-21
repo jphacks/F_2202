@@ -1,7 +1,6 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:async/async.dart';
 import 'package:geocoding/geocoding.dart';
-import 'package:geocoder/geocoder.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GeolocatorApi {
@@ -33,18 +32,5 @@ class GeolocatorApi {
       locations.first.latitude,
       locations.first.longitude,
     );
-  }
-
-  static Future<String> getSelectedLocation({
-    required LatLng latlng,
-  }) async {
-    final address = await Geocoder.local.findAddressesFromCoordinates(
-      Coordinates(
-        latlng.latitude,
-        latlng.longitude,
-      ),
-    );
-
-    return address.first.countryName;
   }
 }
