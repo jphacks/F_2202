@@ -50,11 +50,14 @@ class TopController extends StateNotifier<AsyncValue<TopState>> {
         propertyList: list,
       ),
     );
-    final propertyList = [];
+
     for (var i = 0; i < list.length; i++) {
       final result =
           await GeolocatorApi.getSelectedAddress(address: list[i].address);
-      
+      list[i].copyWith(
+        lat: result.latitude,
+        lng: result.longitude,
+      );
     }
   }
 }

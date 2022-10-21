@@ -74,6 +74,14 @@ class TopPageState extends ConsumerState<TopPage> {
                     ),
                   ),
                   Positioned(
+                    bottom: 120,
+                    right: 30,
+                    child: _cardSection(
+                      pageController: _pageController,
+                      topState: asyncValue.asData!.value,
+                    ),
+                  ),
+                  Positioned(
                     bottom: 80,
                     child: homeButtomList(controller),
                   ),
@@ -103,7 +111,10 @@ class TopPageState extends ConsumerState<TopPage> {
         ),
         zoom: 13.0,
       ),
-      markers: _createMarker(pageController: pageController),
+      markers: _createMarker(
+        pageController: pageController,
+        state: topState,
+      ),
       onMapCreated: (GoogleMapController mapController) {
         _mapController.complete(mapController);
       },
@@ -146,17 +157,13 @@ class TopPageState extends ConsumerState<TopPage> {
 
   Set<Marker> _createMarker({
     required PageController pageController,
+    required TopState state,
   }) {
-    return [centerDestination]
+    return state.propertyList
         .map(
-          (centerDestination) => Marker(
-            markerId: MarkerId(centerDestination.toString()),
-            position: centerDestination,
-            onTap: () {
-              final index = [centerDestination].indexWhere(
-                (destination) => destination == centerDestination,
-              );
-            },
+          (p) => Marker(
+            markerId: MarkerId(p.id),
+            position: LatLng(p.lat, p.lng),
           ),
         )
         .toSet();
@@ -235,6 +242,8 @@ class TopPageState extends ConsumerState<TopPage> {
   }
 
   void _buildButtomSheet() {
+    final state = ref.read(topControllerProvider);
+    final controller = ref.read(topControllerProvider.notifier);
     final size = MediaQuery.of(context).size;
     showCupertinoModalBottomSheet(
       topRadius: const Radius.circular(20),
@@ -242,7 +251,7 @@ class TopPageState extends ConsumerState<TopPage> {
       builder: (_) => SizedBox(
         height: size.height * 0.9,
         child: SearchDestinationPage(
-          onAnimatedTap: (destination) {
+          onAnimatedTap: (destination) async {
             double latitude = 0;
             double longtitude = 0;
             int count = 0;
@@ -261,6 +270,9 @@ class TopPageState extends ConsumerState<TopPage> {
             );
 
             _animatedSelectedLocation(location: latlng);
+            await controller.fetchProperty(latlng);
+            await controller
+                .getSelectedLocationToAddress(state.asData!.value.propertyList);
             setState(() {
               centerDestination = latlng;
             });
