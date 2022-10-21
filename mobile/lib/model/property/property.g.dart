@@ -27,6 +27,8 @@ _$_Property _$$_PropertyFromJson(Map<String, dynamic> json) => _$_Property(
       fee: json['fee'] as int? ?? 0,
       area: (json['area'] as num?)?.toDouble() ?? 0.0,
       propetyStoructure: json['propety_storucture'] as String? ?? '',
+      lat: (json['lat'] as num?)?.toDouble() ?? 0.0,
+      lng: (json['lng'] as num?)?.toDouble() ?? 0.0,
     );
 
 Map<String, dynamic> _$$_PropertyToJson(_$_Property instance) =>
@@ -49,6 +51,8 @@ Map<String, dynamic> _$$_PropertyToJson(_$_Property instance) =>
       'fee': instance.fee,
       'area': instance.area,
       'propety_storucture': instance.propetyStoructure,
+      'lat': instance.lat,
+      'lng': instance.lng,
     };
 
 _$PropertyModelResponse _$$PropertyModelResponseFromJson(
@@ -74,6 +78,8 @@ _$PropertyModelResponse _$$PropertyModelResponseFromJson(
       transportion: json['transportion'] == null
           ? const Transportion()
           : Transportion.fromJson(json['transportion'] as Map<String, dynamic>),
+      lat: (json['lat'] as num?)?.toDouble() ?? 0.0,
+      lng: (json['lng'] as num?)?.toDouble() ?? 0.0,
     );
 
 Map<String, dynamic> _$$PropertyModelResponseToJson(
@@ -97,6 +103,8 @@ Map<String, dynamic> _$$PropertyModelResponseToJson(
       'area': instance.area,
       'propety_storucture': instance.propetyStoructure,
       'transportion': instance.transportion.toJson(),
+      'lat': instance.lat,
+      'lng': instance.lng,
     };
 
 _$_Transportion _$$_TransportionFromJson(Map<String, dynamic> json) =>

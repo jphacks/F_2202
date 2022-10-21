@@ -74,6 +74,14 @@ class TopPageState extends ConsumerState<TopPage> {
                     ),
                   ),
                   Positioned(
+                    bottom: 120,
+                    right: 30,
+                    child: _cardSection(
+                      pageController: _pageController,
+                      topState: asyncValue.asData!.value,
+                    ),
+                  ),
+                  Positioned(
                     bottom: 80,
                     child: homeButtomList(controller),
                   ),
@@ -103,7 +111,10 @@ class TopPageState extends ConsumerState<TopPage> {
         ),
         zoom: 13.0,
       ),
-      markers: _createMarker(pageController: pageController),
+      markers: _createMarker(
+        pageController: pageController,
+        state: topState,
+      ),
       onMapCreated: (GoogleMapController mapController) {
         _mapController.complete(mapController);
       },
@@ -130,8 +141,8 @@ class TopPageState extends ConsumerState<TopPage> {
               CameraUpdate.newCameraPosition(
                 CameraPosition(
                   target: LatLng(
-                    selectedMuseum.latitude,
-                    selectedMuseum.longitude,
+                    selectedLocation.lat,
+                    selectedLocation.lng,
                   ),
                   zoom: zoomLevel,
                 ),
@@ -140,45 +151,40 @@ class TopPageState extends ConsumerState<TopPage> {
           }
         },
         controller: pageController,
-        children: _museumTiles(
-          museumMapState: museumMapState,
-        ),
       ),
     );
   }
 
   Set<Marker> _createMarker({
     required PageController pageController,
+    required TopState state,
   }) {
-    return [centerDestination]
+    return state.propertyList
         .map(
-          (centerDestination) => Marker(
-            markerId: MarkerId(centerDestination.toString()),
-            position: centerDestination,
-            onTap: () {
-              final index = [centerDestination].indexWhere(
-                (destination) => destination == centerDestination,
-              );
-            },
+          (p) => Marker(
+            markerId: MarkerId(p.id),
+            position: LatLng(p.lat, p.lng),
           ),
         )
         .toSet();
   }
 
-  Widget homeButtomList(TopController topController) {
+  Widget homeButtomList(
+    TopController topController,
+  ) {
+    final state = ref.watch(topControllerProvider);
     return Row(
       children: [
         DropShadow(
           child: homeButton(
             icon: Icons.textsms_outlined,
             onButtonTap: () async {
-              final result = await PropertyApi.fetchProperty(keyword: '渋谷');
-              topController.fetchProperty(result.asValue!.value);
+              await topController.fetchProperty(centerDestination);
               Navigator.of(context).pushNamed(
                 AppRoutingName.pageList,
                 arguments: PropertyListArgument(
-                  propertyList: result.asValue!.value,
-                  place: '渋谷',
+                  propertyList: state.asData!.value.propertyList,
+                  place: state.asData!.value.place,
                 ),
               );
             },
@@ -236,6 +242,8 @@ class TopPageState extends ConsumerState<TopPage> {
   }
 
   void _buildButtomSheet() {
+    final state = ref.read(topControllerProvider);
+    final controller = ref.read(topControllerProvider.notifier);
     final size = MediaQuery.of(context).size;
     showCupertinoModalBottomSheet(
       topRadius: const Radius.circular(20),
@@ -243,7 +251,7 @@ class TopPageState extends ConsumerState<TopPage> {
       builder: (_) => SizedBox(
         height: size.height * 0.9,
         child: SearchDestinationPage(
-          onAnimatedTap: (destination) {
+          onAnimatedTap: (destination) async {
             double latitude = 0;
             double longtitude = 0;
             int count = 0;
@@ -260,7 +268,11 @@ class TopPageState extends ConsumerState<TopPage> {
               latitude / count,
               longtitude / count,
             );
+
             _animatedSelectedLocation(location: latlng);
+            await controller.fetchProperty(latlng);
+            await controller
+                .getSelectedLocationToAddress(state.asData!.value.propertyList);
             setState(() {
               centerDestination = latlng;
             });

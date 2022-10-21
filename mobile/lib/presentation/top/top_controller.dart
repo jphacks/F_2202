@@ -1,5 +1,7 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile/infra/geolocator_api.dart';
+import 'package:mobile/infra/property.dart';
 import 'package:mobile/model/property/property.dart';
 import 'package:mobile/presentation/top/top_state.dart';
 
@@ -32,11 +34,30 @@ class TopController extends StateNotifier<AsyncValue<TopState>> {
     );
   }
 
-  Future<void> fetchProperty(List<Property> list) async {
+  Future<void> fetchProperty(LatLng latLng) async {
+    final address = await GeolocatorApi.getSelectedLocation(latlng: latLng);
+    final result = await PropertyApi.fetchProperty(keyword: address);
+    state = AsyncData(
+      state.asData!.value.copyWith(
+        propertyList: result.asValue!.value,
+      ),
+    );
+  }
+
+  Future<void> getSelectedLocationToAddress(List<Property> list) async {
     state = AsyncData(
       state.asData!.value.copyWith(
         propertyList: list,
       ),
     );
+
+    for (var i = 0; i < list.length; i++) {
+      final result =
+          await GeolocatorApi.getSelectedAddress(address: list[i].address);
+      list[i].copyWith(
+        lat: result.latitude,
+        lng: result.longitude,
+      );
+    }
   }
 }

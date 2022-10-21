@@ -10,5 +10,6 @@ class TopState with _$TopState {
     @Default(0.0) double currentLongitude,
     @Default('') String nextToken,
     @Default(<Property>[]) List<Property> propertyList,
+    @Default('') String place,
   }) = _TopState;
 }
