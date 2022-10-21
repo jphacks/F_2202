@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/model/property/property.dart';
 import 'package:mobile/presentation/detail/widgets/access_map.dart';
 import 'package:mobile/presentation/detail/widgets/building_images.dart';
 import 'package:mobile/presentation/detail/widgets/footer_buttons.dart';
@@ -9,8 +10,23 @@ import 'package:mobile/presentation/detail/widgets/property_details.dart';
 import 'package:mobile/presentation/detail/widgets/recomend_property.dart';
 import 'package:mobile/presentation/widgets/header_back_button.dart';
 
+class DetailPageArgument {
+  final Property property;
+  final String place;
+
+  DetailPageArgument({
+    required this.property,
+    required this.place,
+  });
+}
+
 class DetailPage extends StatelessWidget {
-  const DetailPage({super.key});
+  const DetailPage({
+    super.key,
+    required this.argument,
+  });
+
+  final DetailPageArgument argument;
 
   @override
   Widget build(BuildContext context) {
