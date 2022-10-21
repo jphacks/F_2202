@@ -8,7 +8,7 @@ class Property with _$Property {
   const factory Property({
     /// id
     @Default('') String id,
-    
+
     /// 画像
     @Default('') String imageUrl,
 
@@ -50,6 +50,15 @@ class Property with _$Property {
 
     /// 駅の情報
     @Default(Transportion()) Transportion transportion,
+
+    /// fee
+    @Default(0) int fee,
+
+    /// fee
+    @Default(0.0) double area,
+
+    /// propetyStoructure
+    @Default('') String propetyStoructure,
   }) = _Property;
 
   factory Property.fromJson(Map<String, dynamic> json) =>
@@ -74,6 +83,9 @@ abstract class PropertyModel with _$PropertyModel {
     @Default(0) int totalGroundStory,
     @Default(0.0) double netYield,
     @Default('') String propertyType,
+    @Default(0) int fee,
+    @Default(0.0) double area,
+    @Default('') String propetyStoructure,
     @Default(Transportion()) Transportion transportion,
   }) = PropertyModelResponse;
 
@@ -96,6 +108,9 @@ abstract class PropertyModel with _$PropertyModel {
         netYield: netYield,
         propertyType: propertyType,
         transportion: transportion,
+        fee: fee,
+        area: area,
+        propetyStoructure: propetyStoructure,
       );
 }
 
