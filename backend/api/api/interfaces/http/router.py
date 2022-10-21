@@ -1,14 +1,12 @@
 import os
+from http import HTTPStatus
 
 import requests
 from fastapi import APIRouter
-
-from api.interfaces.http.dto import GoogleMapNearbySearchResponse, Health
-
-from http import HTTPStatus
-
 from fastapi.responses import JSONResponse
 from gensim.models import KeyedVectors
+
+from api.interfaces.http.dto import GoogleMapNearbySearchResponse, Health
 
 router = APIRouter()
 
@@ -34,27 +32,37 @@ async def recommend_keywords(search_word: str):
 
 @router.get("/location/nearby")
 async def fetch_nearby_location_from_keyword(
-        lat: float, lon: float, keywords: str, radius: int = 500, count: int = 10
+    lat: float, lon: float, keywords: str, radius: int = 500, count: int = 10
 ):
     nearby_location_endpoint = (
         "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
     )
     place_endpoint = "https://maps.googleapis.com/maps/api/place/details/json"
     api_key = os.getenv("GOOGLE_MAP_API_KEY")
+    if not api_key:
+        return JSONResponse(
+            status_code=HTTPStatus.INTERNAL_SERVER_ERROR,
+            content={"error": "GOOGLE_MAP_API_KEY must be set"},
+        )
     keys = keywords.split(",")
     locations: list[GoogleMapNearbySearchResponse] = []
-    for key in keys:
-        locations += [
-            GoogleMapNearbySearchResponse(**loc)
-            for loc in requests.get(
-                f"{nearby_location_endpoint}?key={api_key}&location={lat}%2C{lon}&radius={radius}&language=ja&keyword={key}"
-            ).json()["results"]
+    try:
+        for key in keys:
+            locations += [
+                GoogleMapNearbySearchResponse(**loc)
+                for loc in requests.get(
+                    f"{nearby_location_endpoint}?key={api_key}&location={lat}%2C{lon}&radius={radius}&language=ja&keyword={key}"
+                ).json()["results"]
+            ]  # 並列化したい
+        locations.sort(key=lambda location: location.rating, reverse=True)
+        locations = locations if len(locations) < count else locations[:count]
+        return [
+            requests.get(
+                f"{place_endpoint}?key={api_key}&place_id={loc.place_id}"
+            ).json()["result"]
+            for loc in locations
         ]  # 並列化したい
-    locations.sort(key=lambda location: location.rating, reverse=True)
-    locations = locations if len(locations) < count else locations[:count]
-    return [
-        requests.get(f"{place_endpoint}?key={api_key}&place_id={loc.place_id}").json()[
-            "result"
-        ]
-        for loc in locations
-    ]  # 並列化したい
+    except Exception as e:
+        return JSONResponse(
+            status_code=HTTPStatus.INTERNAL_SERVER_ERROR, content={"error": e}
+        )
