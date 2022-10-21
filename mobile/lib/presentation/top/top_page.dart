@@ -63,14 +63,15 @@ class TopPageState extends ConsumerState<TopPage> {
                     top: 80,
                     right: 30,
                     child: DropShadow(
-                        child: homeButton(
-                      icon: Icons.near_me_outlined,
-                      onButtonTap: () {},
-                      iconSize: 30,
-                      buttonSize: 55,
-                      buttonColor: Colors.white,
-                      buttonIconColor: const Color(0xff333333),
-                    )),
+                      child: homeButton(
+                        icon: Icons.near_me_outlined,
+                        onButtonTap: () {},
+                        iconSize: 30,
+                        buttonSize: 55,
+                        buttonColor: Colors.white,
+                        buttonIconColor: const Color(0xff333333),
+                      ),
+                    ),
                   ),
                   Positioned(
                     bottom: 80,
@@ -109,6 +110,43 @@ class TopPageState extends ConsumerState<TopPage> {
     );
   }
 
+  Widget _cardSection({
+    required TopState topState,
+    required PageController pageController,
+  }) {
+    return Container(
+      height: 150,
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
+      child: PageView(
+        onPageChanged: (int index) async {
+          if (_mapController.isCompleted) {
+            final GoogleMapController mapController =
+                await _mapController.future;
+            //スワイプ後のページのお店を取得
+            final selectedLocation = topState.propertyList.elementAt(index);
+
+            final zoomLevel = await mapController.getZoomLevel();
+            mapController.animateCamera(
+              CameraUpdate.newCameraPosition(
+                CameraPosition(
+                  target: LatLng(
+                    selectedMuseum.latitude,
+                    selectedMuseum.longitude,
+                  ),
+                  zoom: zoomLevel,
+                ),
+              ),
+            );
+          }
+        },
+        controller: pageController,
+        children: _museumTiles(
+          museumMapState: museumMapState,
+        ),
+      ),
+    );
+  }
+
   Set<Marker> _createMarker({
     required PageController pageController,
   }) {
@@ -117,11 +155,11 @@ class TopPageState extends ConsumerState<TopPage> {
           (centerDestination) => Marker(
             markerId: MarkerId(centerDestination.toString()),
             position: centerDestination,
-            // onTap: () {
-            //   final index = [centerDestination].indexWhere(
-            //     (destination) => destination == centerDestination,
-            //   );
-            // },
+            onTap: () {
+              final index = [centerDestination].indexWhere(
+                (destination) => destination == centerDestination,
+              );
+            },
           ),
         )
         .toSet();

@@ -40,12 +40,9 @@ class DetailPage extends StatelessWidget {
                   Stack(
                     children: [
                       MainVisual(
-                        thumbnailUrl: property.imageUrl,
+                        thumbnailUrl: 'assets/sample.jpg',
                         propertyName: property.name,
-                        fullAddress: property.prefecture +
-                            property.city +
-                            property.region +
-                            property.address,
+                        fullAddress: property.address,
                       ),
                       const HeaderBackButton(),
                       headerActionButtons(context),
@@ -63,7 +60,7 @@ class DetailPage extends StatelessWidget {
                           floorPlan: property.roomCount.toString() +
                               property.floorPlan,
                           propertyType: property.propertyType,
-                          area: '${property.area}m²',
+                          area: '${property.area.toStringAsFixed(1)}m²',
                           propetyStoructure: property.propetyStoructure,
                           stationWalkTime:
                               property.transportion.stationWalkTime ?? '',
@@ -79,10 +76,7 @@ class DetailPage extends StatelessWidget {
                         ),
                         const HorizontalRule(),
                         AccessMap(
-                          fullAddress: property.prefecture +
-                              property.city +
-                              property.region +
-                              property.address,
+                          fullAddress: property.address,
                           latitude: 34.6956849,
                           longitude: 135.1907121,
                           propertyName: property.name,

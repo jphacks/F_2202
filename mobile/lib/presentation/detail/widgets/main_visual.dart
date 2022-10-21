@@ -16,15 +16,15 @@ class MainVisual extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image(
-          image: NetworkImage(thumbnailUrl),
+        Image.asset(
+          thumbnailUrl,
           fit: BoxFit.cover,
           width: MediaQuery.of(context).size.width,
-          height: 270,
+          height: 250,
         ),
         imageGradationOverlay(context),
         Positioned(
-          top: MediaQuery.of(context).padding.top + 88,
+          top: MediaQuery.of(context).padding.top + 110,
           left: 16,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,16 +33,17 @@ class MainVisual extends StatelessWidget {
                 propertyName,
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 36,
+                  fontSize: 20,
                   // fontWeight: FontWeight.w800,
                   fontWeight: FontWeight.bold, // TODO なぜかboldにならない
                 ),
+                overflow: TextOverflow.ellipsis,
               ),
               Text(
                 fullAddress,
                 style: const TextStyle(
                   color: Color(0xfffe6663),
-                  fontSize: 20,
+                  fontSize: 17,
                   fontWeight: FontWeight.w800, // TODO なぜかboldにならない
                 ),
               ),

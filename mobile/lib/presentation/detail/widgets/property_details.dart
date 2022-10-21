@@ -164,26 +164,16 @@ class PropertyDetails extends StatelessWidget {
     required String fee,
   }) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Text(
-          rent,
+          '$rent円',
           style: const TextStyle(
             color: Color(0xfffe6663),
             fontSize: 24,
             fontWeight: FontWeight.w700,
           ),
         ),
-        const SizedBox(width: 2),
-        const Text(
-          "万円",
-          style: TextStyle(
-            color: Color(0xfffe6663),
-            fontSize: 20,
-          ),
-        ),
-        const SizedBox(width: 16),
         Text(
           "管理費等: $fee円",
           style: const TextStyle(
