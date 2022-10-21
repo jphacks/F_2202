@@ -65,6 +65,15 @@ mixin _$Property {
   /// 駅の情報
   Transportion get transportion => throw _privateConstructorUsedError;
 
+  /// fee
+  int get fee => throw _privateConstructorUsedError;
+
+  /// fee
+  double get area => throw _privateConstructorUsedError;
+
+  /// propetyStoructure
+  String get propetyStoructure => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PropertyCopyWith<Property> get copyWith =>
@@ -91,7 +100,10 @@ abstract class $PropertyCopyWith<$Res> {
       double netYield,
       String florPart,
       String propertyType,
-      Transportion transportion});
+      Transportion transportion,
+      int fee,
+      double area,
+      String propetyStoructure});
 
   $TransportionCopyWith<$Res> get transportion;
 }
@@ -124,6 +136,9 @@ class _$PropertyCopyWithImpl<$Res, $Val extends Property>
     Object? florPart = null,
     Object? propertyType = null,
     Object? transportion = null,
+    Object? fee = null,
+    Object? area = null,
+    Object? propetyStoructure = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -186,6 +201,18 @@ class _$PropertyCopyWithImpl<$Res, $Val extends Property>
           ? _value.transportion
           : transportion // ignore: cast_nullable_to_non_nullable
               as Transportion,
+      fee: null == fee
+          ? _value.fee
+          : fee // ignore: cast_nullable_to_non_nullable
+              as int,
+      area: null == area
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as double,
+      propetyStoructure: null == propetyStoructure
+          ? _value.propetyStoructure
+          : propetyStoructure // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -220,7 +247,10 @@ abstract class _$$_PropertyCopyWith<$Res> implements $PropertyCopyWith<$Res> {
       double netYield,
       String florPart,
       String propertyType,
-      Transportion transportion});
+      Transportion transportion,
+      int fee,
+      double area,
+      String propetyStoructure});
 
   @override
   $TransportionCopyWith<$Res> get transportion;
@@ -252,6 +282,9 @@ class __$$_PropertyCopyWithImpl<$Res>
     Object? florPart = null,
     Object? propertyType = null,
     Object? transportion = null,
+    Object? fee = null,
+    Object? area = null,
+    Object? propetyStoructure = null,
   }) {
     return _then(_$_Property(
       id: null == id
@@ -314,6 +347,18 @@ class __$$_PropertyCopyWithImpl<$Res>
           ? _value.transportion
           : transportion // ignore: cast_nullable_to_non_nullable
               as Transportion,
+      fee: null == fee
+          ? _value.fee
+          : fee // ignore: cast_nullable_to_non_nullable
+              as int,
+      area: null == area
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as double,
+      propetyStoructure: null == propetyStoructure
+          ? _value.propetyStoructure
+          : propetyStoructure // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -336,7 +381,10 @@ class _$_Property implements _Property {
       this.netYield = 0.0,
       this.florPart = '',
       this.propertyType = '',
-      this.transportion = const Transportion()});
+      this.transportion = const Transportion(),
+      this.fee = 0,
+      this.area = 0.0,
+      this.propetyStoructure = ''});
 
   factory _$_Property.fromJson(Map<String, dynamic> json) =>
       _$$_PropertyFromJson(json);
@@ -416,9 +464,24 @@ class _$_Property implements _Property {
   @JsonKey()
   final Transportion transportion;
 
+  /// fee
+  @override
+  @JsonKey()
+  final int fee;
+
+  /// fee
+  @override
+  @JsonKey()
+  final double area;
+
+  /// propetyStoructure
+  @override
+  @JsonKey()
+  final String propetyStoructure;
+
   @override
   String toString() {
-    return 'Property(id: $id, imageUrl: $imageUrl, name: $name, prefecture: $prefecture, city: $city, region: $region, address: $address, rent: $rent, roomCount: $roomCount, floorPlan: $floorPlan, totalGroundStory: $totalGroundStory, netYield: $netYield, florPart: $florPart, propertyType: $propertyType, transportion: $transportion)';
+    return 'Property(id: $id, imageUrl: $imageUrl, name: $name, prefecture: $prefecture, city: $city, region: $region, address: $address, rent: $rent, roomCount: $roomCount, floorPlan: $floorPlan, totalGroundStory: $totalGroundStory, netYield: $netYield, florPart: $florPart, propertyType: $propertyType, transportion: $transportion, fee: $fee, area: $area, propetyStoructure: $propetyStoructure)';
   }
 
   @override
@@ -449,7 +512,11 @@ class _$_Property implements _Property {
             (identical(other.propertyType, propertyType) ||
                 other.propertyType == propertyType) &&
             (identical(other.transportion, transportion) ||
-                other.transportion == transportion));
+                other.transportion == transportion) &&
+            (identical(other.fee, fee) || other.fee == fee) &&
+            (identical(other.area, area) || other.area == area) &&
+            (identical(other.propetyStoructure, propetyStoructure) ||
+                other.propetyStoructure == propetyStoructure));
   }
 
   @JsonKey(ignore: true)
@@ -470,7 +537,10 @@ class _$_Property implements _Property {
       netYield,
       florPart,
       propertyType,
-      transportion);
+      transportion,
+      fee,
+      area,
+      propetyStoructure);
 
   @JsonKey(ignore: true)
   @override
@@ -502,7 +572,10 @@ abstract class _Property implements Property {
       final double netYield,
       final String florPart,
       final String propertyType,
-      final Transportion transportion}) = _$_Property;
+      final Transportion transportion,
+      final int fee,
+      final double area,
+      final String propetyStoructure}) = _$_Property;
 
   factory _Property.fromJson(Map<String, dynamic> json) = _$_Property.fromJson;
 
@@ -567,6 +640,18 @@ abstract class _Property implements Property {
   /// 駅の情報
   Transportion get transportion;
   @override
+
+  /// fee
+  int get fee;
+  @override
+
+  /// fee
+  double get area;
+  @override
+
+  /// propetyStoructure
+  String get propetyStoructure;
+  @override
   @JsonKey(ignore: true)
   _$$_PropertyCopyWith<_$_Property> get copyWith =>
       throw _privateConstructorUsedError;
@@ -592,6 +677,9 @@ mixin _$PropertyModel {
   int get totalGroundStory => throw _privateConstructorUsedError;
   double get netYield => throw _privateConstructorUsedError;
   String get propertyType => throw _privateConstructorUsedError;
+  int get fee => throw _privateConstructorUsedError;
+  double get area => throw _privateConstructorUsedError;
+  String get propetyStoructure => throw _privateConstructorUsedError;
   Transportion get transportion => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -610,6 +698,9 @@ mixin _$PropertyModel {
             int totalGroundStory,
             double netYield,
             String propertyType,
+            int fee,
+            double area,
+            String propetyStoructure,
             Transportion transportion)
         response,
   }) =>
@@ -631,6 +722,9 @@ mixin _$PropertyModel {
             int totalGroundStory,
             double netYield,
             String propertyType,
+            int fee,
+            double area,
+            String propetyStoructure,
             Transportion transportion)?
         response,
   }) =>
@@ -652,6 +746,9 @@ mixin _$PropertyModel {
             int totalGroundStory,
             double netYield,
             String propertyType,
+            int fee,
+            double area,
+            String propetyStoructure,
             Transportion transportion)?
         response,
     required TResult orElse(),
@@ -700,6 +797,9 @@ abstract class $PropertyModelCopyWith<$Res> {
       int totalGroundStory,
       double netYield,
       String propertyType,
+      int fee,
+      double area,
+      String propetyStoructure,
       Transportion transportion});
 
   $TransportionCopyWith<$Res> get transportion;
@@ -732,6 +832,9 @@ class _$PropertyModelCopyWithImpl<$Res, $Val extends PropertyModel>
     Object? totalGroundStory = null,
     Object? netYield = null,
     Object? propertyType = null,
+    Object? fee = null,
+    Object? area = null,
+    Object? propetyStoructure = null,
     Object? transportion = null,
   }) {
     return _then(_value.copyWith(
@@ -791,6 +894,18 @@ class _$PropertyModelCopyWithImpl<$Res, $Val extends PropertyModel>
           ? _value.propertyType
           : propertyType // ignore: cast_nullable_to_non_nullable
               as String,
+      fee: null == fee
+          ? _value.fee
+          : fee // ignore: cast_nullable_to_non_nullable
+              as int,
+      area: null == area
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as double,
+      propetyStoructure: null == propetyStoructure
+          ? _value.propetyStoructure
+          : propetyStoructure // ignore: cast_nullable_to_non_nullable
+              as String,
       transportion: null == transportion
           ? _value.transportion
           : transportion // ignore: cast_nullable_to_non_nullable
@@ -830,6 +945,9 @@ abstract class _$$PropertyModelResponseCopyWith<$Res>
       int totalGroundStory,
       double netYield,
       String propertyType,
+      int fee,
+      double area,
+      String propetyStoructure,
       Transportion transportion});
 
   @override
@@ -861,6 +979,9 @@ class __$$PropertyModelResponseCopyWithImpl<$Res>
     Object? totalGroundStory = null,
     Object? netYield = null,
     Object? propertyType = null,
+    Object? fee = null,
+    Object? area = null,
+    Object? propetyStoructure = null,
     Object? transportion = null,
   }) {
     return _then(_$PropertyModelResponse(
@@ -920,6 +1041,18 @@ class __$$PropertyModelResponseCopyWithImpl<$Res>
           ? _value.propertyType
           : propertyType // ignore: cast_nullable_to_non_nullable
               as String,
+      fee: null == fee
+          ? _value.fee
+          : fee // ignore: cast_nullable_to_non_nullable
+              as int,
+      area: null == area
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as double,
+      propetyStoructure: null == propetyStoructure
+          ? _value.propetyStoructure
+          : propetyStoructure // ignore: cast_nullable_to_non_nullable
+              as String,
       transportion: null == transportion
           ? _value.transportion
           : transportion // ignore: cast_nullable_to_non_nullable
@@ -946,6 +1079,9 @@ class _$PropertyModelResponse extends PropertyModelResponse {
       this.totalGroundStory = 0,
       this.netYield = 0.0,
       this.propertyType = '',
+      this.fee = 0,
+      this.area = 0.0,
+      this.propetyStoructure = '',
       this.transportion = const Transportion()})
       : super._();
 
@@ -996,11 +1132,20 @@ class _$PropertyModelResponse extends PropertyModelResponse {
   final String propertyType;
   @override
   @JsonKey()
+  final int fee;
+  @override
+  @JsonKey()
+  final double area;
+  @override
+  @JsonKey()
+  final String propetyStoructure;
+  @override
+  @JsonKey()
   final Transportion transportion;
 
   @override
   String toString() {
-    return 'PropertyModel.response(id: $id, imageUrl: $imageUrl, name: $name, prefecture: $prefecture, city: $city, region: $region, address: $address, rent: $rent, roomCount: $roomCount, floorPlan: $floorPlan, florPart: $florPart, totalGroundStory: $totalGroundStory, netYield: $netYield, propertyType: $propertyType, transportion: $transportion)';
+    return 'PropertyModel.response(id: $id, imageUrl: $imageUrl, name: $name, prefecture: $prefecture, city: $city, region: $region, address: $address, rent: $rent, roomCount: $roomCount, floorPlan: $floorPlan, florPart: $florPart, totalGroundStory: $totalGroundStory, netYield: $netYield, propertyType: $propertyType, fee: $fee, area: $area, propetyStoructure: $propetyStoructure, transportion: $transportion)';
   }
 
   @override
@@ -1030,6 +1175,10 @@ class _$PropertyModelResponse extends PropertyModelResponse {
                 other.netYield == netYield) &&
             (identical(other.propertyType, propertyType) ||
                 other.propertyType == propertyType) &&
+            (identical(other.fee, fee) || other.fee == fee) &&
+            (identical(other.area, area) || other.area == area) &&
+            (identical(other.propetyStoructure, propetyStoructure) ||
+                other.propetyStoructure == propetyStoructure) &&
             (identical(other.transportion, transportion) ||
                 other.transportion == transportion));
   }
@@ -1052,6 +1201,9 @@ class _$PropertyModelResponse extends PropertyModelResponse {
       totalGroundStory,
       netYield,
       propertyType,
+      fee,
+      area,
+      propetyStoructure,
       transportion);
 
   @JsonKey(ignore: true)
@@ -1079,6 +1231,9 @@ class _$PropertyModelResponse extends PropertyModelResponse {
             int totalGroundStory,
             double netYield,
             String propertyType,
+            int fee,
+            double area,
+            String propetyStoructure,
             Transportion transportion)
         response,
   }) {
@@ -1097,6 +1252,9 @@ class _$PropertyModelResponse extends PropertyModelResponse {
         totalGroundStory,
         netYield,
         propertyType,
+        fee,
+        area,
+        propetyStoructure,
         transportion);
   }
 
@@ -1118,6 +1276,9 @@ class _$PropertyModelResponse extends PropertyModelResponse {
             int totalGroundStory,
             double netYield,
             String propertyType,
+            int fee,
+            double area,
+            String propetyStoructure,
             Transportion transportion)?
         response,
   }) {
@@ -1136,6 +1297,9 @@ class _$PropertyModelResponse extends PropertyModelResponse {
         totalGroundStory,
         netYield,
         propertyType,
+        fee,
+        area,
+        propetyStoructure,
         transportion);
   }
 
@@ -1157,6 +1321,9 @@ class _$PropertyModelResponse extends PropertyModelResponse {
             int totalGroundStory,
             double netYield,
             String propertyType,
+            int fee,
+            double area,
+            String propetyStoructure,
             Transportion transportion)?
         response,
     required TResult orElse(),
@@ -1177,6 +1344,9 @@ class _$PropertyModelResponse extends PropertyModelResponse {
           totalGroundStory,
           netYield,
           propertyType,
+          fee,
+          area,
+          propetyStoructure,
           transportion);
     }
     return orElse();
@@ -1234,6 +1404,9 @@ abstract class PropertyModelResponse extends PropertyModel {
       final int totalGroundStory,
       final double netYield,
       final String propertyType,
+      final int fee,
+      final double area,
+      final String propetyStoructure,
       final Transportion transportion}) = _$PropertyModelResponse;
   const PropertyModelResponse._() : super._();
 
@@ -1268,6 +1441,12 @@ abstract class PropertyModelResponse extends PropertyModel {
   double get netYield;
   @override
   String get propertyType;
+  @override
+  int get fee;
+  @override
+  double get area;
+  @override
+  String get propetyStoructure;
   @override
   Transportion get transportion;
   @override

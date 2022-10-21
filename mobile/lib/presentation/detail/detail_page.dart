@@ -40,8 +40,7 @@ class DetailPage extends StatelessWidget {
                   Stack(
                     children: [
                       MainVisual(
-                        thumbnailUrl:
-                            'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80',
+                        thumbnailUrl: property.imageUrl,
                         propertyName: property.name,
                         fullAddress: property.prefecture +
                             property.city +
@@ -59,13 +58,15 @@ class DetailPage extends StatelessWidget {
                       children: [
                         PropertyDetails(
                           rent: property.rent.toString(),
-                          fee: '5000',
+                          fee: property.fee.toString(),
                           yearBuilds: property.totalGroundStory.toString(),
-                          floorPlan: '1DK',
+                          floorPlan: property.roomCount.toString() +
+                              property.floorPlan,
                           propertyType: property.propertyType,
-                          area: '20.0m²',
-                          propetyStoructure: 'RC',
-                          stationWalkTime: '徒歩13分',
+                          area: '${property.area}m²',
+                          propetyStoructure: property.propetyStoructure,
+                          stationWalkTime:
+                              property.transportion.stationWalkTime ?? '',
                         ),
                         const HorizontalRule(),
                         const BuildingImages(

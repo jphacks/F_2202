@@ -24,6 +24,9 @@ _$_Property _$$_PropertyFromJson(Map<String, dynamic> json) => _$_Property(
       transportion: json['transportion'] == null
           ? const Transportion()
           : Transportion.fromJson(json['transportion'] as Map<String, dynamic>),
+      fee: json['fee'] as int? ?? 0,
+      area: (json['area'] as num?)?.toDouble() ?? 0.0,
+      propetyStoructure: json['propety_storucture'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$_PropertyToJson(_$_Property instance) =>
@@ -43,6 +46,9 @@ Map<String, dynamic> _$$_PropertyToJson(_$_Property instance) =>
       'flor_part': instance.florPart,
       'property_type': instance.propertyType,
       'transportion': instance.transportion.toJson(),
+      'fee': instance.fee,
+      'area': instance.area,
+      'propety_storucture': instance.propetyStoructure,
     };
 
 _$PropertyModelResponse _$$PropertyModelResponseFromJson(
@@ -62,6 +68,9 @@ _$PropertyModelResponse _$$PropertyModelResponseFromJson(
       totalGroundStory: json['total_ground_story'] as int? ?? 0,
       netYield: (json['net_yield'] as num?)?.toDouble() ?? 0.0,
       propertyType: json['property_type'] as String? ?? '',
+      fee: json['fee'] as int? ?? 0,
+      area: (json['area'] as num?)?.toDouble() ?? 0.0,
+      propetyStoructure: json['propety_storucture'] as String? ?? '',
       transportion: json['transportion'] == null
           ? const Transportion()
           : Transportion.fromJson(json['transportion'] as Map<String, dynamic>),
@@ -84,6 +93,9 @@ Map<String, dynamic> _$$PropertyModelResponseToJson(
       'total_ground_story': instance.totalGroundStory,
       'net_yield': instance.netYield,
       'property_type': instance.propertyType,
+      'fee': instance.fee,
+      'area': instance.area,
+      'propety_storucture': instance.propetyStoructure,
       'transportion': instance.transportion.toJson(),
     };
 
