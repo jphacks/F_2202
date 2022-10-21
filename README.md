@@ -37,11 +37,11 @@
 ### 活用した技術
 #### API・データ
 * 株式会社ランドネット様提供API
-* 
+* Google Map API
 
 #### フレームワーク・ライブラリ・モジュール
-* 
-* 
+* Python(poetry, fastapi)
+* Docker
 
 #### デバイス
 * iPhone
