@@ -12,11 +12,9 @@ import 'package:mobile/presentation/widgets/header_back_button.dart';
 
 class DetailPageArgument {
   final Property property;
-  final String place;
 
   DetailPageArgument({
     required this.property,
-    required this.place,
   });
 }
 
@@ -30,6 +28,7 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final property = argument.property;
     return Scaffold(
       body: Container(
         color: Colors.white,
@@ -40,11 +39,14 @@ class DetailPage extends StatelessWidget {
                 children: [
                   Stack(
                     children: [
-                      const MainVisual(
+                      MainVisual(
                         thumbnailUrl:
                             'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80',
-                        propertyName: 'ダイナシティ梅田',
-                        fullAddress: '大阪府大阪市北区鶴野町３−２１',
+                        propertyName: property.name,
+                        fullAddress: property.prefecture +
+                            property.city +
+                            property.region +
+                            property.address,
                       ),
                       const HeaderBackButton(),
                       headerActionButtons(context),
@@ -55,12 +57,12 @@ class DetailPage extends StatelessWidget {
                     child: Column(
                       // 物件情報を載せるWidgets群
                       children: [
-                        const PropertyDetails(
-                          rent: '7.55',
+                        PropertyDetails(
+                          rent: property.rent.toString(),
                           fee: '5000',
-                          yearBuilds: '2022年（築15年）',
-                          floorPlan: '1LDK',
-                          propertyType: 'マンション',
+                          yearBuilds: property.totalGroundStory.toString(),
+                          floorPlan: '1DK',
+                          propertyType: property.propertyType,
                           area: '20.0m²',
                           propetyStoructure: 'RC',
                           stationWalkTime: '徒歩13分',
@@ -75,11 +77,14 @@ class DetailPage extends StatelessWidget {
                           ],
                         ),
                         const HorizontalRule(),
-                        const AccessMap(
-                          fullAddress: '大阪府大阪市北区鶴野町３−２１',
+                        AccessMap(
+                          fullAddress: property.prefecture +
+                              property.city +
+                              property.region +
+                              property.address,
                           latitude: 34.6956849,
                           longitude: 135.1907121,
-                          propertyName: 'ダイナシティ梅田',
+                          propertyName: property.name,
                         ),
                         const HorizontalRule(),
                         const NearShops(

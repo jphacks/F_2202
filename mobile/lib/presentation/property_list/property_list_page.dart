@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile/config/app_routing_name.dart';
 import 'package:mobile/model/property/property.dart';
+import 'package:mobile/presentation/detail/detail_page.dart';
 
 class PropertyListArgument {
   final List<Property> propertyList;
@@ -107,8 +108,13 @@ class _PropertyListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.of(context).pushNamed(AppRoutingName.pageDetail);
+      onTap: () async {
+        await Navigator.of(context).pushNamed(
+          AppRoutingName.pageDetail,
+          arguments: DetailPageArgument(
+            property: property,
+          ),
+        );
       },
       child: Card(
         clipBehavior: Clip.antiAlias,
