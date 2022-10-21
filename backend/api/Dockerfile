@@ -2,6 +2,9 @@ FROM python:3.10.7-slim
 
 WORKDIR /api
 
+ARG map_api_key
+ENV GOOGLE_MAP_API_KEY $map_api_key
+
 RUN set -ex \
   && rm -rf /var/lib/apt/lists/* \
   && apt-get update \
