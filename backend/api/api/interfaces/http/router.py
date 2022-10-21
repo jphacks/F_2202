@@ -1,38 +1,59 @@
-
+import os
 from http import HTTPStatus
 
-from fastapi import APIRouter, HTTPException
+import requests
+from fastapi import APIRouter
 from fastapi.responses import JSONResponse
-
-from api.interfaces.http.dto import Health, Location, Locations
-
 from gensim.models import KeyedVectors
 
-router = APIRouter()
-model = KeyedVectors.load_word2vec_format('./jawiki.word_vectors.100d.txt')
+from api.interfaces.http.dto import GoogleMapNearbySearchResponse, Health
 
-@router.get("/health")
-async def health():
-    return {"health": "ok"}
+router = APIRouter()
+
+
+model = KeyedVectors.load_word2vec_format("./jawiki.word_vectors.100d.txt")
+
+
+@router.get("/health", response_model=Health)
+async def health() -> Health:
+    return Health(health="ok")
+
 
 @router.get("/recommend/keywords", status_code=200)
 async def recommend_keywords(search_word: str):
     try:
         candidate_words = model.most_similar(search_word)
         return {"candidate_words": candidate_words}
-    except:
+    except Exception:
         return JSONResponse(
-            status_code=HTTPStatus.INTERNAL_SERVER_ERROR, 
-            content={"candidate_words": []}
-        ) 
-
-@router.post("/location/center", response_model=Location)
-async def calculate_center_location(loc: Locations) -> Location:
-    if not loc.locations:
-        raise HTTPException(
-            status_code=HTTPStatus.BAD_REQUEST, detail="need at least one location"
+            status_code=HTTPStatus.INTERNAL_SERVER_ERROR,
+            content={"candidate_words": []},
         )
-    return Location(
-        lat=sum(map(lambda l: l.lat, loc.locations)) / len(loc.locations),
-        lon=sum(map(lambda l: l.lon, loc.locations)) / len(loc.locations),
+
+
+@router.get("/location/nearby")
+async def fetch_nearby_location_from_keyword(
+    lat: float, lon: float, keywords: str, radius: int = 500, count: int = 10
+):
+    nearby_location_endpoint = (
+        "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
     )
+    place_endpoint = "https://maps.googleapis.com/maps/api/place/details/json"
+    api_key = os.getenv("GOOGLE_MAP_API_KEY")
+    keys = keywords.split(",")
+    locations: list[GoogleMapNearbySearchResponse] = []
+    for key in keys:
+        locations += [
+            GoogleMapNearbySearchResponse(**loc)
+            for loc in requests.get(
+                f"{nearby_location_endpoint}?key={api_key}&location={lat}%2C{lon}&radius={radius}&language=ja&keyword={key}"
+            ).json()["results"]
+        ]
+    locations.sort(key=lambda location: location.rating, reverse=True)
+    locations = locations if len(locations) < count else locations[:count]
+    return [
+        requests.get(f"{place_endpoint}?key={api_key}&place_id={loc.place_id}").json()[
+            "result"
+        ]
+        for loc in locations
+    ]

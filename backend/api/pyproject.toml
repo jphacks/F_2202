@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.10"
 fastapi = {extras = ["all"], version = "^0.85.1"}
 gensim = "^4.2.0"
+requests = "^2.28.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.1.3"
