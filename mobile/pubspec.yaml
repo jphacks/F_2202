@@ -61,6 +61,7 @@ dependencies:
   retrofit: 
   dio: 
   geocoding: ^2.0.5
+  geocoder:
 
 dev_dependencies:
   flutter_test:
