@@ -3,3 +3,4 @@
 __pycache__/
 .python-version
 jawiki.word_vectors.100d.txt
+.env
