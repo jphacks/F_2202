@@ -4,7 +4,6 @@ import 'package:mobile/config/app_routing_name.dart';
 import 'package:mobile/constant/color_hex.dart';
 import 'package:mobile/l10n/app_localization.dart';
 import 'package:mobile/model/destination/destination.dart';
-import 'package:mobile/model/property/property.dart';
 import 'package:mobile/presentation/top/search/search_destination_controller_provider.dart';
 import 'package:mobile/presentation/top/search/search_page.dart';
 
@@ -83,8 +82,6 @@ class SearchDestinationPage extends HookConsumerWidget {
                         state.destination3,
                       ]);
 
-   
-
                       Navigator.pop(context);
                     },
                   ),
@@ -119,7 +116,29 @@ class SearchDestinationPage extends HookConsumerWidget {
                     Image.asset('assets/location.png'),
                     const SizedBox(width: 20),
                     Text(
-                      '大阪駅',
+                      '渋谷駅',
+                      style: TextStyle(color: Colors.black.withOpacity(0.8)),
+                    ),
+                  ],
+                ),
+                const Divider(),
+                Row(
+                  children: [
+                    Image.asset('assets/location.png'),
+                    const SizedBox(width: 20),
+                    Text(
+                      '恵比寿駅',
+                      style: TextStyle(color: Colors.black.withOpacity(0.8)),
+                    ),
+                  ],
+                ),
+                const Divider(),
+                Row(
+                  children: [
+                    Image.asset('assets/location.png'),
+                    const SizedBox(width: 20),
+                    Text(
+                      '東京駅',
                       style: TextStyle(color: Colors.black.withOpacity(0.8)),
                     ),
                   ],

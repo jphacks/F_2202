@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile/config/app_routing_name.dart';
 import 'package:mobile/model/property/property.dart';
@@ -24,6 +26,7 @@ class PropertyListPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final propertyState = useState(argument.propertyList);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -51,12 +54,53 @@ class PropertyListPage extends HookConsumerWidget {
         actions: [
           // TODO(rui): 正しいアイコンを入れる
           IconButton(
-            icon: const Icon(
-              Icons.manage_search_outlined,
-              size: 30,
-            ),
-            onPressed: () {},
-          )
+              icon: const Icon(
+                Icons.manage_search_outlined,
+                size: 30,
+              ),
+              onPressed: () {
+                showCupertinoModalPopup<void>(
+                  context: context,
+                  builder: (BuildContext context) => Container(
+                    height: 300,
+                    padding: const EdgeInsets.only(top: 6.0),
+                    margin: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom,
+                    ),
+                    color:
+                        CupertinoColors.systemBackground.resolveFrom(context),
+                    child: SafeArea(
+                      top: false,
+                      child: Column(
+                        children: [
+                          TextButton(
+                            child: const Text('決定'),
+                            onPressed: () {
+                              propertyState.value
+                                  .sort((a, b) => a.rent.compareTo(b.rent));
+                              propertyState.notifyListeners();
+                              Navigator.pop(context);
+                            },
+                          ),
+                          SizedBox(
+                              height: 200,
+                              child: CupertinoPicker(
+                                itemExtent: 30,
+                                onSelectedItemChanged: (index) {},
+                                children: [
+                                  '賃料が安い順',
+                                  '賃料が安い順',
+                                  '駅から近い順',
+                                  '築年数が古い順',
+                                  '築年数が新しい順',
+                                ].map((e) => Text(e)).toList(),
+                              )),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }),
         ],
         iconTheme: IconTheme.of(context).copyWith(
           color: Colors.black,
@@ -80,7 +124,7 @@ class PropertyListPage extends HookConsumerWidget {
             Expanded(
               child: ListView.separated(
                 itemBuilder: (context, index) => _PropertyListTile(
-                  property: argument.propertyList[index],
+                  property: propertyState.value[index],
                 ),
                 itemCount: argument.propertyList.length,
                 separatorBuilder: (BuildContext context, int index) {

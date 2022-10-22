@@ -63,7 +63,7 @@ class RecomendProperty extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      "2.9万円",
+                      "12.1万円",
                       style: TextStyle(
                         color: Color(0xfffe6663),
                         fontSize: 18,
@@ -72,8 +72,8 @@ class RecomendProperty extends StatelessWidget {
                     ),
                     detailTextView(detailText: "管理費5,000円"),
                     detailTextView(detailText: "1LDK/17.95m2"),
-                    detailTextView(detailText: "1階/2階建 築34年"),
-                    detailTextView(detailText: "JR東西線/大阪駅 5分"),
+                    detailTextView(detailText: "1階/2階建 築10年"),
+                    detailTextView(detailText: "山手線/渋谷 10分"),
                   ],
                 ),
               ],
