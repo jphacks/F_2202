@@ -37,8 +37,8 @@ class BuildingImages extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.0),
       ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: Image(
-        image: NetworkImage(imageUrl),
+      child: Image.asset(
+        imageUrl,
         fit: BoxFit.cover,
       ),
     );

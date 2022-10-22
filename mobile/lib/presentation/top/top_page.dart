@@ -26,7 +26,143 @@ class TopPageState extends ConsumerState<TopPage> {
   final Completer<GoogleMapController> _mapController = Completer();
   LatLng centerDestination = const LatLng(0, 0);
   // ここにMock追加
-  List<Property> mockList = [Property(lat: 0, lng: 0),];
+  List<Property> mockList = [
+    const Property(
+      name: 'グランドコンシェルジュ千駄ヶ谷',
+      address: '東京都渋谷区千駄ヶ谷5-4-2',
+      propertyType: '区分所有マンション',
+      rent: 150000,
+      totalGroundStory: 5,
+      roomCount: 3,
+      floorPlan: 'LDK',
+      area: 33.6,
+      propetyStoructure: 'RC',
+      lat: 35.682587,
+      lng: 139.706834,
+      imageUrl: 'assets/1.png',
+      fee: 3000,
+    ),
+    const Property(
+      name: 'シャンポール代々木',
+      address: '東京都渋谷区代々木5-7-10',
+      propertyType: '区分所有マンション',
+      rent: 120000,
+      totalGroundStory: 8,
+      roomCount: 3,
+      floorPlan: 'LDK',
+      area: 33.6,
+      propetyStoructure: 'RC',
+      imageUrl: 'assets/2.png',
+      lat: 35.670084,
+      lng: 139.688146,
+    ),
+    const Property(
+      name: '藤和シティホームズ恵比寿',
+      address: '東京都渋谷区恵比寿1-25-2',
+      propertyType: '区分所有マンション',
+      rent: 150000,
+      totalGroundStory: 14,
+      roomCount: 3,
+      floorPlan: 'LDK',
+      area: 33.6,
+      propetyStoructure: 'RC',
+      imageUrl: 'assets/3.png',
+      lat: 35.646895,
+      lng: 139.715943,
+    ),
+    const Property(
+      name: 'ニュー恵比寿フラワーマンション',
+      address: '東京都渋谷区恵比寿3-2-2',
+      propertyType: '区分所有マンション',
+      totalGroundStory: 10,
+      roomCount: 3,
+      floorPlan: 'LDK',
+      area: 33.6,
+      propetyStoructure: 'RC',
+      imageUrl: 'assets/4.png',
+      lat: 35.645234,
+      lng: 139.717385,
+    ),
+    const Property(
+      name: 'キャッスルマンション幡ヶ谷',
+      address: '東京都渋谷区幡ヶ谷2-18-2',
+      propertyType: '区分所有マンション',
+      totalGroundStory: 10,
+      roomCount: 3,
+      floorPlan: 'LDK',
+      area: 33.6,
+      propetyStoructure: 'RC',
+      imageUrl: 'assets/5.png',
+      lat: 35.676943,
+      lng: 139.674984,
+    ),
+    const Property(
+      name: 'タワーホームズ氷川',
+      address: '東京都渋谷区東2-20-14',
+      rent: 123000,
+      propertyType: '区分所有マンション',
+      totalGroundStory: 12,
+      roomCount: 3,
+      floorPlan: 'LDK',
+      area: 33.6,
+      propetyStoructure: 'RC',
+      imageUrl: 'assets/6.png',
+      lat: 35.653417,
+      lng: 139.708844,
+    ),
+    const Property(
+      name: 'ロイヤルパレス原宿',
+      address: '東京都渋谷区神南1-5-4',
+      propertyType: '区分所有マンション',
+      totalGroundStory: 8,
+      roomCount: 3,
+      floorPlan: 'LDK',
+      area: 33.6,
+      propetyStoructure: 'RC',
+      imageUrl: 'assets/7.png',
+      lat: 35.664899,
+      lng: 139.700282,
+    ),
+    const Property(
+      name: 'メゾン・ド・エビス',
+      address: '東京都渋谷区恵比寿西2-3-11',
+      propertyType: '区分所有マンション',
+      totalGroundStory: 10,
+      roomCount: 3,
+      floorPlan: 'LDK',
+      area: 33.6,
+      propetyStoructure: 'RC',
+      imageUrl: 'assets/8.png',
+      lat: 35.649899,
+      lng: 139.707872,
+    ),
+    const Property(
+      name: 'キャッスルマンション代官山',
+      address: '東京都渋谷区代官山町13-8',
+      propertyType: '区分所有マンション',
+      totalGroundStory: 7,
+      roomCount: 3,
+      floorPlan: 'LDK',
+      area: 33.6,
+      propetyStoructure: 'RC',
+      imageUrl: 'assets/9.png',
+      lat: 35.650278,
+      lng: 139.704725,
+    ),
+    const Property(
+      name: 'ダイネス壱番館渋谷',
+      address: '東京都渋谷区神南1-11-5',
+      propertyType: '区分所有マンション',
+      totalGroundStory: 12,
+      roomCount: 3,
+      floorPlan: 'LDK',
+      area: 33.6,
+      propetyStoructure: 'RC',
+      imageUrl: 'assets/10.png',
+      lat: 35.662424,
+      lng: 139.701249,
+    ),
+  ];
   bool isBuild = false;
 
   @override
@@ -99,16 +235,15 @@ class TopPageState extends ConsumerState<TopPage> {
     return GoogleMap(
       myLocationButtonEnabled: false,
       mapType: MapType.normal,
-      initialCameraPosition: CameraPosition(
+      initialCameraPosition: const CameraPosition(
         target: LatLng(
-          topState.currentLatitude,
-          topState.currentLongitude,
+          35.658034,
+          139.701636,
         ),
         zoom: 13.0,
       ),
       markers: _createMarker(
         pageController: pageController,
-        state: topState,
       ),
       onMapCreated: (GoogleMapController mapController) {
         _mapController.complete(mapController);
@@ -151,13 +286,12 @@ class TopPageState extends ConsumerState<TopPage> {
 
   Set<Marker> _createMarker({
     required PageController pageController,
-    required TopState state,
   }) {
     return isBuild
         ? mockList
             .map(
               (p) => Marker(
-                markerId: MarkerId(p.id),
+                markerId: MarkerId(p.address),
                 position: LatLng(p.lat, p.lng),
               ),
             )
@@ -179,7 +313,7 @@ class TopPageState extends ConsumerState<TopPage> {
       children: [
         DropShadow(
           child: homeButton(
-            icon: Icons.textsms_outlined,
+            icon: Icons.list,
             onButtonTap: () async {
               Navigator.of(context).pushNamed(
                 AppRoutingName.pageList,

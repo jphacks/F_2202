@@ -40,7 +40,7 @@ class DetailPage extends StatelessWidget {
                   Stack(
                     children: [
                       MainVisual(
-                        thumbnailUrl: 'assets/sample.jpg',
+                        thumbnailUrl: property.imageUrl,
                         propertyName: property.name,
                         fullAddress: property.address,
                       ),
@@ -63,22 +63,21 @@ class DetailPage extends StatelessWidget {
                           area: '${property.area.toStringAsFixed(1)}m²',
                           propetyStoructure: property.propetyStoructure,
                           stationWalkTime:
-                              property.transportion.stationWalkTime ?? '',
+                              property.transportion.stationWalkTime ??
+                                  '山手線 渋谷駅',
                         ),
                         const HorizontalRule(),
                         const BuildingImages(
                           imageUrls: [
-                            'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80',
-                            'https://images.unsplash.com/photo-1664575196644-808978af9b1f?w=800&q=80',
-                            'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80',
-                            'https://images.unsplash.com/photo-1664575196644-808978af9b1f?w=800&q=80',
+                            'assets/1.png',
+                            'assets/1-2.png',
                           ],
                         ),
                         const HorizontalRule(),
                         AccessMap(
                           fullAddress: property.address,
-                          latitude: 34.6956849,
-                          longitude: 135.1907121,
+                          latitude: property.lat,
+                          longitude: property.lng,
                           propertyName: property.name,
                         ),
                         const HorizontalRule(),

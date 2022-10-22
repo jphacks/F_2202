@@ -130,8 +130,10 @@ class _PropertyListTile extends StatelessWidget {
               alignment: Alignment.centerLeft,
               children: [
                 Ink.image(
-                  image: const AssetImage('assets/sample.jpg'),
-                  height: 150,
+                  image: AssetImage(
+                    property.imageUrl,
+                  ),
+                  height: 180,
                   fit: BoxFit.fitWidth,
                 ),
               ],

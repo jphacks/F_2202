@@ -20,7 +20,7 @@ class MainVisual extends StatelessWidget {
           thumbnailUrl,
           fit: BoxFit.cover,
           width: MediaQuery.of(context).size.width,
-          height: 250,
+          height: 270,
         ),
         imageGradationOverlay(context),
         Positioned(
