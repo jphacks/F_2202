@@ -29,6 +29,7 @@ _$_Property _$$_PropertyFromJson(Map<String, dynamic> json) => _$_Property(
       propetyStoructure: json['propety_storucture'] as String? ?? '',
       lat: (json['lat'] as num?)?.toDouble() ?? 0.0,
       lng: (json['lng'] as num?)?.toDouble() ?? 0.0,
+      rate: (json['rate'] as num?)?.toDouble() ?? 0.0,
     );
 
 Map<String, dynamic> _$$_PropertyToJson(_$_Property instance) =>
@@ -53,6 +54,7 @@ Map<String, dynamic> _$$_PropertyToJson(_$_Property instance) =>
       'propety_storucture': instance.propetyStoructure,
       'lat': instance.lat,
       'lng': instance.lng,
+      'rate': instance.rate,
     };
 
 _$PropertyModelResponse _$$PropertyModelResponseFromJson(

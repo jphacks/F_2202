@@ -54,7 +54,7 @@ class DetailPage extends StatelessWidget {
                       // 物件情報を載せるWidgets群
                       children: [
                         PropertyDetails(
-                          rent: property.rent.toString(),
+                          rent: '家賃: ${property.rent}',
                           fee: property.fee.toString(),
                           yearBuilds: property.totalGroundStory.toString(),
                           floorPlan: property.roomCount.toString() +
@@ -97,7 +97,8 @@ class DetailPage extends StatelessWidget {
                               "shopName": "羽衣湯",
                               "meter": "410m",
                               "reviewStar": "4.1",
-                              "shopThumbnail": '?q=70',
+                              "shopThumbnail":
+                                  'https://spa-tokyo.net/z-t-hagoromo/hagoromoyu-2015-110000000000.jpg?q=70 ',
                               "coordinates":
                                   '{"latitude": 34.6956849,"longitude": 135.1907121,}',
                             },
@@ -115,7 +116,7 @@ class DetailPage extends StatelessWidget {
                               "meter": "700m",
                               "reviewStar": "4.3",
                               "shopThumbnail":
-                                  'https://www.google.com/search?q=%E6%94%B9%E8%89%AF%E6%B9%AF&rlz=1C5CHFA_enJP996JP996&sxsrf=ALiCzsa1Xwt8g8skiLD1LCwQfMfByTcQAg:1666403852392&source=lnms&tbm=isch&sa=X&ved=2ahUKEwi9gLKN3vL6AhWWRN4KHfl4CTMQ_AUoAnoECAMQBA&biw=1321&bih=920&dpr=1#imgrc=l7yRyDPV1Evg6M?q=70',
+                                  'https://kairyou-yu.com/wp-content/themes/kairyou-yu2018/images/top_main.jpg?q=70',
                               "coordinates":
                                   '{"latitude": 34.6956849,"longitude": 135.1907121,}',
                             },
@@ -142,7 +143,7 @@ class DetailPage extends StatelessWidget {
                               "meter": "610m",
                               "reviewStar": "4.0",
                               "shopThumbnail":
-                                  'https://www.google.com/search?q=%E3%83%89%E3%82%B7%E3%83%BC%E6%81%B5%E6%AF%94%E5%AF%BF+%E3%82%B5%E3%82%A6%E3%83%8A&rlz=1C5CHFA_enJP996JP996&sxsrf=ALiCzsY06VU7JUIcEuNDvNcvNFnx4wbBGg:1666403976608&source=lnms&tbm=isch&sa=X&ved=2ahUKEwi5us_I3vL6AhVbUd4KHdshARAQ_AUoAnoECAMQBA&biw=1321&bih=920&dpr=1#imgrc=zOMAzQ-_3K4ePM?q=70',
+                                  'https://do-c.jp/images/photolibrary/06_ebisu/keyvisual.jpg?q=70 ',
                               "coordinates":
                                   '{"latitude": 34.6956849,"longitude": 135.1907121,}',
                             },

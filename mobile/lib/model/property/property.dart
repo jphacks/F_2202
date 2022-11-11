@@ -63,8 +63,11 @@ class Property with _$Property {
     /// 位置
     @Default(0.0) double lat,
 
-    ///
+    /// 緯度
     @Default(0.0) double lng,
+
+    /// 評価
+    @Default(0.0) double rate,
   }) = _Property;
 
   factory Property.fromJson(Map<String, dynamic> json) =>

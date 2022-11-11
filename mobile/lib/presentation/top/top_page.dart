@@ -40,6 +40,7 @@ class TopPageState extends ConsumerState<TopPage> {
       imageUrl: 'assets/2.png',
       lat: 35.670084,
       lng: 139.688146,
+      rate: 4.5,
     ),
     const Property(
       name: 'グランドコンシェルジュ千駄ヶ谷',
@@ -55,6 +56,7 @@ class TopPageState extends ConsumerState<TopPage> {
       lng: 139.706834,
       imageUrl: 'assets/1.png',
       fee: 3000,
+      rate: 4.2,
     ),
     const Property(
       name: '藤和シティホームズ恵比寿',
@@ -69,6 +71,7 @@ class TopPageState extends ConsumerState<TopPage> {
       imageUrl: 'assets/3.png',
       lat: 35.646895,
       lng: 139.715943,
+      rate: 4.0,
     ),
     const Property(
       name: 'ニュー恵比寿フラワーマンション',
@@ -83,6 +86,7 @@ class TopPageState extends ConsumerState<TopPage> {
       imageUrl: 'assets/4.png',
       lat: 35.645234,
       lng: 139.717385,
+      rate: 3.7,
     ),
     const Property(
       name: 'キャッスルマンション幡ヶ谷',
@@ -97,6 +101,7 @@ class TopPageState extends ConsumerState<TopPage> {
       imageUrl: 'assets/5.png',
       lat: 35.676943,
       lng: 139.674984,
+      rate: 3.3,
     ),
     const Property(
       name: 'タワーホームズ氷川',
@@ -111,6 +116,7 @@ class TopPageState extends ConsumerState<TopPage> {
       imageUrl: 'assets/6.png',
       lat: 35.653417,
       lng: 139.708844,
+      rate: 4.1,
     ),
     const Property(
       name: 'ロイヤルパレス原宿',
@@ -125,6 +131,7 @@ class TopPageState extends ConsumerState<TopPage> {
       rent: 118000,
       lat: 35.664899,
       lng: 139.700282,
+      rate: 3.9,
     ),
     const Property(
       name: 'メゾン・ド・エビス',
@@ -139,6 +146,7 @@ class TopPageState extends ConsumerState<TopPage> {
       rent: 98000,
       lat: 35.649899,
       lng: 139.707872,
+      rate: 3.5,
     ),
     const Property(
       name: 'キャッスルマンション代官山',
@@ -153,6 +161,7 @@ class TopPageState extends ConsumerState<TopPage> {
       rent: 80000,
       lat: 35.650278,
       lng: 139.704725,
+      rate: 4.0,
     ),
     const Property(
       name: 'ダイネス壱番館渋谷',
@@ -167,6 +176,7 @@ class TopPageState extends ConsumerState<TopPage> {
       rent: 109000,
       lat: 35.662424,
       lng: 139.701249,
+      rate: 4.2,
     ),
   ];
   bool isBuild = false;

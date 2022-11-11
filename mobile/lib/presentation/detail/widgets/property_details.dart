@@ -64,7 +64,7 @@ class PropertyDetails extends StatelessWidget {
           children: [
             detailTableCell(
               title: '築年数',
-              value: yearBuilds,
+              value: '$yearBuilds年',
               icon: Icons.handyman_outlined,
               context: context,
             ),
@@ -105,7 +105,7 @@ class PropertyDetails extends StatelessWidget {
               context: context,
             ),
             detailTableCell(
-              title: '最寄駅まで',
+              title: '最寄駅',
               value: stationWalkTime,
               icon: Icons.train,
               context: context,
@@ -170,7 +170,7 @@ class PropertyDetails extends StatelessWidget {
           '$rent円',
           style: const TextStyle(
             color: Color(0xfffe6663),
-            fontSize: 24,
+            fontSize: 21,
             fontWeight: FontWeight.w700,
           ),
         ),

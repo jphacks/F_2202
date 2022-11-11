@@ -52,55 +52,55 @@ class PropertyListPage extends HookConsumerWidget {
         ),
         elevation: 0,
         actions: [
-          // TODO(rui): 正しいアイコンを入れる
           IconButton(
-              icon: const Icon(
-                Icons.manage_search_outlined,
-                size: 30,
-              ),
-              onPressed: () {
-                showCupertinoModalPopup<void>(
-                  context: context,
-                  builder: (BuildContext context) => Container(
-                    height: 300,
-                    padding: const EdgeInsets.only(top: 6.0),
-                    margin: EdgeInsets.only(
-                      bottom: MediaQuery.of(context).viewInsets.bottom,
-                    ),
-                    color:
-                        CupertinoColors.systemBackground.resolveFrom(context),
-                    child: SafeArea(
-                      top: false,
-                      child: Column(
-                        children: [
-                          TextButton(
-                            child: const Text('決定'),
-                            onPressed: () {
-                              propertyState.value
-                                  .sort((a, b) => a.rent.compareTo(b.rent));
-                              propertyState.notifyListeners();
-                              Navigator.pop(context);
-                            },
+            icon: const Icon(
+              Icons.manage_search_outlined,
+              size: 30,
+            ),
+            onPressed: () {
+              showCupertinoModalPopup<void>(
+                context: context,
+                builder: (BuildContext context) => Container(
+                  height: 300,
+                  padding: const EdgeInsets.only(top: 6.0),
+                  margin: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom,
+                  ),
+                  color: CupertinoColors.systemBackground.resolveFrom(context),
+                  child: SafeArea(
+                    top: false,
+                    child: Column(
+                      children: [
+                        TextButton(
+                          child: const Text('決定'),
+                          onPressed: () {
+                            propertyState.value
+                                .sort((a, b) => a.rent.compareTo(b.rent));
+                            propertyState.notifyListeners();
+                            Navigator.pop(context);
+                          },
+                        ),
+                        SizedBox(
+                          height: 200,
+                          child: CupertinoPicker(
+                            itemExtent: 30,
+                            onSelectedItemChanged: (index) {},
+                            children: [
+                              '賃料が安い順',
+                              '賃料が高い順',
+                              '駅から近い順',
+                              '築年数が古い順',
+                              '築年数が新しい順',
+                            ].map((e) => Text(e)).toList(),
                           ),
-                          SizedBox(
-                              height: 200,
-                              child: CupertinoPicker(
-                                itemExtent: 30,
-                                onSelectedItemChanged: (index) {},
-                                children: [
-                                  '賃料が安い順',
-                                  '賃料が安い順',
-                                  '駅から近い順',
-                                  '築年数が古い順',
-                                  '築年数が新しい順',
-                                ].map((e) => Text(e)).toList(),
-                              )),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                );
-              }),
+                ),
+              );
+            },
+          ),
         ],
         iconTheme: IconTheme.of(context).copyWith(
           color: Colors.black,

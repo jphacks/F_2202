@@ -77,8 +77,11 @@ mixin _$Property {
   /// 位置
   double get lat => throw _privateConstructorUsedError;
 
-  ///
+  /// 緯度
   double get lng => throw _privateConstructorUsedError;
+
+  /// 評価
+  double get rate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -111,7 +114,8 @@ abstract class $PropertyCopyWith<$Res> {
       double area,
       String propetyStoructure,
       double lat,
-      double lng});
+      double lng,
+      double rate});
 
   $TransportionCopyWith<$Res> get transportion;
 }
@@ -149,6 +153,7 @@ class _$PropertyCopyWithImpl<$Res, $Val extends Property>
     Object? propetyStoructure = null,
     Object? lat = null,
     Object? lng = null,
+    Object? rate = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -231,6 +236,10 @@ class _$PropertyCopyWithImpl<$Res, $Val extends Property>
           ? _value.lng
           : lng // ignore: cast_nullable_to_non_nullable
               as double,
+      rate: null == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 
@@ -270,7 +279,8 @@ abstract class _$$_PropertyCopyWith<$Res> implements $PropertyCopyWith<$Res> {
       double area,
       String propetyStoructure,
       double lat,
-      double lng});
+      double lng,
+      double rate});
 
   @override
   $TransportionCopyWith<$Res> get transportion;
@@ -307,6 +317,7 @@ class __$$_PropertyCopyWithImpl<$Res>
     Object? propetyStoructure = null,
     Object? lat = null,
     Object? lng = null,
+    Object? rate = null,
   }) {
     return _then(_$_Property(
       id: null == id
@@ -389,6 +400,10 @@ class __$$_PropertyCopyWithImpl<$Res>
           ? _value.lng
           : lng // ignore: cast_nullable_to_non_nullable
               as double,
+      rate: null == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -416,7 +431,8 @@ class _$_Property implements _Property {
       this.area = 0.0,
       this.propetyStoructure = '',
       this.lat = 0.0,
-      this.lng = 0.0});
+      this.lng = 0.0,
+      this.rate = 0.0});
 
   factory _$_Property.fromJson(Map<String, dynamic> json) =>
       _$$_PropertyFromJson(json);
@@ -516,14 +532,19 @@ class _$_Property implements _Property {
   @JsonKey()
   final double lat;
 
-  ///
+  /// 緯度
   @override
   @JsonKey()
   final double lng;
 
+  /// 評価
+  @override
+  @JsonKey()
+  final double rate;
+
   @override
   String toString() {
-    return 'Property(id: $id, imageUrl: $imageUrl, name: $name, prefecture: $prefecture, city: $city, region: $region, address: $address, rent: $rent, roomCount: $roomCount, floorPlan: $floorPlan, totalGroundStory: $totalGroundStory, netYield: $netYield, florPart: $florPart, propertyType: $propertyType, transportion: $transportion, fee: $fee, area: $area, propetyStoructure: $propetyStoructure, lat: $lat, lng: $lng)';
+    return 'Property(id: $id, imageUrl: $imageUrl, name: $name, prefecture: $prefecture, city: $city, region: $region, address: $address, rent: $rent, roomCount: $roomCount, floorPlan: $floorPlan, totalGroundStory: $totalGroundStory, netYield: $netYield, florPart: $florPart, propertyType: $propertyType, transportion: $transportion, fee: $fee, area: $area, propetyStoructure: $propetyStoructure, lat: $lat, lng: $lng, rate: $rate)';
   }
 
   @override
@@ -560,7 +581,8 @@ class _$_Property implements _Property {
             (identical(other.propetyStoructure, propetyStoructure) ||
                 other.propetyStoructure == propetyStoructure) &&
             (identical(other.lat, lat) || other.lat == lat) &&
-            (identical(other.lng, lng) || other.lng == lng));
+            (identical(other.lng, lng) || other.lng == lng) &&
+            (identical(other.rate, rate) || other.rate == rate));
   }
 
   @JsonKey(ignore: true)
@@ -586,7 +608,8 @@ class _$_Property implements _Property {
         area,
         propetyStoructure,
         lat,
-        lng
+        lng,
+        rate
       ]);
 
   @JsonKey(ignore: true)
@@ -624,7 +647,8 @@ abstract class _Property implements Property {
       final double area,
       final String propetyStoructure,
       final double lat,
-      final double lng}) = _$_Property;
+      final double lng,
+      final double rate}) = _$_Property;
 
   factory _Property.fromJson(Map<String, dynamic> json) = _$_Property.fromJson;
 
@@ -706,8 +730,12 @@ abstract class _Property implements Property {
   double get lat;
   @override
 
-  ///
+  /// 緯度
   double get lng;
+  @override
+
+  /// 評価
+  double get rate;
   @override
   @JsonKey(ignore: true)
   _$$_PropertyCopyWith<_$_Property> get copyWith =>
