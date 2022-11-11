@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile/config/app_routing_name.dart';
@@ -234,7 +235,45 @@ class _SearchTextField extends StatelessWidget {
       child: TextFormField(
         onTap: () {
           selectCondition
-              ? null
+              ? showCupertinoModalPopup<void>(
+                  context: context,
+                  builder: (BuildContext context) => Container(
+                    height: 300,
+                    padding: const EdgeInsets.only(top: 6.0),
+                    margin: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom,
+                    ),
+                    color:
+                        CupertinoColors.systemBackground.resolveFrom(context),
+                    child: SafeArea(
+                      top: false,
+                      child: Column(
+                        children: [
+                          TextButton(
+                            child: const Text('決定'),
+                            onPressed: () {
+                              textEditingController.text = '施設優先';
+                              Navigator.pop(context);
+                            },
+                          ),
+                          SizedBox(
+                            height: 200,
+                            child: CupertinoPicker(
+                              itemExtent: 30,
+                              onSelectedItemChanged: (index) {},
+                              children: [
+                                '施設優先',
+                                '家賃が安い',
+                                '住みやすさ重視',
+                                '家の広さ',
+                              ].map((e) => Text(e)).toList(),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                )
               : Navigator.of(context).pushNamed(
                   AppRoutingName.searchPage,
                   arguments: SearchArgument(
