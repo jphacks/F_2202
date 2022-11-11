@@ -61,6 +61,17 @@ class SearchDestinationPage extends HookConsumerWidget {
                 const SizedBox(
                   height: 20,
                 ),
+                _textFieldArea(
+                  labelText: '優先する条件',
+                  textEditingController: controller.textEditingController4,
+                  index: 4,
+                  hintText: '条件を設定する',
+                  color: Colors.purple,
+                  selectCondition: true,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
                 SizedBox(
                   width: size.width,
                   height: size.height * 0.055,
@@ -156,31 +167,43 @@ class SearchDestinationPage extends HookConsumerWidget {
     required String labelText,
     required TextEditingController textEditingController,
     required int index,
+    Color? color,
+    String? hintText,
     InputBorder? inputBorder,
+    bool? selectCondition,
   }) {
     return Row(
       children: [
         const SizedBox(
           width: 10,
         ),
-        _searchIcon(),
+        _searchIcon(
+          color: color ?? Colors.green,
+        ),
         const SizedBox(
           width: 15,
         ),
         _SearchTextField(
           labelText: labelText,
           border: inputBorder,
+          hintText: hintText ?? '場所を検索する',
           textEditingController: textEditingController,
           index: index,
+          selectCondition: selectCondition ?? false,
         ),
       ],
     );
   }
 
-  Widget _searchIcon() {
+  Widget _searchIcon({
+    Color color = Colors.green,
+  }) {
     return Padding(
       padding: const EdgeInsets.only(top: 20),
-      child: Image.asset('assets/green.png'),
+      child: Image.asset(
+        'assets/green.png',
+        color: color,
+      ),
     );
   }
 }
@@ -191,28 +214,33 @@ class _SearchTextField extends StatelessWidget {
     required this.labelText,
     required this.textEditingController,
     required this.index,
+    required this.hintText,
+    required this.selectCondition,
     this.border,
   }) : super(key: key);
 
   final String labelText;
   final InputBorder? border;
   final int index;
+  final String hintText;
+  final bool selectCondition;
   final TextEditingController textEditingController;
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalization.of(context)!;
     final size = MediaQuery.of(context).size;
     return SizedBox(
       width: size.width * 0.8,
       child: TextFormField(
         onTap: () {
-          Navigator.of(context).pushNamed(
-            AppRoutingName.searchPage,
-            arguments: SearchArgument(
-              selectedIndex: index,
-            ),
-          );
+          selectCondition
+              ? null
+              : Navigator.of(context).pushNamed(
+                  AppRoutingName.searchPage,
+                  arguments: SearchArgument(
+                    selectedIndex: index,
+                  ),
+                );
         },
         controller: textEditingController,
         readOnly: true,
@@ -224,7 +252,7 @@ class _SearchTextField extends StatelessWidget {
               color: Colors.grey,
             ),
           ),
-          hintText: l10n.search_place_text_field_hint,
+          hintText: hintText,
           hintStyle: const TextStyle(color: Colors.grey),
           border: border,
         ),

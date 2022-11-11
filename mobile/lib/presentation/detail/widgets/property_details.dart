@@ -11,6 +11,7 @@ class PropertyDetails extends StatelessWidget {
     required this.area,
     required this.propetyStoructure,
     required this.stationWalkTime,
+    required this.rate,
   });
 
   final String rent;
@@ -21,29 +22,57 @@ class PropertyDetails extends StatelessWidget {
   final String area;
   final String propetyStoructure;
   final String stationWalkTime;
+  final String rate;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          prices(
-            rent: rent,
-            fee: fee,
-          ),
-          const SizedBox(height: 16),
-          detailTable(
-            yearBuilds: yearBuilds,
-            floorPlan: floorPlan,
-            propertyType: propertyType,
-            area: area,
-            propetyStoructure: propetyStoructure,
-            stationWalkTime: stationWalkTime,
-            context: context,
-          ),
-        ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8,
+      ),
+      child: SizedBox(
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            prices(
+              rent: rent,
+              fee: fee,
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                const SizedBox(
+                  width: 20,
+                ),
+                const Text(
+                  '住みやすさ評価: ',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  rate,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            detailTable(
+              yearBuilds: yearBuilds,
+              floorPlan: floorPlan,
+              propertyType: propertyType,
+              area: area,
+              propetyStoructure: propetyStoructure,
+              stationWalkTime: stationWalkTime,
+              context: context,
+            ),
+          ],
+        ),
       ),
     );
   }

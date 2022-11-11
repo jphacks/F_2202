@@ -65,6 +65,7 @@ class DetailPage extends StatelessWidget {
                           stationWalkTime:
                               property.transportion.stationWalkTime ??
                                   '山手線 渋谷駅',
+                          rate: property.rate.toString(),
                         ),
                         const HorizontalRule(),
                         const BuildingImages(

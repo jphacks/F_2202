@@ -233,7 +233,32 @@ class _PropertyListTile extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(
-                    height: 5,
+                    height: 8,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Text(
+                        '住みやすさ評価: ',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        property.rate.toString(),
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 8,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -242,7 +267,9 @@ class _PropertyListTile extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            property.rent != 0 ? '${property.rent}円' : '掲載なし',
+                            property.rent != 0
+                                ? '家賃: ${property.rent}円'
+                                : '掲載なし',
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,

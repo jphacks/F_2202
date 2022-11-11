@@ -18,6 +18,7 @@ class SearchDestinationController
   final textEditingController1 = TextEditingController();
   final textEditingController2 = TextEditingController();
   final textEditingController3 = TextEditingController();
+  final textEditingController4 = TextEditingController();
 
   Future<Location> getPlaceDetailFromId(String placeId) async {
     GoogleMapsPlaces places = GoogleMapsPlaces(apiKey: googleMapApiKey);
