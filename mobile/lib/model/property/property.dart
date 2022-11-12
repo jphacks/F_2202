@@ -68,6 +68,8 @@ class Property with _$Property {
 
     /// 評価
     @Default(0.0) double rate,
+
+    @Default(false) bool isCenter,
   }) = _Property;
 
   factory Property.fromJson(Map<String, dynamic> json) =>

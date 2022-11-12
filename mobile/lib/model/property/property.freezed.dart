@@ -82,6 +82,7 @@ mixin _$Property {
 
   /// 評価
   double get rate => throw _privateConstructorUsedError;
+  bool get isCenter => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -115,7 +116,8 @@ abstract class $PropertyCopyWith<$Res> {
       String propetyStoructure,
       double lat,
       double lng,
-      double rate});
+      double rate,
+      bool isCenter});
 
   $TransportionCopyWith<$Res> get transportion;
 }
@@ -154,6 +156,7 @@ class _$PropertyCopyWithImpl<$Res, $Val extends Property>
     Object? lat = null,
     Object? lng = null,
     Object? rate = null,
+    Object? isCenter = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -240,6 +243,10 @@ class _$PropertyCopyWithImpl<$Res, $Val extends Property>
           ? _value.rate
           : rate // ignore: cast_nullable_to_non_nullable
               as double,
+      isCenter: null == isCenter
+          ? _value.isCenter
+          : isCenter // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -280,7 +287,8 @@ abstract class _$$_PropertyCopyWith<$Res> implements $PropertyCopyWith<$Res> {
       String propetyStoructure,
       double lat,
       double lng,
-      double rate});
+      double rate,
+      bool isCenter});
 
   @override
   $TransportionCopyWith<$Res> get transportion;
@@ -318,6 +326,7 @@ class __$$_PropertyCopyWithImpl<$Res>
     Object? lat = null,
     Object? lng = null,
     Object? rate = null,
+    Object? isCenter = null,
   }) {
     return _then(_$_Property(
       id: null == id
@@ -404,6 +413,10 @@ class __$$_PropertyCopyWithImpl<$Res>
           ? _value.rate
           : rate // ignore: cast_nullable_to_non_nullable
               as double,
+      isCenter: null == isCenter
+          ? _value.isCenter
+          : isCenter // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -432,7 +445,8 @@ class _$_Property implements _Property {
       this.propetyStoructure = '',
       this.lat = 0.0,
       this.lng = 0.0,
-      this.rate = 0.0});
+      this.rate = 0.0,
+      this.isCenter = false});
 
   factory _$_Property.fromJson(Map<String, dynamic> json) =>
       _$$_PropertyFromJson(json);
@@ -541,10 +555,13 @@ class _$_Property implements _Property {
   @override
   @JsonKey()
   final double rate;
+  @override
+  @JsonKey()
+  final bool isCenter;
 
   @override
   String toString() {
-    return 'Property(id: $id, imageUrl: $imageUrl, name: $name, prefecture: $prefecture, city: $city, region: $region, address: $address, rent: $rent, roomCount: $roomCount, floorPlan: $floorPlan, totalGroundStory: $totalGroundStory, netYield: $netYield, florPart: $florPart, propertyType: $propertyType, transportion: $transportion, fee: $fee, area: $area, propetyStoructure: $propetyStoructure, lat: $lat, lng: $lng, rate: $rate)';
+    return 'Property(id: $id, imageUrl: $imageUrl, name: $name, prefecture: $prefecture, city: $city, region: $region, address: $address, rent: $rent, roomCount: $roomCount, floorPlan: $floorPlan, totalGroundStory: $totalGroundStory, netYield: $netYield, florPart: $florPart, propertyType: $propertyType, transportion: $transportion, fee: $fee, area: $area, propetyStoructure: $propetyStoructure, lat: $lat, lng: $lng, rate: $rate, isCenter: $isCenter)';
   }
 
   @override
@@ -582,7 +599,9 @@ class _$_Property implements _Property {
                 other.propetyStoructure == propetyStoructure) &&
             (identical(other.lat, lat) || other.lat == lat) &&
             (identical(other.lng, lng) || other.lng == lng) &&
-            (identical(other.rate, rate) || other.rate == rate));
+            (identical(other.rate, rate) || other.rate == rate) &&
+            (identical(other.isCenter, isCenter) ||
+                other.isCenter == isCenter));
   }
 
   @JsonKey(ignore: true)
@@ -609,7 +628,8 @@ class _$_Property implements _Property {
         propetyStoructure,
         lat,
         lng,
-        rate
+        rate,
+        isCenter
       ]);
 
   @JsonKey(ignore: true)
@@ -648,7 +668,8 @@ abstract class _Property implements Property {
       final String propetyStoructure,
       final double lat,
       final double lng,
-      final double rate}) = _$_Property;
+      final double rate,
+      final bool isCenter}) = _$_Property;
 
   factory _Property.fromJson(Map<String, dynamic> json) = _$_Property.fromJson;
 
@@ -736,6 +757,8 @@ abstract class _Property implements Property {
 
   /// 評価
   double get rate;
+  @override
+  bool get isCenter;
   @override
   @JsonKey(ignore: true)
   _$$_PropertyCopyWith<_$_Property> get copyWith =>

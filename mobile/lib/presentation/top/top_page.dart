@@ -10,6 +10,7 @@ import 'package:mobile/presentation/top/search/search_destination_page.dart';
 import 'package:mobile/presentation/top/top_controller.dart';
 import 'package:mobile/presentation/top/top_controller_provider.dart';
 import 'package:mobile/presentation/top/top_state.dart';
+import 'package:mobile/presentation/top/widget/tile.dart';
 import 'package:mobile/presentation/widgets/drop_shadow.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
@@ -229,9 +230,13 @@ class TopPageState extends ConsumerState<TopPage> {
                     ),
                   ),
                   Positioned(
-                    bottom: 80,
+                    bottom: isBuild ? 180 : 80,
                     child: homeButtomList(controller),
                   ),
+                  if (isBuild)
+                    _cardSection(
+                      pageController: _pageController,
+                    ),
                 ],
               );
             },
@@ -267,38 +272,57 @@ class TopPageState extends ConsumerState<TopPage> {
     );
   }
 
-  // Widget _cardSection({
-  //   required PageController pageController,
-  // }) {
-  //   return Container(
-  //     height: 150,
-  //     padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
-  //     child: PageView(
-  //       onPageChanged: (int index) async {
-  //         if (_mapController.isCompleted) {
-  //           final GoogleMapController mapController =
-  //               await _mapController.future;
-  //           //スワイプ後のページのお店を取得
-  //           final selectedLocation = mockList.elementAt(index);
+  Widget _cardSection({
+    required PageController pageController,
+  }) {
+    return Expanded(
+      child: Container(
+        height: 150,
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
+        child: PageView(
+          onPageChanged: (int index) async {
+            if (_mapController.isCompleted) {
+              final GoogleMapController mapController =
+                  await _mapController.future;
+              //スワイプ後のページのお店を取得
+              final selectedLocation = mockList.elementAt(index);
 
-  //           final zoomLevel = await mapController.getZoomLevel();
-  //           mapController.animateCamera(
-  //             CameraUpdate.newCameraPosition(
-  //               CameraPosition(
-  //                 target: LatLng(
-  //                   selectedLocation.lat,
-  //                   selectedLocation.lng,
-  //                 ),
-  //                 zoom: zoomLevel,
-  //               ),
-  //             ),
-  //           );
-  //         }
-  //       },
-  //       controller: pageController,
-  //     ),
-  //   );
-  // }
+              final zoomLevel = await mapController.getZoomLevel();
+              mapController.animateCamera(
+                CameraUpdate.newCameraPosition(
+                  CameraPosition(
+                    target: LatLng(
+                      selectedLocation.lat,
+                      selectedLocation.lng,
+                    ),
+                    zoom: zoomLevel,
+                  ),
+                ),
+              );
+            }
+          },
+          controller: pageController,
+          children: _storeTiles(),
+        ),
+      ),
+    );
+  }
+
+  List<Widget> _storeTiles() {
+    final _storeTiles = mockList.map(
+      (store) {
+        return PropertyListTile(
+          property: store,
+          location: const LatLng(
+            35.658034,
+            139.701636,
+          ),
+          onTap: () async {},
+        );
+      },
+    ).toList();
+    return _storeTiles;
+  }
 
   Set<Marker> _createMarker({
     required PageController pageController,
@@ -307,6 +331,9 @@ class TopPageState extends ConsumerState<TopPage> {
         ? mockList
             .map(
               (p) => Marker(
+                icon: p.isCenter
+                    ? BitmapDescriptor.defaultMarkerWithHue(255)
+                    : BitmapDescriptor.defaultMarkerWithHue(0),
                 markerId: MarkerId(p.address),
                 position: LatLng(p.lat, p.lng),
               ),
@@ -327,20 +354,21 @@ class TopPageState extends ConsumerState<TopPage> {
   ) {
     return Row(
       children: [
-        DropShadow(
-          child: homeButton(
-            icon: Icons.list,
-            onButtonTap: () async {
-              Navigator.of(context).pushNamed(
-                AppRoutingName.pageList,
-                arguments: PropertyListArgument(
-                  propertyList: mockList,
-                  place: '渋谷',
-                ),
-              );
-            },
+        if (isBuild)
+          DropShadow(
+            child: homeButton(
+              icon: Icons.list,
+              onButtonTap: () async {
+                Navigator.of(context).pushNamed(
+                  AppRoutingName.pageList,
+                  arguments: PropertyListArgument(
+                    propertyList: _filter(),
+                    place: '渋谷',
+                  ),
+                );
+              },
+            ),
           ),
-        ),
         const SizedBox(
           width: 30,
         ),
@@ -396,6 +424,21 @@ class TopPageState extends ConsumerState<TopPage> {
     );
   }
 
+  List<Property> _filter({
+    Property? property,
+  }) {
+    final list = mockList;
+    for (var mock in list) {
+      if (mock.isCenter) {
+        list.remove(mock);
+      }
+    }
+    if (property != null) {
+      list.add(property);
+    }
+    return list;
+  }
+
   void _buildButtomSheet() {
     final size = MediaQuery.of(context).size;
     showCupertinoModalBottomSheet(
@@ -427,6 +470,13 @@ class TopPageState extends ConsumerState<TopPage> {
               () {
                 isBuild = true;
                 centerDestination = latlng;
+                _filter(
+                  property: Property(
+                    isCenter: true,
+                    lat: latlng.latitude,
+                    lng: latlng.longitude,
+                  ),
+                );
               },
             );
           },

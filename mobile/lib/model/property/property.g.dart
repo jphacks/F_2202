@@ -30,6 +30,7 @@ _$_Property _$$_PropertyFromJson(Map<String, dynamic> json) => _$_Property(
       lat: (json['lat'] as num?)?.toDouble() ?? 0.0,
       lng: (json['lng'] as num?)?.toDouble() ?? 0.0,
       rate: (json['rate'] as num?)?.toDouble() ?? 0.0,
+      isCenter: json['is_center'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_PropertyToJson(_$_Property instance) =>
@@ -55,6 +56,7 @@ Map<String, dynamic> _$$_PropertyToJson(_$_Property instance) =>
       'lat': instance.lat,
       'lng': instance.lng,
       'rate': instance.rate,
+      'is_center': instance.isCenter,
     };
 
 _$PropertyModelResponse _$$PropertyModelResponseFromJson(
