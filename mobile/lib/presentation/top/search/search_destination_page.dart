@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile/config/app_routing_name.dart';
 import 'package:mobile/constant/color_hex.dart';
-import 'package:mobile/l10n/app_localization.dart';
 import 'package:mobile/model/destination/destination.dart';
 import 'package:mobile/presentation/top/search/search_destination_controller_provider.dart';
 import 'package:mobile/presentation/top/search/search_page.dart';
@@ -12,15 +12,18 @@ class SearchDestinationPage extends HookConsumerWidget {
   const SearchDestinationPage({
     Key? key,
     required this.onAnimatedTap,
+    required this.onCheckedTap,
   }) : super(key: key);
 
   final ValueChanged<List<Destination>> onAnimatedTap;
+  final ValueChanged<bool> onCheckedTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(searchDestinationControllerProvider);
     final controller = ref.watch(searchDestinationControllerProvider.notifier);
     final size = MediaQuery.of(context).size;
+    final _isChecked = useState(false);
 
     return Scaffold(
       backgroundColor: HexColor('FFFFFF'),
@@ -62,13 +65,26 @@ class SearchDestinationPage extends HookConsumerWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                _textFieldArea(
-                  labelText: '優先する条件',
-                  textEditingController: controller.textEditingController4,
-                  index: 4,
-                  hintText: '条件を設定する',
-                  color: Colors.purple,
-                  selectCondition: true,
+                // _textFieldArea(
+                //   labelText: '優先する条件',
+                //   textEditingController: controller.textEditingController4,
+                //   index: 4,
+                //   hintText: '条件を設定する',
+                //   color: Colors.purple,
+                //   selectCondition: true,
+                // ),
+                SwitchListTile(
+                  value: _isChecked.value,
+                  title: const Text(
+                    '施設優先モード',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Cursive',
+                    ),
+                  ),
+                  onChanged: (bool value) {
+                    _isChecked.value = true;
+                  },
                 ),
                 const SizedBox(
                   height: 20,
@@ -93,6 +109,8 @@ class SearchDestinationPage extends HookConsumerWidget {
                         state.destination2,
                         state.destination3,
                       ]);
+
+                      onCheckedTap(_isChecked.value);
 
                       Navigator.pop(context);
                     },

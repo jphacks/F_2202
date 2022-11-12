@@ -43,8 +43,9 @@ PageRouteBuilder? appRouting(RouteSettings settings) {
         ),
       );
     case AppRoutingName.pageSwipe:
+      final argument = settings.arguments as SwipeArgument;
       return _presentPage(
-        page: const SwipePage(),
+        page: SwipePage(argument: argument),
       );
     default:
       return null;

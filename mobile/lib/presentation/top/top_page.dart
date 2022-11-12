@@ -6,6 +6,7 @@ import 'package:mobile/config/app_routing_name.dart';
 import 'package:mobile/model/destination/destination.dart';
 import 'package:mobile/model/property/property.dart';
 import 'package:mobile/presentation/property_list/property_list_page.dart';
+import 'package:mobile/presentation/swipe/swipe_page.dart';
 import 'package:mobile/presentation/top/search/search_destination_page.dart';
 import 'package:mobile/presentation/top/top_controller.dart';
 import 'package:mobile/presentation/top/top_controller_provider.dart';
@@ -26,6 +27,7 @@ class TopPage extends StatefulHookConsumerWidget {
 class TopPageState extends ConsumerState<TopPage> {
   final Completer<GoogleMapController> _mapController = Completer();
   LatLng centerDestination = const LatLng(0, 0);
+  bool _isChecked = false;
   // ここにMock追加
   List<Property> mockList = [
     const Property(
@@ -275,35 +277,33 @@ class TopPageState extends ConsumerState<TopPage> {
   Widget _cardSection({
     required PageController pageController,
   }) {
-    return Expanded(
-      child: Container(
-        height: 150,
-        padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
-        child: PageView(
-          onPageChanged: (int index) async {
-            if (_mapController.isCompleted) {
-              final GoogleMapController mapController =
-                  await _mapController.future;
-              //スワイプ後のページのお店を取得
-              final selectedLocation = mockList.elementAt(index);
+    return Container(
+      height: 150,
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
+      child: PageView(
+        onPageChanged: (int index) async {
+          if (_mapController.isCompleted) {
+            final GoogleMapController mapController =
+                await _mapController.future;
+            //スワイプ後のページのお店を取得
+            final selectedLocation = mockList.elementAt(index);
 
-              final zoomLevel = await mapController.getZoomLevel();
-              mapController.animateCamera(
-                CameraUpdate.newCameraPosition(
-                  CameraPosition(
-                    target: LatLng(
-                      selectedLocation.lat,
-                      selectedLocation.lng,
-                    ),
-                    zoom: zoomLevel,
+            final zoomLevel = await mapController.getZoomLevel();
+            mapController.animateCamera(
+              CameraUpdate.newCameraPosition(
+                CameraPosition(
+                  target: LatLng(
+                    selectedLocation.lat,
+                    selectedLocation.lng,
                   ),
+                  zoom: zoomLevel,
                 ),
-              );
-            }
-          },
-          controller: pageController,
-          children: _storeTiles(),
-        ),
+              ),
+            );
+          }
+        },
+        controller: pageController,
+        children: _storeTiles(),
       ),
     );
   }
@@ -359,13 +359,23 @@ class TopPageState extends ConsumerState<TopPage> {
             child: homeButton(
               icon: Icons.list,
               onButtonTap: () async {
-                Navigator.of(context).pushNamed(
-                  AppRoutingName.pageList,
-                  arguments: PropertyListArgument(
-                    propertyList: _filter(),
-                    place: '渋谷',
-                  ),
-                );
+                if (_isChecked) {
+                  Navigator.of(context).pushNamed(
+                    AppRoutingName.pageSwipe,
+                    arguments: SwipeArgument(
+                      propertyList: _filter(),
+                      place: '渋谷',
+                    ),
+                  );
+                } else {
+                  Navigator.of(context).pushNamed(
+                    AppRoutingName.pageList,
+                    arguments: PropertyListArgument(
+                      propertyList: _filter()..shuffle(),
+                      place: '渋谷',
+                    ),
+                  );
+                }
               },
             ),
           ),
@@ -447,6 +457,11 @@ class TopPageState extends ConsumerState<TopPage> {
       builder: (_) => SizedBox(
         height: size.height * 0.9,
         child: SearchDestinationPage(
+          onCheckedTap: (bool value) {
+            setState(() {
+              _isChecked = value;
+            });
+          },
           onAnimatedTap: (destination) async {
             double latitude = 0;
             double longtitude = 0;
@@ -465,7 +480,8 @@ class TopPageState extends ConsumerState<TopPage> {
               longtitude / count,
             );
 
-            _animatedSelectedLocation(location: latlng);
+            await _animatedSelectedLocation(location: latlng);
+
             setState(
               () {
                 isBuild = true;

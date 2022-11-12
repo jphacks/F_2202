@@ -2,14 +2,29 @@ import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mobile/config/app_routing_name.dart';
+import 'package:mobile/model/property/property.dart';
 import 'package:mobile/model/store/store.dart';
+import 'package:mobile/presentation/property_list/property_list_page.dart';
 import 'package:mobile/presentation/swipe/swipe_card.dart';
-import 'package:mobile/presentation/swipe/swipe_model.dart';
+
+class SwipeArgument {
+  final List<Property> propertyList;
+  final String place;
+
+  SwipeArgument({
+    required this.propertyList,
+    required this.place,
+  });
+}
 
 class SwipePage extends HookConsumerWidget {
   const SwipePage({
     Key? key,
+    required this.argument,
   }) : super(key: key);
+
+  final SwipeArgument argument;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -83,6 +98,23 @@ class SwipePage extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(
+                AppRoutingName.pageList,
+                arguments: PropertyListArgument(
+                  propertyList: argument.propertyList..shuffle(),
+                  place: '渋谷',
+                ),
+              );
+            },
+            child: const Text(
+              '次へ',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: IconTheme.of(context).copyWith(
@@ -117,7 +149,7 @@ class SwipePage extends HookConsumerWidget {
               const SizedBox(
                 width: 20,
               ),
-              swipeRightButton(controller),
+              swipeRightButton(controller, context),
               const SizedBox(
                 width: 20,
               ),
@@ -136,9 +168,11 @@ class SwipePage extends HookConsumerWidget {
     } else {}
   }
 
-  Widget swipeRightButton(AppinioSwiperController controller) {
+  Widget swipeRightButton(AppinioSwiperController controller, dynamic context) {
     return ExampleButton(
-      onTap: () => controller.swipeRight(),
+      onTap: () {
+        controller.swipeRight();
+      },
       child: Container(
         height: 60,
         width: 60,
@@ -167,7 +201,9 @@ class SwipePage extends HookConsumerWidget {
 //swipe card to the left side
   Widget swipeLeftButton(AppinioSwiperController controller) {
     return ExampleButton(
-      onTap: () => controller.swipeLeft(),
+      onTap: () {
+        controller.swipeLeft();
+      },
       child: Container(
         height: 60,
         width: 60,
