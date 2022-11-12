@@ -358,7 +358,11 @@ class TopPageState extends ConsumerState<TopPage> {
         DropShadow(
           child: homeButton(
             icon: Icons.favorite,
-            onButtonTap: () async {},
+            onButtonTap: () async {
+              Navigator.of(context).pushNamed(
+                AppRoutingName.pageSwipe,
+              );
+            },
           ),
         ),
       ],

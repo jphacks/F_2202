@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/config/app_routing_name.dart';
 import 'package:mobile/presentation/property_list/property_list_page.dart';
+import 'package:mobile/presentation/swipe/swipe_page.dart';
 import 'package:mobile/presentation/top/search/search_page.dart';
 import 'package:mobile/presentation/detail/detail_page.dart';
 import 'package:mobile/presentation/top/top_page.dart';
@@ -40,6 +41,10 @@ PageRouteBuilder? appRouting(RouteSettings settings) {
         page: PropertyListPage(
           argument: argument,
         ),
+      );
+    case AppRoutingName.pageSwipe:
+      return _presentPage(
+        page: const SwipePage(),
       );
     default:
       return null;
