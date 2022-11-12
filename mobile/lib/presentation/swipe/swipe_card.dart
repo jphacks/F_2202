@@ -1,15 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/presentation/swipe/swipe_model.dart';
-
+import 'package:mobile/model/property/property.dart';
 
 class ExampleCard extends StatelessWidget {
-  final ExampleCandidateModel candidate;
-
   const ExampleCard({
     Key? key,
-    required this.candidate,
+    required this.property,
   }) : super(key: key);
+
+  final Property property;
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +30,12 @@ class ExampleCard extends StatelessWidget {
         children: [
           Flexible(
             child: Container(
-              decoration: BoxDecoration(
-                gradient: candidate.color,
-                borderRadius: const BorderRadius.only(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.fitWidth,
+                  image: AssetImage('assets/2.png'),
+                ),
+                borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10),
                 ),
