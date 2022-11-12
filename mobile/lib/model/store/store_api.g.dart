@@ -31,7 +31,7 @@ Map<String, dynamic> _$$StoreApiResponseToJson(_$StoreApiResponse instance) =>
     };
 
 _$_Geometry _$$_GeometryFromJson(Map<String, dynamic> json) => _$_Geometry(
-      location: Location.fromJson(json['location'] as Map<String, dynamic>),
+      location: Locations.fromJson(json['location'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_GeometryToJson(_$_Geometry instance) =>
@@ -39,12 +39,12 @@ Map<String, dynamic> _$$_GeometryToJson(_$_Geometry instance) =>
       'location': instance.location.toJson(),
     };
 
-_$_Location _$$_LocationFromJson(Map<String, dynamic> json) => _$_Location(
+_$_Locations _$$_LocationsFromJson(Map<String, dynamic> json) => _$_Locations(
       lat: (json['lat'] as num).toDouble(),
       lng: (json['lng'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$$_LocationToJson(_$_Location instance) =>
+Map<String, dynamic> _$$_LocationsToJson(_$_Locations instance) =>
     <String, dynamic>{
       'lat': instance.lat,
       'lng': instance.lng,

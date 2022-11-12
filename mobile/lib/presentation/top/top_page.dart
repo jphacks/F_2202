@@ -423,10 +423,12 @@ class TopPageState extends ConsumerState<TopPage> {
             );
 
             _animatedSelectedLocation(location: latlng);
-            setState(() {
-              isBuild = true;
-              centerDestination = latlng;
-            });
+            setState(
+              () {
+                isBuild = true;
+                centerDestination = latlng;
+              },
+            );
           },
         ),
       ),

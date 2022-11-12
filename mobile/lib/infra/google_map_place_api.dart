@@ -5,6 +5,8 @@ import 'package:mobile/config/config.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:mobile/model/destination/destination.dart';
 import 'package:mobile/model/destination/destination_response.dart';
+import 'package:mobile/model/store/store.dart';
+import 'package:mobile/model/store/store_api.dart';
 
 mixin GoogleMapPlaceSearchApi {
   /// リクエストを送る
@@ -45,6 +47,39 @@ mixin GoogleMapPlaceSearchApi {
       final destinationList = _getDestinationList(decoded);
 
       return Result.value(destinationList);
+    } on Exception catch (e) {
+      return Result.error(e);
+    }
+  }
+
+  static List<Store> _getStoreList(Map<String, dynamic> decoded) {
+    List<Store> museumList = [];
+    for (var result in decoded['results']) {
+      museumList.add(StoreApiResponse.fromJson(result).toEntity());
+    }
+    return museumList;
+  }
+
+  static Future<Result<List<dynamic>>> fetchStore({
+    required double latitude,
+    required double longtitude,
+    required String keyword,
+  }) async {
+    final placeApiKey =
+        'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
+        'key=$googleMapApiKey&location=$latitude,$longtitude&radius=5000&language=ja&keyword=$keyword';
+
+    List<Store> storeList = [];
+
+    try {
+      final response = await _request(url: placeApiKey);
+      final decoded = response.asValue!.value;
+
+      /// 飲食店の追加
+      final list = _getStoreList(decoded);
+      storeList.addAll(list);
+
+      return Result.value(storeList);
     } on Exception catch (e) {
       return Result.error(e);
     }

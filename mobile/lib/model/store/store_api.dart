@@ -34,20 +34,20 @@ abstract class StoreApi with _$StoreApi {
 @freezed
 abstract class Geometry with _$Geometry {
   const factory Geometry({
-    required Location location,
+    required Locations location,
   }) = _Geometry;
   factory Geometry.fromJson(Map<String, dynamic> json) =>
       _$GeometryFromJson(json);
 }
 
 @freezed
-abstract class Location with _$Location {
-  const factory Location({
+abstract class Locations with _$Locations {
+  const factory Locations({
     required double lat,
     required double lng,
-  }) = _Location;
-  factory Location.fromJson(Map<String, dynamic> json) =>
-      _$LocationFromJson(json);
+  }) = _Locations;
+  factory Locations.fromJson(Map<String, dynamic> json) =>
+      _$LocationsFromJson(json);
 }
 
 // 写真
