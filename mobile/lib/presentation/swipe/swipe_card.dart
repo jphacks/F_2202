@@ -33,7 +33,7 @@ class ExampleCard extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.fitWidth,
-                  image: AssetImage(store.photoReference),
+                  image: NetworkImage(store.photoReference),
                 ),
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10),
@@ -70,22 +70,22 @@ class ExampleCard extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      store.rating.toString(),
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 15,
+                      '評価: ${store.star}',
+                      style: TextStyle(
+                        color: Colors.black.withOpacity(0.7),
+                        fontSize: 20,
                       ),
                     ),
                     const SizedBox(
-                      height: 5,
+                      height: 10,
                     ),
                     Text(
-                      store.address,
+                      '${store.meter}m',
                       style: const TextStyle(
                         color: Colors.grey,
-                        fontSize: 15,
+                        fontSize: 20,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ],

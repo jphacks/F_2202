@@ -15,5 +15,7 @@ class Store with _$Store {
     @Default('') String address,
     @Default([]) List<String> openingHours,
     @Default(0) int userRatingsTotal,
+    @Default('') String meter,
+    @Default('') String star,
   }) = _Store;
 }

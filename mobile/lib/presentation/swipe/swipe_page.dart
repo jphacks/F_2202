@@ -14,8 +14,68 @@ class SwipePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final List<ExampleCard> cards = [
-      ExampleCard(
-        store: Store(),
+      const ExampleCard(
+        store: Store(
+          name: 'らあめん 渋英',
+          meter: '200',
+          star: '4.2',
+          photoReference:
+              'https://lh5.googleusercontent.com/p/AF1QipNBBSfwaV6M6sHFkeQnXVCES-XnF7AD_qIluCRW=w184-h184-n-k-no?q=70',
+        ),
+      ),
+      const ExampleCard(
+        store: Store(
+          name: '羽衣湯',
+          meter: '410',
+          star: '4.0',
+          photoReference:
+              'https://spa-tokyo.net/z-t-hagoromo/hagoromoyu-2015-110000000000.jpg?q=70',
+        ),
+      ),
+      const ExampleCard(
+        store: Store(
+          name: '黄金の塩らぁ麺 渋谷',
+          meter: '400m',
+          star: '3.9',
+          photoReference:
+              'https://lh5.googleusercontent.com/p/AF1QipPAtwIR0fmvKl_cFc2tXkj121uWcRGOf0kdFSc=w184-h184-n-k-no?q=70',
+        ),
+      ),
+      const ExampleCard(
+        store: Store(
+          name: '改良湯',
+          meter: '700',
+          star: '4.3',
+          photoReference:
+              'https://kairyou-yu.com/wp-content/themes/kairyou-yu2018/images/top_main.jpg?q=70',
+        ),
+      ),
+      const ExampleCard(
+        store: Store(
+          name: '博多天神 渋谷南口店',
+          meter: '310',
+          star: '4.2',
+          photoReference:
+              'https://lh5.googleusercontent.com/p/AF1QipP0HYOg6jOciOYzydGYs3xdsmcg9qvOBzWkaZuf=w184-h184-n-k-no?q=70',
+        ),
+      ),
+      const ExampleCard(
+        store: Store(
+          name: 'らーめんはやし',
+          meter: '400',
+          star: '4.0',
+          photoReference:
+              'https://s1.spkimg.com/image/2022/10/09/07/eafLq3CIErCYrARXvevbBGu5OT9Ups94.jpg?q=60',
+        ),
+      ),
+      const ExampleCard(
+        store: Store(
+          name: 'ドシー恵比寿',
+          meter: '200',
+          star: '4.2',
+          photoReference:
+              'https://do-c.jp/images/photolibrary/06_ebisu/keyvisual.jpg?q=70',
+        ),
       ),
     ];
 

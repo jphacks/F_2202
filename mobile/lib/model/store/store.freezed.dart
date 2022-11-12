@@ -26,6 +26,8 @@ mixin _$Store {
   String get address => throw _privateConstructorUsedError;
   List<String> get openingHours => throw _privateConstructorUsedError;
   int get userRatingsTotal => throw _privateConstructorUsedError;
+  String get meter => throw _privateConstructorUsedError;
+  String get star => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $StoreCopyWith<Store> get copyWith => throw _privateConstructorUsedError;
@@ -46,7 +48,9 @@ abstract class $StoreCopyWith<$Res> {
       String website,
       String address,
       List<String> openingHours,
-      int userRatingsTotal});
+      int userRatingsTotal,
+      String meter,
+      String star});
 }
 
 /// @nodoc
@@ -72,6 +76,8 @@ class _$StoreCopyWithImpl<$Res, $Val extends Store>
     Object? address = null,
     Object? openingHours = null,
     Object? userRatingsTotal = null,
+    Object? meter = null,
+    Object? star = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -114,6 +120,14 @@ class _$StoreCopyWithImpl<$Res, $Val extends Store>
           ? _value.userRatingsTotal
           : userRatingsTotal // ignore: cast_nullable_to_non_nullable
               as int,
+      meter: null == meter
+          ? _value.meter
+          : meter // ignore: cast_nullable_to_non_nullable
+              as String,
+      star: null == star
+          ? _value.star
+          : star // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -134,7 +148,9 @@ abstract class _$$_StoreCopyWith<$Res> implements $StoreCopyWith<$Res> {
       String website,
       String address,
       List<String> openingHours,
-      int userRatingsTotal});
+      int userRatingsTotal,
+      String meter,
+      String star});
 }
 
 /// @nodoc
@@ -156,6 +172,8 @@ class __$$_StoreCopyWithImpl<$Res> extends _$StoreCopyWithImpl<$Res, _$_Store>
     Object? address = null,
     Object? openingHours = null,
     Object? userRatingsTotal = null,
+    Object? meter = null,
+    Object? star = null,
   }) {
     return _then(_$_Store(
       name: null == name
@@ -198,6 +216,14 @@ class __$$_StoreCopyWithImpl<$Res> extends _$StoreCopyWithImpl<$Res, _$_Store>
           ? _value.userRatingsTotal
           : userRatingsTotal // ignore: cast_nullable_to_non_nullable
               as int,
+      meter: null == meter
+          ? _value.meter
+          : meter // ignore: cast_nullable_to_non_nullable
+              as String,
+      star: null == star
+          ? _value.star
+          : star // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -215,7 +241,9 @@ class _$_Store implements _Store {
       this.website = '',
       this.address = '',
       final List<String> openingHours = const [],
-      this.userRatingsTotal = 0})
+      this.userRatingsTotal = 0,
+      this.meter = '',
+      this.star = ''})
       : _openingHours = openingHours;
 
   @override
@@ -253,10 +281,16 @@ class _$_Store implements _Store {
   @override
   @JsonKey()
   final int userRatingsTotal;
+  @override
+  @JsonKey()
+  final String meter;
+  @override
+  @JsonKey()
+  final String star;
 
   @override
   String toString() {
-    return 'Store(name: $name, placeId: $placeId, photoReference: $photoReference, latitude: $latitude, longitude: $longitude, rating: $rating, website: $website, address: $address, openingHours: $openingHours, userRatingsTotal: $userRatingsTotal)';
+    return 'Store(name: $name, placeId: $placeId, photoReference: $photoReference, latitude: $latitude, longitude: $longitude, rating: $rating, website: $website, address: $address, openingHours: $openingHours, userRatingsTotal: $userRatingsTotal, meter: $meter, star: $star)';
   }
 
   @override
@@ -278,7 +312,9 @@ class _$_Store implements _Store {
             const DeepCollectionEquality()
                 .equals(other._openingHours, _openingHours) &&
             (identical(other.userRatingsTotal, userRatingsTotal) ||
-                other.userRatingsTotal == userRatingsTotal));
+                other.userRatingsTotal == userRatingsTotal) &&
+            (identical(other.meter, meter) || other.meter == meter) &&
+            (identical(other.star, star) || other.star == star));
   }
 
   @override
@@ -293,7 +329,9 @@ class _$_Store implements _Store {
       website,
       address,
       const DeepCollectionEquality().hash(_openingHours),
-      userRatingsTotal);
+      userRatingsTotal,
+      meter,
+      star);
 
   @JsonKey(ignore: true)
   @override
@@ -313,7 +351,9 @@ abstract class _Store implements Store {
       final String website,
       final String address,
       final List<String> openingHours,
-      final int userRatingsTotal}) = _$_Store;
+      final int userRatingsTotal,
+      final String meter,
+      final String star}) = _$_Store;
 
   @override
   String get name;
@@ -335,6 +375,10 @@ abstract class _Store implements Store {
   List<String> get openingHours;
   @override
   int get userRatingsTotal;
+  @override
+  String get meter;
+  @override
+  String get star;
   @override
   @JsonKey(ignore: true)
   _$$_StoreCopyWith<_$_Store> get copyWith =>
