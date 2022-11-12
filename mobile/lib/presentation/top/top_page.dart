@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile/config/app_routing_name.dart';
 import 'package:mobile/model/destination/destination.dart';
 import 'package:mobile/model/property/property.dart';
+import 'package:mobile/presentation/detail/detail_page.dart';
 import 'package:mobile/presentation/property_list/property_list_page.dart';
 import 'package:mobile/presentation/swipe/swipe_page.dart';
 import 'package:mobile/presentation/top/search/search_destination_page.dart';
@@ -317,7 +318,14 @@ class TopPageState extends ConsumerState<TopPage> {
             35.658034,
             139.701636,
           ),
-          onTap: () async {},
+          onTap: () async {
+            Navigator.of(context).pushNamed(
+              AppRoutingName.pageDetail,
+              arguments: DetailPageArgument(
+                property: store,
+              ),
+            );
+          },
         );
       },
     ).toList();
