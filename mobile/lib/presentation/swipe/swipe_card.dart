@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/model/property/property.dart';
+import 'package:mobile/model/store/store.dart';
 
 class ExampleCard extends StatelessWidget {
   const ExampleCard({
     Key? key,
-    required this.property,
+    required this.store,
   }) : super(key: key);
 
-  final Property property;
+  final Store store;
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +30,12 @@ class ExampleCard extends StatelessWidget {
         children: [
           Flexible(
             child: Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.fitWidth,
-                  image: AssetImage('assets/2.png'),
+                  image: AssetImage(store.photoReference),
                 ),
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10),
                 ),
@@ -59,7 +59,7 @@ class ExampleCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      candidate.name!,
+                      store.name,
                       style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class ExampleCard extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      candidate.job!,
+                      store.rating.toString(),
                       style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 15,
@@ -80,7 +80,7 @@ class ExampleCard extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      candidate.city!,
+                      store.address,
                       style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 15,

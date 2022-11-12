@@ -2,6 +2,7 @@ import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mobile/model/store/store.dart';
 import 'package:mobile/presentation/swipe/swipe_card.dart';
 import 'package:mobile/presentation/swipe/swipe_model.dart';
 
@@ -14,25 +15,7 @@ class SwipePage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final List<ExampleCard> cards = [
       ExampleCard(
-        candidate: ExampleCandidateModel(
-          city: 'あ',
-          name: 'いけやん',
-          job: '',
-        ),
-      ),
-      ExampleCard(
-        candidate: ExampleCandidateModel(
-          city: 'あ',
-          name: 'いけん',
-          job: '',
-        ),
-      ),
-      ExampleCard(
-        candidate: ExampleCandidateModel(
-          city: 'あ',
-          name: 'いやん',
-          job: '',
-        ),
+        store: Store(),
       ),
     ];
 
